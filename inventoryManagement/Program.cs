@@ -13,14 +13,8 @@ namespace inventoryManagement
 
             //list initialization
 
-            //testing vlaues
-            Console.WriteLine("TEST");
-            inventoryProcess.productName.Add("test");
-            inventoryProcess.productName.Add("tes2t");
-            inventoryProcess.productQty.Add(5);
-            inventoryProcess.productQty.Add(3);
-            inventoryProcess.productPrice.Add(67);
-            inventoryProcess.productPrice.Add(44);
+       
+       
 
             Boolean retry = false;
             do
