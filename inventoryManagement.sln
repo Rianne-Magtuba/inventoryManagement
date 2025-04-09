@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "inventoryManagement", "inve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{61A6B65F-5E89-48AE-BC3A-8A03A6DE19FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLogic", "DataLogic\DataLogic.csproj", "{B000CCCD-676D-4F53-970B-AB98EA72C37E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryCommon", "InventoryCommon\InventoryCommon.csproj", "{D13C866E-7656-4BED-961B-E3D83ED2DAB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{61A6B65F-5E89-48AE-BC3A-8A03A6DE19FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61A6B65F-5E89-48AE-BC3A-8A03A6DE19FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61A6B65F-5E89-48AE-BC3A-8A03A6DE19FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B000CCCD-676D-4F53-970B-AB98EA72C37E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B000CCCD-676D-4F53-970B-AB98EA72C37E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B000CCCD-676D-4F53-970B-AB98EA72C37E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B000CCCD-676D-4F53-970B-AB98EA72C37E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D13C866E-7656-4BED-961B-E3D83ED2DAB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D13C866E-7656-4BED-961B-E3D83ED2DAB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D13C866E-7656-4BED-961B-E3D83ED2DAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D13C866E-7656-4BED-961B-E3D83ED2DAB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
