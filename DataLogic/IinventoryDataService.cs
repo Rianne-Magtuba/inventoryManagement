@@ -12,7 +12,7 @@ namespace DataLogic
 
         public List<Product> getProducts();
         public void addProduct(Product product);
-        public void updateProduct(Product bankAccount);
-        public void removeProduct(Product bankAccount);
+        public void updateProduct(Product product);
+        public void removeProduct(Product product);
     }
 }
