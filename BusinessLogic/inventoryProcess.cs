@@ -8,150 +8,98 @@ namespace BusinessLogic
     public class inventoryProcess
     {
 
-        InventoryData InventoryData = new InventoryData();
+        inventoryDataService InventoryData = new inventoryDataService();
 
-        //public static List<String> productName = new List<String>();
-        //public static List<int> productQty = new List<int>();
-        //public static List<Double> productPrice = new List<Double>();
 
-       
-        public bool checkProductAmount()
+        //public string getProductName(string productId)
+        //{
+        //    return InventoryData.getProductName(productId);
+        //}
+        public void addProduct(string productId, string productName, int productQuantity, string productSupplier, double productPrice)
         {
-            return InventoryData.checkStocksAmount();
+            Product product1 = new Product();
+
+            product1.Id = productId;
+            product1.Name = productName;
+            product1.Quantity = productQuantity;
+            product1.Supplier = productSupplier;
+            product1.Price = productPrice;
+
+
+            InventoryData.addProduct(product1);
+
+
+
         }
 
-        public string getProductName(string productId)
+        public bool removeProduct(string productId)
         {
-            return InventoryData.getProductName(productId);
-        }
-        public  void AddProduct(string productId, string productName, int productQuantity, string productSupplier, double productPrice)
-        {
-            InventoryData.addProduct(productId, productName, productQuantity, productSupplier, productPrice);
+            List<Product> products = InventoryData.getProducts();
+            for (int i = 0; i < InventoryData.getProducts().Count; i++)
+            {
+                if (productId == products[i].Id)
+                {
+                    InventoryData.removeProduct(products[i]);
+                    return true;
+                }
+            }
+            return false;
+
 
         }
 
-        public bool  removeProduct(string productId)
-        {
-
-            return InventoryData.removeProduct(productId);
-           
-        }
-
-        public bool checkStocksAmount()
-        {
-            return InventoryData.checkStocksAmount();
-        }
 
         public bool productExist(string productId)
-        {
-            return InventoryData.productExist(productId);
+        {     List<Product> products = InventoryData.getProducts();
+            for(int i = 0; i < products.Count; i++)
+            {
+                if (productId == products[i].Id)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
-        public List<Product> getProducts() { 
-        
-       
+
+        public List<Product> getProducts()
+        {
+
             return InventoryData.getProducts();
 
         }
 
-        public List<Product> searchProduct(string productId)
-        {
-            return InventoryData.searchProduct(productId);
-        }
+        //public List<Product> searchProduct(string productId)
+        //{
+        //    return InventoryData.searchProduct(productId);
+        //}
 
-        public bool  updateProductName(string productId, string NewproductName) 
-            {
-           
-            if (productExist(productId)==true)
-            {
-                InventoryData.updateProductName(NewproductName, productId);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-           
-            }
-
-        public bool updateProductId(string productId, string newProductId)
-        {
-
-            if (productExist(productId) == true)
-            {
-                InventoryData.updateProductId(newProductId, productId);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-
-        }
-
-        public bool updateProductQuantity(string productId, int newProductQuantity)
-        {
-
-            if (productExist(productId) == true)
-            {
-                InventoryData.updateProductQuantity(newProductQuantity, productId);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-
-        }
-
-        public bool updateProductPrice(string productId, double newProductPrice)
-        {
-
-            if (productExist(productId) == true)
-            {
-                InventoryData.updateProductPrice(newProductPrice, productId);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-
-        }
-
-        public bool updateProductSupplier(string productId, string newProductSupplier)
-        {
-
-            if (productExist(productId) == true)
-            {
-                InventoryData.updateProducSupplier(newProductSupplier, productId);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-
-        }
 
         public bool updateAllProducts(string SelectedId, string NewProductName, string NewProductId, int NewProductQuantity, double NewProductPrice, string NewProductSupplier)
         {
+            List<Product> products = InventoryData.getProducts();
 
-            if (productExist(SelectedId) == true)
+            for (int i = 0; i < InventoryData.getProducts().Count; i++)
             {
-                InventoryData.updateAllValues(SelectedId,NewProductName, NewProductId, NewProductQuantity,NewProductPrice, NewProductSupplier);
-                return true;
+                if (SelectedId == products[i].Id)
+                {
+                    products[i].Id = NewProductId;
+                    products[i].Name = NewProductName;
+                    products[i].Quantity = NewProductQuantity;
+                    products[i].Supplier = NewProductSupplier;
+                    products[i].Price = NewProductPrice;
+
+                    InventoryData.updateProduct(products[i]);
+
+
+                }
+             
             }
-            else
-            {
-                return false;
-            }
+            return false;
+
         }
     }
+    
 
 
 }
+
