@@ -129,7 +129,10 @@ namespace inventoryManagement
             Console.WriteLine("Please enter the Supplier name ");
             pSupplier = Console.ReadLine();
 
-            inventoryProcess.addProduct(pId, pName, pQty, pSupplier, pPrice);
+            Console.WriteLine("Enter the product category ");
+            string pCategory = Console.ReadLine();
+
+            inventoryProcess.addProduct(pId, pName, pQty, pSupplier, pPrice, pCategory);
 
 
 
@@ -185,7 +188,7 @@ namespace inventoryManagement
                 Console.WriteLine("  Product Name \t | Product ID \t |  Product Quantity \t  | Product Price \t | Product Supplier ");
                 foreach (var product in products)
                 {
-                    Console.WriteLine( "  " + product.Name  +space + "\t|  " + space + product.Id +  "\t \t| " + space +  product.Quantity + space + "\t \t| " + space + product.Price + space + "\t \t| " + space + product.Supplier );
+                    Console.WriteLine( "  " + product.Name  +space + "\t|  " + space + product.Id +  "\t \t| " + space +  product.Quantity + space + "\t \t| " + space + product.Price + space + "\t \t| " + space + product.supplierId );
                 }
 
             }
@@ -225,8 +228,10 @@ namespace inventoryManagement
             double newProdPrice = Convert.ToDouble(Console.ReadLine());
             Console.WriteLine("Please enter new product supplier.");
             var newProdSupplier = Console.ReadLine();
+            Console.WriteLine("Please enter new product category.");
+            var newCategory = Console.ReadLine();
 
-            inventoryProcess.updateAllProducts(id, newProductName, newProdId, newProdQty, newProdPrice, newProdSupplier);
+            inventoryProcess.updateProduct(id, newProductName, newProdId, newProdQty, newProdPrice, newProdSupplier, newCategory);
 
 
         }

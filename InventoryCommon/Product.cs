@@ -8,10 +8,13 @@
 
         public int Quantity { get; set; }
 
-        public string Supplier { get; set; }
+        public string supplierId { get; set; }
 
         public double Price { get; set; }
-        
+
+        public string category { get; set; }
+
+        public DateOnly dateModified { get; set; }
 
     }
 }

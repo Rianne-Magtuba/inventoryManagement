@@ -16,6 +16,7 @@ namespace DataLogic
             InventoryDataService = new textMemoryInvData();
             //InventoryDataService = new inMemoryInvData();
             //InventoryDataService = new inventoryJsonData();
+            //InventoryDataService = new dbIInventoryData();
 
         }
 
@@ -25,12 +26,69 @@ namespace DataLogic
         public void addProduct(Product product) {
             InventoryDataService.addProduct(product);
         }
-        public void updateProduct(Product product) {
-            InventoryDataService.updateProduct(product);
+        public void updateProduct(Product product, string prodID) {
+            InventoryDataService.updateProduct(product, prodID);
         }
         public void removeProduct(Product product) {
             InventoryDataService.removeProduct(product);
         }
+        public List<Accounts> getAccounts()
+        {
+           return  InventoryDataService.getAccounts();
+        }
+        public void addAccount(Accounts account)
+        {
+            InventoryDataService.addAccount(account);
+        }
+        public void updateAccount(Accounts account, string userName)
+        {
+            InventoryDataService.updateAccount(account, userName);
+
+        }
+        public void removeAccount(Accounts account)
+        {
+            InventoryDataService.removeAccount(account);
+        }
+
+        //suppliers
+        public List<Supplier> getSuppliers()
+        {
+            return InventoryDataService.getSuppliers();
+        }
+        public void addSupplier(Supplier supplier)
+        {
+            InventoryDataService.addSupplier(supplier);
+        }
+        public void updateSupplier(Supplier supplier, string id)
+        {
+            InventoryDataService.updateSupplier(supplier, id);
+
+        }
+        public void removeSupplier(Supplier supplier)
+        {
+            InventoryDataService.removeSupplier(supplier);
+        }
+
+
+        //category
+        public List<Category> getCategories()
+        {
+            return InventoryDataService.getCategories();
+        }
+        public void addCategory(Category category)
+        {
+            InventoryDataService.addCategory(category);
+        }
+        public void updateCategory(Category category, int id)
+        {
+            InventoryDataService.updateCategory(category, id);
+
+        }
+        public void removeCategory(Category category)
+        {
+            InventoryDataService.removeCategory(category);
+        }
+
 
     }
 }
