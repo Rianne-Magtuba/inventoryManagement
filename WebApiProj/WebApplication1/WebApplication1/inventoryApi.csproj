@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
+    <PackageReference Include="MySql.Data" Version="9.3.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BusinessLogic">
+      <HintPath>..\..\Rianne-Magtuba\inventoryManagement\BusinessLogic\bin\Debug\net8.0\BusinessLogic.dll</HintPath>
+    </Reference>
+    <Reference Include="DataLogic">
+      <HintPath>..\..\Rianne-Magtuba\inventoryManagement\BusinessLogic\bin\Debug\net8.0\DataLogic.dll</HintPath>
+    </Reference>
+    <Reference Include="InventoryCommon">
+      <HintPath>..\..\Rianne-Magtuba\inventoryManagement\BusinessLogic\bin\Debug\net8.0\InventoryCommon.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
