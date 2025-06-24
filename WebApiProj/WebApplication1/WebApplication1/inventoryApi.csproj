@@ -14,13 +14,13 @@
 
   <ItemGroup>
     <Reference Include="BusinessLogic">
-      <HintPath>..\..\Rianne-Magtuba\inventoryManagement\BusinessLogic\bin\Debug\net8.0\BusinessLogic.dll</HintPath>
+      <HintPath>..\..\..\BusinessLogic\bin\Debug\net8.0\BusinessLogic.dll</HintPath>
     </Reference>
     <Reference Include="DataLogic">
-      <HintPath>..\..\Rianne-Magtuba\inventoryManagement\BusinessLogic\bin\Debug\net8.0\DataLogic.dll</HintPath>
+      <HintPath>..\..\..\BusinessLogic\bin\Debug\net8.0\DataLogic.dll</HintPath>
     </Reference>
     <Reference Include="InventoryCommon">
-      <HintPath>..\..\Rianne-Magtuba\inventoryManagement\BusinessLogic\bin\Debug\net8.0\InventoryCommon.dll</HintPath>
+      <HintPath>..\..\..\BusinessLogic\bin\Debug\net8.0\InventoryCommon.dll</HintPath>
     </Reference>
   </ItemGroup>
 

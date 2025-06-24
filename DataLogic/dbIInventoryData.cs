@@ -32,7 +32,7 @@ namespace DataLogic
         public void addProduct(Product product)
         {
             sqlConnection.Open();
-            var insertStatement = "INSERT INTO inv_product_tbl  VALUES (@Id, @name, @qty, @price, @supplier, @category, @dateModified )";
+            var insertStatement = "INSERT INTO inv_product_table  VALUES (@Id, @name, @qty, @price, @supplier, @category, @dateModified )";
             SqlCommand insertCommand = new SqlCommand(insertStatement, sqlConnection);
 
             insertCommand.Parameters.AddWithValue("@Id", product.Id);
@@ -51,7 +51,7 @@ namespace DataLogic
         public List<Product> getProducts()
         {
             products.Clear(); 
-            var selectStatement = "Select pID, pName, pQty, price,  supplierId, pCategory,dateModified FROM inv_product_tbl";
+            var selectStatement = "Select pID, pName, pQty, price,  supplierId, pCategory,dateModified  FROM inv_product_table";
             sqlConnection.Open();
             SqlCommand selectCommand = new SqlCommand(selectStatement, sqlConnection);
                
@@ -83,7 +83,7 @@ namespace DataLogic
 
         public void removeProduct(Product product)
         {
-            string deleteStatement = "DELETE FROM inv_product_tbl WHERE pID = @id";
+            string deleteStatement = "DELETE FROM inv_product_table WHERE pID = @id";
             sqlConnection.Open();
             SqlCommand deleteCommand = new SqlCommand(deleteStatement, sqlConnection);
             deleteCommand.Parameters.AddWithValue("@id", product.Id);
@@ -93,14 +93,14 @@ namespace DataLogic
         }
 
         public void updateProduct(Product product, string prodID)
-        {   string updateStatement = $"UPDATE inv_product_tbl SET pId = @ID,pName = @Name, pQty = @qty, price = @price, supplierId = @supplier, pCategory = @category, dateModified = @dateNow WHERE pId = @selectedId ";
+        {   string updateStatement = $"UPDATE inv_product_table SET pId = @ID,pName = @Name, pQty = @qty, price = @price, supplierId = @supplier, pCategory = @category, dateModified = @dateNow WHERE pId = @selectedId ";
             sqlConnection.Open();
             SqlCommand updateCommand = new SqlCommand(updateStatement, sqlConnection);
             updateCommand.Parameters.AddWithValue("@ID", product.Id);
             updateCommand.Parameters.AddWithValue("@Name", product.Name);
             updateCommand.Parameters.AddWithValue("@qty", product.Quantity);
             updateCommand.Parameters.AddWithValue("@price", product.Price);
-            updateCommand.Parameters.AddWithValue("@supplier", product.supplierId)  ;
+            updateCommand.Parameters.AddWithValue("@supplier", product.supplierId);
             updateCommand.Parameters.AddWithValue("@category", product.category);
             updateCommand.Parameters.AddWithValue("@dateNow", product.dateModified);
             updateCommand.Parameters.AddWithValue("@selectedId", prodID);
@@ -178,7 +178,7 @@ namespace DataLogic
         public List<Supplier> getSuppliers()
         {
             suppliers.Clear();
-            var selectStatement = "Select suppleirId, supplierName, supplierAddress, supplierContactNum, supplierEmailAdd FROM supplier_table";
+            var selectStatement = "Select supplierId, supplierName, supplierAddress, supplierContactNum, supplierEmailAdd FROM supplier_table";
             sqlConnection.Open();
             SqlCommand selectCommand = new SqlCommand(selectStatement, sqlConnection);
 
@@ -188,7 +188,7 @@ namespace DataLogic
             {
                 suppliers.Add(new Supplier
                 {
-                  Id = sqlRead["suppleirId"].ToString(),
+                  Id = sqlRead["supplierId"].ToString(),
                     Name = sqlRead["supplierName"].ToString(),
                     Address = sqlRead["supplierAddress"].ToString(),
                     ContactNum = sqlRead["supplierContactNum"].ToString(),

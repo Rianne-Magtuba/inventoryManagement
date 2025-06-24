@@ -1,5 +1,6 @@
 ﻿using DataLogic;
 using InventoryCommon;
+using Microsoft.Identity.Client;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -19,6 +20,8 @@ namespace BusinessLogic
         //{
         //    return InventoryData.getProductName(productId);
         //}
+
+        //PRODUT METHODS
         public List<Product> getProduct(string productId)
         {
             List<Product> products = InventoryData.getProducts();
@@ -99,11 +102,6 @@ namespace BusinessLogic
 
         }
 
-        //public List<Product> searchProduct(string productId)
-        //{
-        //    return InventoryData.searchProduct(productId);
-        //}
-
 
         public void updateProduct(string SelectedId, string NewProductName, string NewProductId, int NewProductQuantity, double NewProductPrice, string NewProductSupplier, string newCategory)
         {
@@ -122,11 +120,99 @@ namespace BusinessLogic
             InventoryData.updateProduct(product1, SelectedId);
 
 
+        }
+        //SUPPLIER METHODS
 
-         
-
+        public List<Supplier> getSuppliers()
+        {
+            return InventoryData.getSuppliers();
         }
 
+        public List<Supplier> getSupplier(string supplierId)
+        {
+           List<Supplier> suppliers = InventoryData.getSuppliers();
+            List<Supplier> searchedSupplier = new List<Supplier>();
+            for (int i = 0; i < suppliers.Count; i++)
+            {
+                if (suppliers[i].Id == supplierId)
+                {
+                    searchedSupplier.Add(suppliers[i]);
+                }
+            }
+            return searchedSupplier;
+        }
+
+        public List<string> getSupplierProducts(string supplierId)
+        {
+            List<Product> products = InventoryData.getProducts();
+            List<string> supplierProducts = new List<string>();
+            int productCount = 0;
+            for (int i = 0; i < products.Count; i++)
+            {
+                if (products[i].supplierId == supplierId)
+                {
+                    supplierProducts.Add(products[i].Name);
+                    productCount++;
+                }
+            }
+
+            if(productCount == 0)
+            {
+                supplierProducts.Add("No products found");
+            }
+           
+            return supplierProducts;
+        }
+        public string getSupplierName(string supplierId)
+        {
+            List<Supplier> suppliers = InventoryData.getSuppliers();
+            for (int i = 0; i < suppliers.Count; i++)
+            {
+                if (suppliers[i].Id == supplierId)
+                {
+                    return suppliers[i].Name;
+                }
+            }
+            return null;
+        }
+
+        public void addSupplier(string supplierId, string supplierName, string supplierAddress, string supplierContactNum, string supplierEmailAdd)
+        {
+            Supplier supplier1 = new Supplier();
+            supplier1.Id = supplierId;
+            supplier1.Name = supplierName;
+            supplier1.Address = supplierAddress;
+            supplier1.ContactNum = supplierContactNum;
+            supplier1.EmailAdd = supplierEmailAdd;
+            InventoryData.addSupplier(supplier1);
+        }
+
+        public bool removeSupplier(string supplierId)
+        {
+            List<Supplier> suppliers = InventoryData.getSuppliers();
+            for (int i = 0; i < suppliers.Count; i++)
+            {
+                if (suppliers[i].Id == supplierId)
+                {
+                    InventoryData.removeSupplier(suppliers[i]);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void updateSupplier(string SelectedId, string NewSupplierId, string NewSupplierName, string NewSupplierAddress, string NewSupplierContactNum, string NewSupplierEmailAdd)
+        {
+            Supplier supplier1 = new Supplier();
+            supplier1.Id = NewSupplierId;
+            supplier1.Name = NewSupplierName;
+            supplier1.Address = NewSupplierAddress;
+            supplier1.ContactNum = NewSupplierContactNum;
+            supplier1.EmailAdd = NewSupplierEmailAdd;
+            InventoryData.updateSupplier(supplier1, SelectedId);
+        }
+
+        //ACCOUNT METHODS
         public List<Accounts> getAccounts()
         {
             return InventoryData.getAccounts();

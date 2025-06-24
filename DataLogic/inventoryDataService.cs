@@ -13,10 +13,10 @@ namespace DataLogic
 
         public inventoryDataService()
         {
-            InventoryDataService = new textMemoryInvData();
+            //InventoryDataService = new textMemoryInvData();
             //InventoryDataService = new inMemoryInvData();
             //InventoryDataService = new inventoryJsonData();
-            //InventoryDataService = new dbIInventoryData();
+            InventoryDataService = new dbIInventoryData();
 
         }
 
