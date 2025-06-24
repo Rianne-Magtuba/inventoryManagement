@@ -32,7 +32,7 @@ namespace DataLogic
         public void addProduct(Product product)
         {
             sqlConnection.Open();
-            var insertStatement = "INSERT INTO inv_product_table  VALUES (@Id, @name, @qty, @price, @supplier, @category, @dateModified )";
+            var insertStatement = "INSERT INTO inv_product_table  VALUES (@Id, @name, @supplier,  @price, @qty,  @category, @dateModified )";
             SqlCommand insertCommand = new SqlCommand(insertStatement, sqlConnection);
 
             insertCommand.Parameters.AddWithValue("@Id", product.Id);
@@ -67,7 +67,7 @@ namespace DataLogic
                     Price = Convert.ToDouble(sqlRead["price"].ToString()),
                     supplierId = sqlRead["supplierId"].ToString(),
                     category = sqlRead["pCategory"].ToString(),
-                    dateModified = (DateOnly)sqlRead["dateModified"]
+                    dateModified = DateOnly.FromDateTime((DateTime)sqlRead["dateModified"])
 
 
                 });
@@ -92,18 +92,18 @@ namespace DataLogic
 
         }
 
-        public void updateProduct(Product product, string prodID)
-        {   string updateStatement = $"UPDATE inv_product_table SET pId = @ID,pName = @Name, pQty = @qty, price = @price, supplierId = @supplier, pCategory = @category, dateModified = @dateNow WHERE pId = @selectedId ";
+        public void updateProduct(Product product)
+        {   string updateStatement = $"UPDATE inv_product_table SET pName = @Name, pQty = @qty, price = @price, supplierId = @supplier, pCategory = @category, dateModified = @dateNow WHERE pId = @selectedId ";
             sqlConnection.Open();
             SqlCommand updateCommand = new SqlCommand(updateStatement, sqlConnection);
-            updateCommand.Parameters.AddWithValue("@ID", product.Id);
+
             updateCommand.Parameters.AddWithValue("@Name", product.Name);
             updateCommand.Parameters.AddWithValue("@qty", product.Quantity);
             updateCommand.Parameters.AddWithValue("@price", product.Price);
             updateCommand.Parameters.AddWithValue("@supplier", product.supplierId);
             updateCommand.Parameters.AddWithValue("@category", product.category);
             updateCommand.Parameters.AddWithValue("@dateNow", product.dateModified);
-            updateCommand.Parameters.AddWithValue("@selectedId", prodID);
+            updateCommand.Parameters.AddWithValue("@selectedId", product.Id);
           
             updateCommand.ExecuteNonQuery();
 
@@ -223,19 +223,19 @@ namespace DataLogic
 
         }
 
-        public void updateSupplier(Supplier suppliers, string id)
+        public void updateSupplier(Supplier suppliers)
         {
-              string updateStatement = $"UPDATE supplier_table SET supplierId = @supID, supplierName = @supName,  " +
+              string updateStatement = $"UPDATE supplier_table SET  supplierName = @supName,  " +
                 $"supplierAddress = @supAdd, supplierContactNum = @contactNum, supplierEmailAdd = @supEmailAd WHERE supplierId = @selectedId ";
                 sqlConnection.Open();
                 SqlCommand updateCommand = new SqlCommand(updateStatement, sqlConnection);
-                updateCommand.Parameters.AddWithValue("@supID", suppliers.Id);
+          
                 updateCommand.Parameters.AddWithValue("@supName", suppliers.Name);
                 updateCommand.Parameters.AddWithValue("@supAdd", suppliers.Address);
                 updateCommand.Parameters.AddWithValue("@contactNum", suppliers.ContactNum);
                 updateCommand.Parameters.AddWithValue("@supEmailAd", suppliers.EmailAdd);
             
-                updateCommand.Parameters.AddWithValue("@selectedId", id);
+                updateCommand.Parameters.AddWithValue("@selectedId", suppliers.Id);
                 updateCommand.ExecuteNonQuery();
 
                 sqlConnection.Close();
@@ -254,7 +254,7 @@ namespace DataLogic
         public List<Category> getCategories()
         {
             categories.Clear();
-            var selectStatement = "Select categoryId, categoryName, FROM categortTbl";
+            var selectStatement = "Select categoryId, categoryName FROM categoryTbl";
             sqlConnection.Open();
             SqlCommand selectCommand = new SqlCommand(selectStatement, sqlConnection);
 
@@ -283,10 +283,10 @@ namespace DataLogic
         public void addCategory(Category category)
         {
             sqlConnection.Open();
-            var insertStatement = "INSERT INTO categoryTbl  VALUES (@name)";
+            var insertStatement = "INSERT INTO categoryTbl  (categoryName) VALUES (@name)";
             SqlCommand insertCommand = new SqlCommand(insertStatement, sqlConnection);
 
-            insertCommand.Parameters.AddWithValue("@name", category.Id);
+            insertCommand.Parameters.AddWithValue("@name", category.Name);
 
 
             insertCommand.ExecuteNonQuery();
@@ -305,22 +305,40 @@ namespace DataLogic
             sqlConnection.Close();
         }
 
-        public void updateCategory(Category category, int id)
+        public void updateCategory(Category category)
         {
 
-            string updateStatement = $"UPDATE categoryTbl SET categoryId = @catId, categoryName = @catName, WHERE categoryId = @selectedId ";
+            string updateStatement = $"UPDATE categoryTbl SET  categoryName = @catName WHERE categoryId = @selectedId ";
             sqlConnection.Open();
             SqlCommand updateCommand = new SqlCommand(updateStatement, sqlConnection);
-            updateCommand.Parameters.AddWithValue("@catId", category.Id);
+           
             updateCommand.Parameters.AddWithValue("@catName", category.Name);
 
 
-            updateCommand.Parameters.AddWithValue("@selectedId", id);
+            updateCommand.Parameters.AddWithValue("@selectedId", category.Id);
             updateCommand.ExecuteNonQuery();
 
             sqlConnection.Close();
         }
 
-     
+        public List<Orders> getOrders()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void addOrders(Orders orders)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void updateOrders(Orders orders)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void removeOrders(Orders orders)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

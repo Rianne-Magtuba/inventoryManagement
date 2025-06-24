@@ -188,21 +188,19 @@ namespace inventoryManagementGUI
             // Assuming icon columns are at index 3 and 4 (adjust as needed)
             if (productTable.Columns[e.ColumnIndex].Name == "Edit")
             {
-                string productId = productTable.Rows[e.RowIndex].Cells["ProductID"].Value.ToString();
-                MessageBox.Show($"Edit clicked for Product ID: {productId}");
+                //string productId = productTable.Rows[e.RowIndex].Cells["ProductID"].Value.ToString();
+                //MessageBox.Show($"Edit clicked for Product ID: {productId}");
 
                 headerLbl.Text = "Products/ edit information ";
                 tabControl1.SelectedTab = editProducts;
                 loadCategories();
-               
+
             }
             else if (productTable.Columns[e.ColumnIndex].Name == "More")
             {
                 string productId = productTable.Rows[e.RowIndex].Cells["ProductID"].Value.ToString();
 
-                var cellRect = productTable.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
-                var cellScreenLocation = productTable.PointToScreen(new Point(cellRect.X, cellRect.Y + cellRect.Height));
-                supplierMoreStrip.Show(cellScreenLocation);
+         
 
 
 
@@ -225,25 +223,28 @@ namespace inventoryManagementGUI
                 tabControl1.SelectedTab = editSupplier;
                 setupSupplierEditPanel(supplierId);
 
-            
+
             }
             else if (supplierTable.Columns[e.ColumnIndex].Name == "More")
             {
-                 supplierId = supplierTable.Rows[e.RowIndex].Cells["supplierId"].Value.ToString();
+                supplierId = supplierTable.Rows[e.RowIndex].Cells["supplierId"].Value.ToString();
 
                 var cellRect = supplierTable.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
                 var cellScreenLocation = supplierTable.PointToScreen(new Point(cellRect.X, cellRect.Y + cellRect.Height));
-           
+
                 tabControl1.SelectedTab = supplierInfo;
                 setupSupllierInfoPanel(supplierId);
-              
+
             }
         }
 
         private void setupSupplierEditPanel(string selectedSupplierId)
         {
             List<Supplier> suppliers = inventoryProcess.getSupplier(selectedSupplierId);
-
+            editSupplierId.Text = suppliers[0].Id;
+            editSupplierEmail.Text = suppliers[0].EmailAdd;
+            editSupplierName.Text = suppliers[0].Name;
+            editSupplierNum.Text = suppliers[0].ContactNum;
             editSupplierAddress.Text = suppliers[0].Address;
 
         }
@@ -252,7 +253,7 @@ namespace inventoryManagementGUI
             List<Supplier> suppliers = inventoryProcess.getSupplier(selectedSupllierId);
             List<string> supplierProducts = inventoryProcess.getSupplierProducts(selectedSupllierId);
             info_supplierProductsCmb.DataSource = supplierProducts;
-            
+
             info_supplierName.textBox.Text = suppliers[0].Name;
             info_supplierEmail.textBox.Text = suppliers[0].EmailAdd;
             info_supplierAdd.textBox.Text = suppliers[0].Address;
@@ -289,6 +290,12 @@ namespace inventoryManagementGUI
                     ProductName = p.Name,
                     ProductCategory = p.category
                 }).ToList();
+
+                if (filteredData.Count == 0)
+                {
+                    noProductPrompt.Visible = true;
+                    return;
+                }
 
                 productTable.DataSource = null;
                 productTable.DataSource = filteredData;
@@ -352,13 +359,31 @@ namespace inventoryManagementGUI
 
 
         }
+        public void setupEditProductPanel()
+        {
 
+        }
+        public void setupAddProductPanel()
+        {
+            List<string> defaultt = new List<string>();
+            defaultt.Add("No Item Found");
+            addProductSupplierCmb.DataSource = inventoryProcess.getSupplierNames();
+            addProductCategoryCmb.DataSource = inventoryProcess.GetCategoryNames();
+            if (addProductCategoryCmb.Items.Count == 0)
+            {
+                addProductCategoryCmb.DataSource = defaultt;
+            }
+            if (addProductSupplierCmb.Items.Count == 0)
+            {
+                addProductSupplierCmb.DataSource = defaultt;
+            }
+
+
+        }
         private void loadCategories()
         {
-            List<Product> product = inventoryProcess.getProducts();
-            List<string> categories = product.Select(p => p.category).Distinct().ToList();
-            cmbCategory.DataSource = categories;
-       
+            cmbCategory.DataSource = inventoryProcess.GetCategoryNames();
+
         }
 
 
@@ -372,18 +397,18 @@ namespace inventoryManagementGUI
         {
             var locationOnScreen = categoryMoreBtn.PointToScreen(new Point(0, categoryMoreBtn.Height));
 
-
             categoryMore.Show(locationOnScreen);
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("SHOW CATEGORY");
+            Category AddCategory = new Category(this);
+            AddCategory.Show();
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("SHOW Supplier");
+            tabControl1.SelectedTab = supplierInfo;
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -425,6 +450,75 @@ namespace inventoryManagementGUI
         private void cyberTextBox13_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void saveEditSupplierBtn_Click(object sender, EventArgs e)
+        {
+            string id = editSupplierId.Text;
+
+            string name = editSupplierName.Text;
+            string email = editSupplierEmail.Text;
+            string contactNum = editSupplierNum.Text;
+            string address = editSupplierAddress.Text;
+
+            inventoryProcess.updateSupplier(id, name, email, contactNum, address);
+            MessageBox.Show("Supplier updated successfully!");
+        }
+
+        private void orderProductCatBtn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addProductNavBtn_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = addProduct;
+            setupAddProductPanel();
+        }
+
+        private void addProdCatViewMore_Click(object sender, EventArgs e)
+        {
+            var locationOnScreen = addProdCatViewMore.PointToScreen(new Point(0, categoryMoreBtn.Height));
+
+            categoryMore.Show(locationOnScreen);
+        }
+
+        private void addProdSupViewMore_Click(object sender, EventArgs e)
+        {
+            var locationOnScreen = addProdSupViewMore.PointToScreen(new Point(0, addProdSupViewMore.Height));
+
+
+            supplierMoreStrip.Show(locationOnScreen);
+        }
+
+      
+
+        private void addProductBtn_Click_1(object sender, EventArgs e)
+        {
+            string name = addProductNameField.Text.Trim();
+            string id = addProductIdField.Text.Trim();
+            string category = addProductCategoryCmb.Text.Trim();
+            string supplierName = addProductSupplierCmb.Text.Trim();
+            string preConPrice = addProductPrice.Text.Trim();
+            double price = 0;
+            if (preConPrice == "")
+            {
+                price = 0;
+            }
+            else
+            {
+                price = Convert.ToDouble(preConPrice);
+            }
+                int qty = 0;
+
+            if (name == "" && id == ""  && price == 0 ||  category == "No Item Found" && supplierName == "No Item Found")
+            {
+                MessageBox.Show("Please fill all fields correctly.");
+                return;
+            }
+            string supplierId =  inventoryProcess.getSupplierId(supplierName);
+            inventoryProcess.addProduct(id, name, qty, supplierId, price, category);
+            MessageBox.Show("Product added successfully!");
         }
     }
 }

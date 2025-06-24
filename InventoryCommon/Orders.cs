@@ -13,6 +13,8 @@ namespace InventoryCommon
         public string supplierId { get; set; }
         public string productId { get; set; }
         public int qty { get; set; }
+        public string status { get; set; }
+        public DateOnly estimatedDate { get; set; }
 
     }
 }

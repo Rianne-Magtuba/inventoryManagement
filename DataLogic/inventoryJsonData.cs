@@ -83,7 +83,7 @@ namespace DataLogic
             WriteJsonProdDataToFile();
         }
 
-        public void updateProduct(Product product, string prodID)
+        public void updateProduct(Product product)
         {
             int index = getIndex(products, product);
 
@@ -181,7 +181,7 @@ namespace DataLogic
             WriteJsonSuppDataToFile();
         }
 
-        public void updateSupplier(Supplier suppliers, string id)
+        public void updateSupplier(Supplier suppliers)
         {
             int index = getIndex(this.suppliers, suppliers);
             if (index != -1)
@@ -227,7 +227,7 @@ namespace DataLogic
             WriteJsonCatDataToFile();
         }
 
-        public void updateCategory(Category category, int id)
+        public void updateCategory(Category category)
         {
             int index = getIndex(categories, category);
             if (index != -1)
@@ -252,6 +252,26 @@ namespace DataLogic
 
                 
                 
+        }
+
+        public List<Orders> getOrders()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void addOrders(Orders orders)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void updateOrders(Orders orders)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void removeOrders(Orders orders)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -93,6 +93,16 @@ namespace inventoryManagementGUI {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap menuIcon {
+            get {
+                object obj = ResourceManager.GetObject("menuIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap moreIcon {
             get {
                 object obj = ResourceManager.GetObject("moreIcon", resourceCulture);
@@ -116,16 +126,6 @@ namespace inventoryManagementGUI {
         internal static System.Drawing.Bitmap product_icon {
             get {
                 object obj = ResourceManager.GetObject("product_icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap productHeader {
-            get {
-                object obj = ResourceManager.GetObject("productHeader", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

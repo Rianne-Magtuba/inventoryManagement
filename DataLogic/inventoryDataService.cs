@@ -26,8 +26,8 @@ namespace DataLogic
         public void addProduct(Product product) {
             InventoryDataService.addProduct(product);
         }
-        public void updateProduct(Product product, string prodID) {
-            InventoryDataService.updateProduct(product, prodID);
+        public void updateProduct(Product product) {
+            InventoryDataService.updateProduct(product);
         }
         public void removeProduct(Product product) {
             InventoryDataService.removeProduct(product);
@@ -59,9 +59,9 @@ namespace DataLogic
         {
             InventoryDataService.addSupplier(supplier);
         }
-        public void updateSupplier(Supplier supplier, string id)
+        public void updateSupplier(Supplier supplier)
         {
-            InventoryDataService.updateSupplier(supplier, id);
+            InventoryDataService.updateSupplier(supplier);
 
         }
         public void removeSupplier(Supplier supplier)
@@ -79,9 +79,9 @@ namespace DataLogic
         {
             InventoryDataService.addCategory(category);
         }
-        public void updateCategory(Category category, int id)
+        public void updateCategory(Category category)
         {
-            InventoryDataService.updateCategory(category, id);
+            InventoryDataService.updateCategory(category);
 
         }
         public void removeCategory(Category category)
@@ -90,5 +90,25 @@ namespace DataLogic
         }
 
 
+        //order
+        public List<Orders> getOrders()
+        {
+            return InventoryDataService.getOrders();
+        }
+        public void addOrders(Orders orders)
+        {
+            InventoryDataService.addOrders(orders);
+        }
+        public void updateOrders(Orders orders)
+        {
+            InventoryDataService.updateOrders(orders);
+
+        }
+        public void removeOrders(Orders orders)
+        {
+            InventoryDataService.removeOrders(orders);
+        }
+
     }
+
 }

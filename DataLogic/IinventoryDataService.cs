@@ -13,7 +13,7 @@ namespace DataLogic
         public List<Product> getProducts();
         
         public void addProduct(Product product);
-        public void updateProduct(Product product, string prodID);
+        public void updateProduct(Product product);
         public void removeProduct(Product product);
 
         //accounts
@@ -25,14 +25,21 @@ namespace DataLogic
         //suppliers
         public List<Supplier> getSuppliers();
         public void addSupplier(Supplier suppliers);
-        public void updateSupplier(Supplier suppliers, string id);
+        public void updateSupplier(Supplier suppliers);
         public void removeSupplier(Supplier suppliers);
 
         //category
 
         public List<Category> getCategories();
         public void addCategory(Category category);
-        public void updateCategory(Category category, int id);
+        public void updateCategory(Category category);
         public void removeCategory(Category category);
+
+            //Orders
+
+       public List<Orders> getOrders();
+        public void addOrders(Orders orders);
+        public void updateOrders(Orders orders);
+        public void removeOrders(Orders orders);
     }
 }

@@ -39,10 +39,10 @@ namespace inventoryManagementGUI
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             panel1 = new Panel();
             button4 = new Button();
             supplierNavbtn = new Button();
@@ -55,13 +55,36 @@ namespace inventoryManagementGUI
             tabControl1 = new TabControl();
             Dashboard = new TabPage();
             viewProducts = new TabPage();
+            noProductPrompt = new Label();
+            addProductNavBtn = new ReaLTaiizor.Controls.CyberButton();
+            textBox1 = new TextBox();
+            cyberTextBox24 = new ReaLTaiizor.Controls.CyberTextBox();
             label10 = new Label();
             label9 = new Label();
             label1 = new Label();
-            pictureBox2 = new PictureBox();
-            textBox1 = new TextBox();
-            pictureBox1 = new PictureBox();
+            cyberTextBox25 = new ReaLTaiizor.Controls.CyberTextBox();
             productTable = new DataGridView();
+            addProduct = new TabPage();
+            label37 = new Label();
+            textBox12 = new TextBox();
+            addProdSupViewMore = new Button();
+            addProdCatViewMore = new Button();
+            addProductBtn = new ReaLTaiizor.Controls.CyberButton();
+            label36 = new Label();
+            addProductIdField = new TextBox();
+            addProductSupplierCmb = new ReaLTaiizor.Controls.DungeonComboBox();
+            addProductCategoryCmb = new ReaLTaiizor.Controls.DungeonComboBox();
+            label38 = new Label();
+            label39 = new Label();
+            label40 = new Label();
+            addProductPrice = new TextBox();
+            cyberTextBox19 = new ReaLTaiizor.Controls.CyberTextBox();
+            cyberTextBox20 = new ReaLTaiizor.Controls.CyberTextBox();
+            addProductNameField = new TextBox();
+            cyberTextBox21 = new ReaLTaiizor.Controls.CyberTextBox();
+            cyberTextBox22 = new ReaLTaiizor.Controls.CyberTextBox();
+            cyberTextBox23 = new ReaLTaiizor.Controls.CyberTextBox();
+            label41 = new Label();
             editProducts = new TabPage();
             supplierMoreBtn = new Button();
             categoryMoreBtn = new Button();
@@ -90,8 +113,9 @@ namespace inventoryManagementGUI
             label11 = new Label();
             textBox2 = new TextBox();
             orderProduct = new TabPage();
+            orderProductIDField = new TextBox();
+            orderProductNamecmb = new ReaLTaiizor.Controls.DungeonComboBox();
             label19 = new Label();
-            orderProductIdBtn = new TextBox();
             orderProductBtn = new ReaLTaiizor.Controls.CyberButton();
             orderProductQtyBtn = new TextBox();
             label5 = new Label();
@@ -103,7 +127,6 @@ namespace inventoryManagementGUI
             orderProductPriceBtn = new TextBox();
             cyberTextBox5 = new ReaLTaiizor.Controls.CyberTextBox();
             cyberTextBox8 = new ReaLTaiizor.Controls.CyberTextBox();
-            orderProductNameBtn = new TextBox();
             cyberTextBox6 = new ReaLTaiizor.Controls.CyberTextBox();
             cyberTextBox9 = new ReaLTaiizor.Controls.CyberTextBox();
             cyberTextBox7 = new ReaLTaiizor.Controls.CyberTextBox();
@@ -132,7 +155,7 @@ namespace inventoryManagementGUI
             cyberTextBox15 = new ReaLTaiizor.Controls.CyberTextBox();
             label26 = new Label();
             label23 = new Label();
-            textBox5 = new TextBox();
+            editSupplierId = new TextBox();
             cyberTextBox13 = new ReaLTaiizor.Controls.CyberTextBox();
             editSupplierName = new TextBox();
             cyberTextBox14 = new ReaLTaiizor.Controls.CyberTextBox();
@@ -155,6 +178,7 @@ namespace inventoryManagementGUI
             label33 = new Label();
             label34 = new Label();
             textBox6 = new TextBox();
+            tabPage2 = new TabPage();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             pictureBox3 = new PictureBox();
             userLbl = new Label();
@@ -163,13 +187,12 @@ namespace inventoryManagementGUI
             toolStripMenuItem1 = new ToolStripMenuItem();
             supplierMoreStrip = new ContextMenuStrip(components);
             toolStripMenuItem2 = new ToolStripMenuItem();
-            pictureBox4 = new PictureBox();
+            button3 = new Button();
             panel1.SuspendLayout();
             tabControl1.SuspendLayout();
             viewProducts.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)productTable).BeginInit();
+            addProduct.SuspendLayout();
             editProducts.SuspendLayout();
             orderProduct.SuspendLayout();
             supplierPanel.SuspendLayout();
@@ -179,7 +202,6 @@ namespace inventoryManagementGUI
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             categoryMore.SuspendLayout();
             supplierMoreStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -339,11 +361,13 @@ namespace inventoryManagementGUI
             tabControl1.Appearance = TabAppearance.FlatButtons;
             tabControl1.Controls.Add(Dashboard);
             tabControl1.Controls.Add(viewProducts);
+            tabControl1.Controls.Add(addProduct);
             tabControl1.Controls.Add(editProducts);
             tabControl1.Controls.Add(orderProduct);
             tabControl1.Controls.Add(supplierPanel);
             tabControl1.Controls.Add(editSupplier);
             tabControl1.Controls.Add(supplierInfo);
+            tabControl1.Controls.Add(tabPage2);
             tabControl1.ItemSize = new Size(0, 1);
             tabControl1.Location = new Point(369, 115);
             tabControl1.Margin = new Padding(4);
@@ -367,12 +391,14 @@ namespace inventoryManagementGUI
             // viewProducts
             // 
             viewProducts.BackColor = Color.FromArgb(236, 236, 236);
+            viewProducts.Controls.Add(noProductPrompt);
+            viewProducts.Controls.Add(addProductNavBtn);
+            viewProducts.Controls.Add(textBox1);
+            viewProducts.Controls.Add(cyberTextBox24);
             viewProducts.Controls.Add(label10);
             viewProducts.Controls.Add(label9);
             viewProducts.Controls.Add(label1);
-            viewProducts.Controls.Add(pictureBox2);
-            viewProducts.Controls.Add(textBox1);
-            viewProducts.Controls.Add(pictureBox1);
+            viewProducts.Controls.Add(cyberTextBox25);
             viewProducts.Controls.Add(productTable);
             viewProducts.Location = new Point(4, 5);
             viewProducts.Margin = new Padding(4);
@@ -382,6 +408,105 @@ namespace inventoryManagementGUI
             viewProducts.TabIndex = 1;
             viewProducts.Text = "tabPage2";
             viewProducts.Click += viewProducts_Click;
+            // 
+            // noProductPrompt
+            // 
+            noProductPrompt.AutoSize = true;
+            noProductPrompt.Font = new Font("Arial", 12F, FontStyle.Bold);
+            noProductPrompt.Location = new Point(313, 294);
+            noProductPrompt.Margin = new Padding(4, 0, 4, 0);
+            noProductPrompt.Name = "noProductPrompt";
+            noProductPrompt.Size = new Size(479, 29);
+            noProductPrompt.TabIndex = 6;
+            noProductPrompt.Text = "Products not found Please add products";
+            noProductPrompt.TextAlign = ContentAlignment.MiddleCenter;
+            noProductPrompt.Visible = false;
+            // 
+            // addProductNavBtn
+            // 
+            addProductNavBtn.Alpha = 20;
+            addProductNavBtn.BackColor = Color.Transparent;
+            addProductNavBtn.Background = true;
+            addProductNavBtn.Background_WidthPen = 4F;
+            addProductNavBtn.BackgroundPen = true;
+            addProductNavBtn.ColorBackground = Color.FromArgb(236, 236, 236);
+            addProductNavBtn.ColorBackground_1 = SystemColors.ScrollBar;
+            addProductNavBtn.ColorBackground_2 = SystemColors.ActiveBorder;
+            addProductNavBtn.ColorBackground_Pen = SystemColors.ActiveBorder;
+            addProductNavBtn.ColorLighting = Color.White;
+            addProductNavBtn.ColorPen_1 = SystemColors.WindowFrame;
+            addProductNavBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
+            addProductNavBtn.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            addProductNavBtn.Effect_1 = true;
+            addProductNavBtn.Effect_1_ColorBackground = Color.FromArgb(29, 200, 238);
+            addProductNavBtn.Effect_1_Transparency = 25;
+            addProductNavBtn.Effect_2 = true;
+            addProductNavBtn.Effect_2_ColorBackground = Color.White;
+            addProductNavBtn.Effect_2_Transparency = 20;
+            addProductNavBtn.Font = new Font("Arial", 11F);
+            addProductNavBtn.ForeColor = Color.Black;
+            addProductNavBtn.Lighting = false;
+            addProductNavBtn.LinearGradient_Background = false;
+            addProductNavBtn.LinearGradientPen = false;
+            addProductNavBtn.Location = new Point(911, 7);
+            addProductNavBtn.Name = "addProductNavBtn";
+            addProductNavBtn.PenWidth = 15;
+            addProductNavBtn.Rounding = true;
+            addProductNavBtn.RoundingInt = 70;
+            addProductNavBtn.Size = new Size(192, 55);
+            addProductNavBtn.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            addProductNavBtn.TabIndex = 59;
+            addProductNavBtn.Tag = "Cyber";
+            addProductNavBtn.TextButton = "+ Add Product";
+            addProductNavBtn.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
+            addProductNavBtn.Timer_Effect_1 = 5;
+            addProductNavBtn.Timer_RGB = 300;
+            addProductNavBtn.Click += addProductNavBtn_Click;
+            // 
+            // textBox1
+            // 
+            textBox1.BackColor = Color.FromArgb(236, 236, 236);
+            textBox1.BorderStyle = BorderStyle.None;
+            textBox1.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox1.ForeColor = Color.FromArgb(174, 174, 172);
+            textBox1.Location = new Point(143, 24);
+            textBox1.Margin = new Padding(4);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(696, 23);
+            textBox1.TabIndex = 6;
+            textBox1.Text = "Search";
+            // 
+            // cyberTextBox24
+            // 
+            cyberTextBox24.Alpha = 20;
+            cyberTextBox24.BackColor = Color.Transparent;
+            cyberTextBox24.Background_WidthPen = 3F;
+            cyberTextBox24.BackgroundPen = true;
+            cyberTextBox24.ColorBackground = Color.FromArgb(236, 236, 236);
+            cyberTextBox24.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
+            cyberTextBox24.ColorLighting = Color.FromArgb(174, 174, 172);
+            cyberTextBox24.ColorPen_1 = Color.FromArgb(174, 174, 172);
+            cyberTextBox24.ColorPen_2 = Color.FromArgb(174, 174, 172);
+            cyberTextBox24.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            cyberTextBox24.Enabled = false;
+            cyberTextBox24.Font = new Font("Arial", 13F);
+            cyberTextBox24.ForeColor = Color.FromArgb(245, 245, 245);
+            cyberTextBox24.Lighting = false;
+            cyberTextBox24.LinearGradientPen = false;
+            cyberTextBox24.Location = new Point(82, 7);
+            cyberTextBox24.Name = "cyberTextBox24";
+            cyberTextBox24.PenWidth = 15;
+            cyberTextBox24.RGB = false;
+            cyberTextBox24.Rounding = true;
+            cyberTextBox24.RoundingInt = 60;
+            cyberTextBox24.Size = new Size(776, 55);
+            cyberTextBox24.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            cyberTextBox24.TabIndex = 42;
+            cyberTextBox24.TabStop = false;
+            cyberTextBox24.Tag = "Cyber";
+            cyberTextBox24.TextButton = "";
+            cyberTextBox24.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            cyberTextBox24.Timer_RGB = 300;
             // 
             // label10
             // 
@@ -422,61 +547,60 @@ namespace inventoryManagementGUI
             label1.TabIndex = 8;
             label1.Text = "Product ID";
             // 
-            // pictureBox2
+            // cyberTextBox25
             // 
-            pictureBox2.Image = Resources.productHeader;
-            pictureBox2.Location = new Point(99, 66);
-            pictureBox2.Margin = new Padding(4);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(1030, 97);
-            pictureBox2.TabIndex = 7;
-            pictureBox2.TabStop = false;
-            // 
-            // textBox1
-            // 
-            textBox1.BackColor = Color.FromArgb(236, 236, 236);
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.ForeColor = Color.FromArgb(174, 174, 172);
-            textBox1.Location = new Point(126, 24);
-            textBox1.Margin = new Padding(4);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(696, 23);
-            textBox1.TabIndex = 6;
-            textBox1.Text = "Search";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Resources.test;
-            pictureBox1.Location = new Point(45, 4);
-            pictureBox1.Margin = new Padding(4);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1084, 81);
-            pictureBox1.TabIndex = 5;
-            pictureBox1.TabStop = false;
+            cyberTextBox25.Alpha = 20;
+            cyberTextBox25.BackColor = Color.Transparent;
+            cyberTextBox25.Background_WidthPen = 3F;
+            cyberTextBox25.BackgroundPen = true;
+            cyberTextBox25.ColorBackground = Color.FromArgb(230, 230, 226);
+            cyberTextBox25.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
+            cyberTextBox25.ColorLighting = Color.FromArgb(174, 174, 172);
+            cyberTextBox25.ColorPen_1 = Color.FromArgb(174, 174, 172);
+            cyberTextBox25.ColorPen_2 = Color.FromArgb(174, 174, 172);
+            cyberTextBox25.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            cyberTextBox25.Enabled = false;
+            cyberTextBox25.Font = new Font("Arial", 18F);
+            cyberTextBox25.ForeColor = Color.FromArgb(245, 245, 245);
+            cyberTextBox25.Lighting = false;
+            cyberTextBox25.LinearGradientPen = false;
+            cyberTextBox25.Location = new Point(82, 92);
+            cyberTextBox25.Name = "cyberTextBox25";
+            cyberTextBox25.PenWidth = 15;
+            cyberTextBox25.RGB = false;
+            cyberTextBox25.Rounding = true;
+            cyberTextBox25.RoundingInt = 60;
+            cyberTextBox25.Size = new Size(961, 72);
+            cyberTextBox25.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            cyberTextBox25.TabIndex = 43;
+            cyberTextBox25.TabStop = false;
+            cyberTextBox25.Tag = "Cyber";
+            cyberTextBox25.TextButton = "";
+            cyberTextBox25.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            cyberTextBox25.Timer_RGB = 300;
             // 
             // productTable
             // 
             productTable.BackgroundColor = Color.FromArgb(236, 236, 236);
             productTable.BorderStyle = BorderStyle.None;
             productTable.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.LightGray;
-            dataGridViewCellStyle1.Font = new Font("Arial Narrow", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            productTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.LightGray;
+            dataGridViewCellStyle7.Font = new Font("Arial Narrow", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            productTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             productTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.WhiteSmoke;
-            dataGridViewCellStyle2.Font = new Font("Arial Narrow", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            productTable.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.WhiteSmoke;
+            dataGridViewCellStyle8.Font = new Font("Arial Narrow", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            productTable.DefaultCellStyle = dataGridViewCellStyle8;
             productTable.EditMode = DataGridViewEditMode.EditProgrammatically;
             productTable.EnableHeadersVisualStyles = false;
             productTable.Location = new Point(82, 171);
@@ -489,6 +613,437 @@ namespace inventoryManagementGUI
             productTable.RowTemplate.Height = 50;
             productTable.Size = new Size(961, 591);
             productTable.TabIndex = 0;
+            // 
+            // addProduct
+            // 
+            addProduct.Controls.Add(label37);
+            addProduct.Controls.Add(textBox12);
+            addProduct.Controls.Add(addProdSupViewMore);
+            addProduct.Controls.Add(addProdCatViewMore);
+            addProduct.Controls.Add(addProductBtn);
+            addProduct.Controls.Add(label36);
+            addProduct.Controls.Add(addProductIdField);
+            addProduct.Controls.Add(addProductSupplierCmb);
+            addProduct.Controls.Add(addProductCategoryCmb);
+            addProduct.Controls.Add(label38);
+            addProduct.Controls.Add(label39);
+            addProduct.Controls.Add(label40);
+            addProduct.Controls.Add(addProductPrice);
+            addProduct.Controls.Add(cyberTextBox19);
+            addProduct.Controls.Add(cyberTextBox20);
+            addProduct.Controls.Add(addProductNameField);
+            addProduct.Controls.Add(cyberTextBox21);
+            addProduct.Controls.Add(cyberTextBox22);
+            addProduct.Controls.Add(cyberTextBox23);
+            addProduct.Controls.Add(label41);
+            addProduct.Location = new Point(4, 5);
+            addProduct.Name = "addProduct";
+            addProduct.Size = new Size(1140, 795);
+            addProduct.TabIndex = 8;
+            addProduct.Text = "tabPage1";
+            addProduct.UseVisualStyleBackColor = true;
+            // 
+            // label37
+            // 
+            label37.AutoSize = true;
+            label37.BackColor = Color.FromArgb(236, 236, 236);
+            label37.Font = new Font("Arial", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label37.Location = new Point(79, 42);
+            label37.Name = "label37";
+            label37.Size = new Size(181, 33);
+            label37.TabIndex = 61;
+            label37.Text = "Add Product";
+            // 
+            // textBox12
+            // 
+            textBox12.BackColor = Color.FromArgb(222, 224, 235);
+            textBox12.BorderStyle = BorderStyle.None;
+            textBox12.Font = new Font("Arial Narrow", 8F, FontStyle.Bold);
+            textBox12.Location = new Point(79, 68);
+            textBox12.Name = "textBox12";
+            textBox12.ReadOnly = true;
+            textBox12.Size = new Size(323, 19);
+            textBox12.TabIndex = 62;
+            textBox12.TabStop = false;
+            // 
+            // addProdSupViewMore
+            // 
+            addProdSupViewMore.BackgroundImageLayout = ImageLayout.None;
+            addProdSupViewMore.FlatAppearance.BorderSize = 0;
+            addProdSupViewMore.FlatStyle = FlatStyle.Flat;
+            addProdSupViewMore.Font = new Font("Arial", 10F);
+            addProdSupViewMore.ForeColor = Color.White;
+            addProdSupViewMore.Image = Resources.moreIcon;
+            addProdSupViewMore.ImageAlign = ContentAlignment.MiddleLeft;
+            addProdSupViewMore.Location = new Point(332, 515);
+            addProdSupViewMore.Margin = new Padding(4);
+            addProdSupViewMore.Name = "addProdSupViewMore";
+            addProdSupViewMore.Size = new Size(60, 42);
+            addProdSupViewMore.TabIndex = 60;
+            addProdSupViewMore.TextAlign = ContentAlignment.MiddleLeft;
+            addProdSupViewMore.UseVisualStyleBackColor = true;
+            addProdSupViewMore.Click += addProdSupViewMore_Click;
+            // 
+            // addProdCatViewMore
+            // 
+            addProdCatViewMore.BackgroundImageLayout = ImageLayout.None;
+            addProdCatViewMore.FlatAppearance.BorderSize = 0;
+            addProdCatViewMore.FlatStyle = FlatStyle.Flat;
+            addProdCatViewMore.Font = new Font("Arial", 10F);
+            addProdCatViewMore.ForeColor = Color.White;
+            addProdCatViewMore.Image = Resources.moreIcon;
+            addProdCatViewMore.ImageAlign = ContentAlignment.MiddleLeft;
+            addProdCatViewMore.Location = new Point(332, 347);
+            addProdCatViewMore.Margin = new Padding(4);
+            addProdCatViewMore.Name = "addProdCatViewMore";
+            addProdCatViewMore.Size = new Size(60, 42);
+            addProdCatViewMore.TabIndex = 59;
+            addProdCatViewMore.TextAlign = ContentAlignment.MiddleLeft;
+            addProdCatViewMore.UseVisualStyleBackColor = true;
+            addProdCatViewMore.Click += addProdCatViewMore_Click;
+            // 
+            // addProductBtn
+            // 
+            addProductBtn.Alpha = 20;
+            addProductBtn.BackColor = Color.Transparent;
+            addProductBtn.Background = true;
+            addProductBtn.Background_WidthPen = 4F;
+            addProductBtn.BackgroundPen = true;
+            addProductBtn.ColorBackground = Color.FromArgb(236, 236, 236);
+            addProductBtn.ColorBackground_1 = SystemColors.ScrollBar;
+            addProductBtn.ColorBackground_2 = SystemColors.ActiveBorder;
+            addProductBtn.ColorBackground_Pen = SystemColors.ActiveBorder;
+            addProductBtn.ColorLighting = Color.White;
+            addProductBtn.ColorPen_1 = SystemColors.WindowFrame;
+            addProductBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
+            addProductBtn.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            addProductBtn.Effect_1 = true;
+            addProductBtn.Effect_1_ColorBackground = Color.FromArgb(29, 200, 238);
+            addProductBtn.Effect_1_Transparency = 25;
+            addProductBtn.Effect_2 = true;
+            addProductBtn.Effect_2_ColorBackground = Color.White;
+            addProductBtn.Effect_2_Transparency = 20;
+            addProductBtn.Font = new Font("Arial", 11F);
+            addProductBtn.ForeColor = Color.Black;
+            addProductBtn.Lighting = false;
+            addProductBtn.LinearGradient_Background = false;
+            addProductBtn.LinearGradientPen = false;
+            addProductBtn.Location = new Point(517, 645);
+            addProductBtn.Name = "addProductBtn";
+            addProductBtn.PenWidth = 15;
+            addProductBtn.Rounding = true;
+            addProductBtn.RoundingInt = 70;
+            addProductBtn.Size = new Size(265, 72);
+            addProductBtn.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            addProductBtn.TabIndex = 58;
+            addProductBtn.Tag = "Cyber";
+            addProductBtn.TextButton = "Add Product";
+            addProductBtn.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
+            addProductBtn.Timer_Effect_1 = 5;
+            addProductBtn.Timer_RGB = 300;
+            addProductBtn.Click += addProductBtn_Click_1;
+            // 
+            // label36
+            // 
+            label36.AutoSize = true;
+            label36.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label36.ForeColor = Color.FromArgb(76, 75, 78);
+            label36.Location = new Point(656, 146);
+            label36.Name = "label36";
+            label36.Size = new Size(126, 27);
+            label36.TabIndex = 57;
+            label36.Text = "Product ID";
+            // 
+            // addProductIdField
+            // 
+            addProductIdField.BackColor = Color.FromArgb(236, 236, 236);
+            addProductIdField.BorderStyle = BorderStyle.None;
+            addProductIdField.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            addProductIdField.ForeColor = Color.FromArgb(76, 75, 78);
+            addProductIdField.Location = new Point(656, 205);
+            addProductIdField.Name = "addProductIdField";
+            addProductIdField.Size = new Size(360, 28);
+            addProductIdField.TabIndex = 56;
+            // 
+            // addProductSupplierCmb
+            // 
+            addProductSupplierCmb.BackColor = Color.FromArgb(236, 236, 236);
+            addProductSupplierCmb.ColorA = Color.FromArgb(64, 64, 64);
+            addProductSupplierCmb.ColorB = Color.FromArgb(64, 64, 64);
+            addProductSupplierCmb.ColorC = Color.FromArgb(239, 237, 236);
+            addProductSupplierCmb.ColorD = Color.FromArgb(239, 237, 236);
+            addProductSupplierCmb.ColorE = Color.FromArgb(239, 237, 236);
+            addProductSupplierCmb.ColorF = Color.FromArgb(236, 236, 236);
+            addProductSupplierCmb.ColorG = Color.Black;
+            addProductSupplierCmb.ColorH = Color.FromArgb(236, 236, 236);
+            addProductSupplierCmb.ColorI = Color.FromArgb(236, 236, 236);
+            addProductSupplierCmb.DrawMode = DrawMode.OwnerDrawFixed;
+            addProductSupplierCmb.DropDownHeight = 100;
+            addProductSupplierCmb.DropDownStyle = ComboBoxStyle.DropDownList;
+            addProductSupplierCmb.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            addProductSupplierCmb.ForeColor = Color.FromArgb(76, 75, 78);
+            addProductSupplierCmb.FormattingEnabled = true;
+            addProductSupplierCmb.HoverSelectionColor = Color.Empty;
+            addProductSupplierCmb.IntegralHeight = false;
+            addProductSupplierCmb.ItemHeight = 20;
+            addProductSupplierCmb.Location = new Point(90, 524);
+            addProductSupplierCmb.Name = "addProductSupplierCmb";
+            addProductSupplierCmb.Size = new Size(220, 26);
+            addProductSupplierCmb.StartIndex = 0;
+            addProductSupplierCmb.TabIndex = 49;
+            // 
+            // addProductCategoryCmb
+            // 
+            addProductCategoryCmb.BackColor = Color.FromArgb(236, 236, 236);
+            addProductCategoryCmb.ColorA = Color.FromArgb(64, 64, 64);
+            addProductCategoryCmb.ColorB = Color.FromArgb(64, 64, 64);
+            addProductCategoryCmb.ColorC = Color.FromArgb(239, 237, 236);
+            addProductCategoryCmb.ColorD = Color.FromArgb(239, 237, 236);
+            addProductCategoryCmb.ColorE = Color.FromArgb(239, 237, 236);
+            addProductCategoryCmb.ColorF = Color.FromArgb(236, 236, 236);
+            addProductCategoryCmb.ColorG = Color.Black;
+            addProductCategoryCmb.ColorH = Color.FromArgb(236, 236, 236);
+            addProductCategoryCmb.ColorI = Color.FromArgb(236, 236, 236);
+            addProductCategoryCmb.DrawMode = DrawMode.OwnerDrawFixed;
+            addProductCategoryCmb.DropDownHeight = 100;
+            addProductCategoryCmb.DropDownStyle = ComboBoxStyle.DropDownList;
+            addProductCategoryCmb.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            addProductCategoryCmb.ForeColor = Color.FromArgb(76, 75, 78);
+            addProductCategoryCmb.FormattingEnabled = true;
+            addProductCategoryCmb.HoverSelectionColor = Color.Empty;
+            addProductCategoryCmb.IntegralHeight = false;
+            addProductCategoryCmb.ItemHeight = 20;
+            addProductCategoryCmb.Location = new Point(90, 357);
+            addProductCategoryCmb.Name = "addProductCategoryCmb";
+            addProductCategoryCmb.Size = new Size(220, 26);
+            addProductCategoryCmb.StartIndex = 0;
+            addProductCategoryCmb.TabIndex = 48;
+            // 
+            // label38
+            // 
+            label38.AutoSize = true;
+            label38.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label38.ForeColor = Color.FromArgb(76, 75, 78);
+            label38.Location = new Point(90, 460);
+            label38.Name = "label38";
+            label38.Size = new Size(193, 27);
+            label38.TabIndex = 47;
+            label38.Text = "Product Supplier";
+            // 
+            // label39
+            // 
+            label39.AutoSize = true;
+            label39.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label39.ForeColor = Color.FromArgb(76, 75, 78);
+            label39.Location = new Point(90, 287);
+            label39.Name = "label39";
+            label39.Size = new Size(200, 27);
+            label39.TabIndex = 46;
+            label39.Text = "Product Category";
+            // 
+            // label40
+            // 
+            label40.AutoSize = true;
+            label40.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label40.ForeColor = Color.FromArgb(76, 75, 78);
+            label40.Location = new Point(656, 310);
+            label40.Name = "label40";
+            label40.Size = new Size(157, 27);
+            label40.TabIndex = 45;
+            label40.Text = "Product Price";
+            // 
+            // addProductPrice
+            // 
+            addProductPrice.BackColor = Color.FromArgb(236, 236, 236);
+            addProductPrice.BorderStyle = BorderStyle.None;
+            addProductPrice.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            addProductPrice.ForeColor = Color.FromArgb(76, 75, 78);
+            addProductPrice.Location = new Point(656, 369);
+            addProductPrice.Name = "addProductPrice";
+            addProductPrice.Size = new Size(225, 28);
+            addProductPrice.TabIndex = 44;
+            // 
+            // cyberTextBox19
+            // 
+            cyberTextBox19.Alpha = 20;
+            cyberTextBox19.BackColor = Color.Transparent;
+            cyberTextBox19.Background_WidthPen = 3F;
+            cyberTextBox19.BackgroundPen = true;
+            cyberTextBox19.ColorBackground = Color.FromArgb(236, 236, 236);
+            cyberTextBox19.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
+            cyberTextBox19.ColorLighting = Color.FromArgb(174, 174, 172);
+            cyberTextBox19.ColorPen_1 = Color.FromArgb(174, 174, 172);
+            cyberTextBox19.ColorPen_2 = Color.FromArgb(174, 174, 172);
+            cyberTextBox19.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            cyberTextBox19.Enabled = false;
+            cyberTextBox19.Font = new Font("Arial", 13F);
+            cyberTextBox19.ForeColor = Color.FromArgb(245, 245, 245);
+            cyberTextBox19.Lighting = false;
+            cyberTextBox19.LinearGradientPen = false;
+            cyberTextBox19.Location = new Point(641, 354);
+            cyberTextBox19.Name = "cyberTextBox19";
+            cyberTextBox19.PenWidth = 15;
+            cyberTextBox19.RGB = false;
+            cyberTextBox19.Rounding = true;
+            cyberTextBox19.RoundingInt = 60;
+            cyberTextBox19.Size = new Size(256, 55);
+            cyberTextBox19.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            cyberTextBox19.TabIndex = 43;
+            cyberTextBox19.TabStop = false;
+            cyberTextBox19.Tag = "Cyber";
+            cyberTextBox19.TextButton = "";
+            cyberTextBox19.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            cyberTextBox19.Timer_RGB = 300;
+            // 
+            // cyberTextBox20
+            // 
+            cyberTextBox20.Alpha = 20;
+            cyberTextBox20.BackColor = Color.Transparent;
+            cyberTextBox20.Background_WidthPen = 3F;
+            cyberTextBox20.BackgroundPen = true;
+            cyberTextBox20.ColorBackground = Color.FromArgb(236, 236, 236);
+            cyberTextBox20.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
+            cyberTextBox20.ColorLighting = Color.FromArgb(174, 174, 172);
+            cyberTextBox20.ColorPen_1 = Color.FromArgb(174, 174, 172);
+            cyberTextBox20.ColorPen_2 = Color.FromArgb(174, 174, 172);
+            cyberTextBox20.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            cyberTextBox20.Enabled = false;
+            cyberTextBox20.Font = new Font("Arial", 13F);
+            cyberTextBox20.ForeColor = Color.FromArgb(245, 245, 245);
+            cyberTextBox20.Lighting = false;
+            cyberTextBox20.LinearGradientPen = false;
+            cyberTextBox20.Location = new Point(79, 507);
+            cyberTextBox20.Name = "cyberTextBox20";
+            cyberTextBox20.PenWidth = 15;
+            cyberTextBox20.RGB = false;
+            cyberTextBox20.Rounding = true;
+            cyberTextBox20.RoundingInt = 60;
+            cyberTextBox20.Size = new Size(246, 55);
+            cyberTextBox20.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            cyberTextBox20.TabIndex = 53;
+            cyberTextBox20.TabStop = false;
+            cyberTextBox20.Tag = "Cyber";
+            cyberTextBox20.TextButton = "";
+            cyberTextBox20.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            cyberTextBox20.Timer_RGB = 300;
+            // 
+            // addProductNameField
+            // 
+            addProductNameField.BackColor = Color.FromArgb(236, 236, 236);
+            addProductNameField.BorderStyle = BorderStyle.None;
+            addProductNameField.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            addProductNameField.ForeColor = Color.FromArgb(76, 75, 78);
+            addProductNameField.Location = new Point(94, 205);
+            addProductNameField.Name = "addProductNameField";
+            addProductNameField.Size = new Size(435, 28);
+            addProductNameField.TabIndex = 42;
+            // 
+            // cyberTextBox21
+            // 
+            cyberTextBox21.Alpha = 20;
+            cyberTextBox21.BackColor = Color.Transparent;
+            cyberTextBox21.Background_WidthPen = 3F;
+            cyberTextBox21.BackgroundPen = true;
+            cyberTextBox21.ColorBackground = Color.FromArgb(236, 236, 236);
+            cyberTextBox21.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
+            cyberTextBox21.ColorLighting = Color.FromArgb(174, 174, 172);
+            cyberTextBox21.ColorPen_1 = Color.FromArgb(174, 174, 172);
+            cyberTextBox21.ColorPen_2 = Color.FromArgb(174, 174, 172);
+            cyberTextBox21.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            cyberTextBox21.Enabled = false;
+            cyberTextBox21.Font = new Font("Arial", 13F);
+            cyberTextBox21.ForeColor = Color.FromArgb(245, 245, 245);
+            cyberTextBox21.Lighting = false;
+            cyberTextBox21.LinearGradientPen = false;
+            cyberTextBox21.Location = new Point(79, 190);
+            cyberTextBox21.Name = "cyberTextBox21";
+            cyberTextBox21.PenWidth = 15;
+            cyberTextBox21.RGB = false;
+            cyberTextBox21.Rounding = true;
+            cyberTextBox21.RoundingInt = 60;
+            cyberTextBox21.Size = new Size(474, 55);
+            cyberTextBox21.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            cyberTextBox21.TabIndex = 41;
+            cyberTextBox21.TabStop = false;
+            cyberTextBox21.Tag = "Cyber";
+            cyberTextBox21.TextButton = "";
+            cyberTextBox21.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            cyberTextBox21.Timer_RGB = 300;
+            // 
+            // cyberTextBox22
+            // 
+            cyberTextBox22.Alpha = 20;
+            cyberTextBox22.BackColor = Color.Transparent;
+            cyberTextBox22.Background_WidthPen = 3F;
+            cyberTextBox22.BackgroundPen = true;
+            cyberTextBox22.ColorBackground = Color.FromArgb(236, 236, 236);
+            cyberTextBox22.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
+            cyberTextBox22.ColorLighting = Color.FromArgb(174, 174, 172);
+            cyberTextBox22.ColorPen_1 = Color.FromArgb(174, 174, 172);
+            cyberTextBox22.ColorPen_2 = Color.FromArgb(174, 174, 172);
+            cyberTextBox22.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            cyberTextBox22.Enabled = false;
+            cyberTextBox22.Font = new Font("Arial", 15F);
+            cyberTextBox22.ForeColor = Color.FromArgb(245, 245, 245);
+            cyberTextBox22.Lighting = false;
+            cyberTextBox22.LinearGradientPen = false;
+            cyberTextBox22.Location = new Point(79, 335);
+            cyberTextBox22.Name = "cyberTextBox22";
+            cyberTextBox22.PenWidth = 15;
+            cyberTextBox22.RGB = false;
+            cyberTextBox22.Rounding = true;
+            cyberTextBox22.RoundingInt = 60;
+            cyberTextBox22.Size = new Size(246, 62);
+            cyberTextBox22.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            cyberTextBox22.TabIndex = 52;
+            cyberTextBox22.TabStop = false;
+            cyberTextBox22.Tag = "Cyber";
+            cyberTextBox22.TextButton = "";
+            cyberTextBox22.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            cyberTextBox22.Timer_RGB = 300;
+            // 
+            // cyberTextBox23
+            // 
+            cyberTextBox23.Alpha = 20;
+            cyberTextBox23.BackColor = Color.Transparent;
+            cyberTextBox23.Background_WidthPen = 3F;
+            cyberTextBox23.BackgroundPen = true;
+            cyberTextBox23.ColorBackground = Color.FromArgb(236, 236, 236);
+            cyberTextBox23.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
+            cyberTextBox23.ColorLighting = Color.FromArgb(174, 174, 172);
+            cyberTextBox23.ColorPen_1 = Color.FromArgb(174, 174, 172);
+            cyberTextBox23.ColorPen_2 = Color.FromArgb(174, 174, 172);
+            cyberTextBox23.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            cyberTextBox23.Enabled = false;
+            cyberTextBox23.Font = new Font("Arial", 13F);
+            cyberTextBox23.ForeColor = Color.FromArgb(245, 245, 245);
+            cyberTextBox23.Lighting = false;
+            cyberTextBox23.LinearGradientPen = false;
+            cyberTextBox23.Location = new Point(642, 190);
+            cyberTextBox23.Name = "cyberTextBox23";
+            cyberTextBox23.PenWidth = 15;
+            cyberTextBox23.RGB = false;
+            cyberTextBox23.Rounding = true;
+            cyberTextBox23.RoundingInt = 60;
+            cyberTextBox23.Size = new Size(411, 55);
+            cyberTextBox23.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            cyberTextBox23.TabIndex = 54;
+            cyberTextBox23.TabStop = false;
+            cyberTextBox23.Tag = "Cyber";
+            cyberTextBox23.TextButton = "";
+            cyberTextBox23.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            cyberTextBox23.Timer_RGB = 300;
+            // 
+            // label41
+            // 
+            label41.AutoSize = true;
+            label41.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label41.ForeColor = Color.FromArgb(76, 75, 78);
+            label41.Location = new Point(79, 146);
+            label41.Name = "label41";
+            label41.Size = new Size(166, 27);
+            label41.TabIndex = 40;
+            label41.Text = "Product Name";
             // 
             // editProducts
             // 
@@ -567,12 +1122,12 @@ namespace inventoryManagementGUI
             cyberButton1.Background_WidthPen = 4F;
             cyberButton1.BackgroundPen = true;
             cyberButton1.ColorBackground = Color.FromArgb(236, 236, 236);
-            cyberButton1.ColorBackground_1 = Color.FromArgb(174, 174, 172);
-            cyberButton1.ColorBackground_2 = Color.FromArgb(174, 174, 172);
-            cyberButton1.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
-            cyberButton1.ColorLighting = Color.FromArgb(174, 174, 172);
-            cyberButton1.ColorPen_1 = Color.FromArgb(174, 174, 172);
-            cyberButton1.ColorPen_2 = Color.FromArgb(174, 174, 172);
+            cyberButton1.ColorBackground_1 = SystemColors.ScrollBar;
+            cyberButton1.ColorBackground_2 = SystemColors.ActiveBorder;
+            cyberButton1.ColorBackground_Pen = SystemColors.ActiveBorder;
+            cyberButton1.ColorLighting = Color.White;
+            cyberButton1.ColorPen_1 = SystemColors.WindowFrame;
+            cyberButton1.ColorPen_2 = Color.FromArgb(64, 64, 64);
             cyberButton1.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
             cyberButton1.Effect_1 = true;
             cyberButton1.Effect_1_ColorBackground = Color.FromArgb(29, 200, 238);
@@ -651,12 +1206,12 @@ namespace inventoryManagementGUI
             prodQtyMinus.Background_WidthPen = 4F;
             prodQtyMinus.BackgroundPen = true;
             prodQtyMinus.ColorBackground = Color.FromArgb(236, 236, 236);
-            prodQtyMinus.ColorBackground_1 = Color.FromArgb(174, 174, 172);
-            prodQtyMinus.ColorBackground_2 = Color.FromArgb(174, 174, 172);
-            prodQtyMinus.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
-            prodQtyMinus.ColorLighting = Color.FromArgb(174, 174, 172);
-            prodQtyMinus.ColorPen_1 = Color.FromArgb(174, 174, 172);
-            prodQtyMinus.ColorPen_2 = Color.FromArgb(174, 174, 172);
+            prodQtyMinus.ColorBackground_1 = SystemColors.ScrollBar;
+            prodQtyMinus.ColorBackground_2 = SystemColors.ActiveBorder;
+            prodQtyMinus.ColorBackground_Pen = SystemColors.ActiveBorder;
+            prodQtyMinus.ColorLighting = Color.White;
+            prodQtyMinus.ColorPen_1 = SystemColors.WindowFrame;
+            prodQtyMinus.ColorPen_2 = Color.FromArgb(64, 64, 64);
             prodQtyMinus.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
             prodQtyMinus.Effect_1 = true;
             prodQtyMinus.Effect_1_ColorBackground = Color.FromArgb(29, 200, 238);
@@ -691,12 +1246,12 @@ namespace inventoryManagementGUI
             prodQtyAdd.Background_WidthPen = 4F;
             prodQtyAdd.BackgroundPen = true;
             prodQtyAdd.ColorBackground = Color.FromArgb(236, 236, 236);
-            prodQtyAdd.ColorBackground_1 = Color.FromArgb(174, 174, 172);
-            prodQtyAdd.ColorBackground_2 = Color.FromArgb(174, 174, 172);
-            prodQtyAdd.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
-            prodQtyAdd.ColorLighting = Color.FromArgb(174, 174, 172);
-            prodQtyAdd.ColorPen_1 = Color.FromArgb(174, 174, 172);
-            prodQtyAdd.ColorPen_2 = Color.FromArgb(174, 174, 172);
+            prodQtyAdd.ColorBackground_1 = SystemColors.ScrollBar;
+            prodQtyAdd.ColorBackground_2 = SystemColors.ActiveBorder;
+            prodQtyAdd.ColorBackground_Pen = SystemColors.ActiveBorder;
+            prodQtyAdd.ColorLighting = Color.White;
+            prodQtyAdd.ColorPen_1 = SystemColors.WindowFrame;
+            prodQtyAdd.ColorPen_2 = Color.FromArgb(64, 64, 64);
             prodQtyAdd.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
             prodQtyAdd.Effect_1 = true;
             prodQtyAdd.Effect_1_ColorBackground = Color.FromArgb(29, 200, 238);
@@ -1050,8 +1605,9 @@ namespace inventoryManagementGUI
             // 
             // orderProduct
             // 
+            orderProduct.Controls.Add(orderProductIDField);
+            orderProduct.Controls.Add(orderProductNamecmb);
             orderProduct.Controls.Add(label19);
-            orderProduct.Controls.Add(orderProductIdBtn);
             orderProduct.Controls.Add(orderProductBtn);
             orderProduct.Controls.Add(orderProductQtyBtn);
             orderProduct.Controls.Add(label5);
@@ -1063,7 +1619,6 @@ namespace inventoryManagementGUI
             orderProduct.Controls.Add(orderProductPriceBtn);
             orderProduct.Controls.Add(cyberTextBox5);
             orderProduct.Controls.Add(cyberTextBox8);
-            orderProduct.Controls.Add(orderProductNameBtn);
             orderProduct.Controls.Add(cyberTextBox6);
             orderProduct.Controls.Add(cyberTextBox9);
             orderProduct.Controls.Add(cyberTextBox7);
@@ -1078,27 +1633,54 @@ namespace inventoryManagementGUI
             orderProduct.Text = "tabPage1";
             orderProduct.UseVisualStyleBackColor = true;
             // 
+            // orderProductIDField
+            // 
+            orderProductIDField.BackColor = Color.FromArgb(236, 236, 236);
+            orderProductIDField.BorderStyle = BorderStyle.None;
+            orderProductIDField.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            orderProductIDField.ForeColor = Color.FromArgb(76, 75, 78);
+            orderProductIDField.Location = new Point(66, 362);
+            orderProductIDField.Name = "orderProductIDField";
+            orderProductIDField.Size = new Size(346, 28);
+            orderProductIDField.TabIndex = 41;
+            // 
+            // orderProductNamecmb
+            // 
+            orderProductNamecmb.BackColor = Color.FromArgb(236, 236, 236);
+            orderProductNamecmb.ColorA = Color.FromArgb(64, 64, 64);
+            orderProductNamecmb.ColorB = Color.FromArgb(64, 64, 64);
+            orderProductNamecmb.ColorC = Color.FromArgb(239, 237, 236);
+            orderProductNamecmb.ColorD = Color.FromArgb(239, 237, 236);
+            orderProductNamecmb.ColorE = Color.FromArgb(239, 237, 236);
+            orderProductNamecmb.ColorF = Color.FromArgb(236, 236, 236);
+            orderProductNamecmb.ColorG = Color.Black;
+            orderProductNamecmb.ColorH = Color.FromArgb(236, 236, 236);
+            orderProductNamecmb.ColorI = Color.FromArgb(236, 236, 236);
+            orderProductNamecmb.DrawMode = DrawMode.OwnerDrawFixed;
+            orderProductNamecmb.DropDownHeight = 100;
+            orderProductNamecmb.DropDownStyle = ComboBoxStyle.DropDownList;
+            orderProductNamecmb.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            orderProductNamecmb.ForeColor = Color.FromArgb(76, 75, 78);
+            orderProductNamecmb.FormattingEnabled = true;
+            orderProductNamecmb.HoverSelectionColor = Color.Empty;
+            orderProductNamecmb.IntegralHeight = false;
+            orderProductNamecmb.ItemHeight = 20;
+            orderProductNamecmb.Location = new Point(591, 203);
+            orderProductNamecmb.Name = "orderProductNamecmb";
+            orderProductNamecmb.Size = new Size(335, 26);
+            orderProductNamecmb.StartIndex = 0;
+            orderProductNamecmb.TabIndex = 40;
+            // 
             // label19
             // 
             label19.AutoSize = true;
             label19.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label19.ForeColor = Color.FromArgb(76, 75, 78);
-            label19.Location = new Point(632, 139);
+            label19.Location = new Point(124, 284);
             label19.Name = "label19";
             label19.Size = new Size(126, 27);
             label19.TabIndex = 39;
             label19.Text = "Product ID";
-            // 
-            // orderProductIdBtn
-            // 
-            orderProductIdBtn.BackColor = Color.FromArgb(236, 236, 236);
-            orderProductIdBtn.BorderStyle = BorderStyle.None;
-            orderProductIdBtn.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            orderProductIdBtn.ForeColor = Color.FromArgb(76, 75, 78);
-            orderProductIdBtn.Location = new Point(632, 198);
-            orderProductIdBtn.Name = "orderProductIdBtn";
-            orderProductIdBtn.Size = new Size(360, 28);
-            orderProductIdBtn.TabIndex = 38;
             // 
             // orderProductBtn
             // 
@@ -1108,12 +1690,12 @@ namespace inventoryManagementGUI
             orderProductBtn.Background_WidthPen = 4F;
             orderProductBtn.BackgroundPen = true;
             orderProductBtn.ColorBackground = Color.FromArgb(236, 236, 236);
-            orderProductBtn.ColorBackground_1 = Color.FromArgb(174, 174, 172);
-            orderProductBtn.ColorBackground_2 = Color.FromArgb(174, 174, 172);
-            orderProductBtn.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
-            orderProductBtn.ColorLighting = Color.FromArgb(174, 174, 172);
-            orderProductBtn.ColorPen_1 = Color.FromArgb(174, 174, 172);
-            orderProductBtn.ColorPen_2 = Color.FromArgb(174, 174, 172);
+            orderProductBtn.ColorBackground_1 = SystemColors.ScrollBar;
+            orderProductBtn.ColorBackground_2 = SystemColors.ActiveBorder;
+            orderProductBtn.ColorBackground_Pen = SystemColors.ActiveBorder;
+            orderProductBtn.ColorLighting = Color.White;
+            orderProductBtn.ColorPen_1 = SystemColors.WindowFrame;
+            orderProductBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
             orderProductBtn.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
             orderProductBtn.Effect_1 = true;
             orderProductBtn.Effect_1_ColorBackground = Color.FromArgb(29, 200, 238);
@@ -1183,9 +1765,9 @@ namespace inventoryManagementGUI
             orderProductsuppBtn.HoverSelectionColor = Color.Empty;
             orderProductsuppBtn.IntegralHeight = false;
             orderProductsuppBtn.ItemHeight = 20;
-            orderProductsuppBtn.Location = new Point(66, 517);
+            orderProductsuppBtn.Location = new Point(66, 203);
             orderProductsuppBtn.Name = "orderProductsuppBtn";
-            orderProductsuppBtn.Size = new Size(220, 26);
+            orderProductsuppBtn.Size = new Size(335, 26);
             orderProductsuppBtn.StartIndex = 0;
             orderProductsuppBtn.TabIndex = 30;
             // 
@@ -1210,18 +1792,19 @@ namespace inventoryManagementGUI
             orderProductCatBtn.HoverSelectionColor = Color.Empty;
             orderProductCatBtn.IntegralHeight = false;
             orderProductCatBtn.ItemHeight = 20;
-            orderProductCatBtn.Location = new Point(66, 350);
+            orderProductCatBtn.Location = new Point(81, 533);
             orderProductCatBtn.Name = "orderProductCatBtn";
             orderProductCatBtn.Size = new Size(220, 26);
             orderProductCatBtn.StartIndex = 0;
             orderProductCatBtn.TabIndex = 29;
+            orderProductCatBtn.SelectedIndexChanged += orderProductCatBtn_SelectedIndexChanged;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.FromArgb(76, 75, 78);
-            label6.Location = new Point(66, 453);
+            label6.Location = new Point(66, 139);
             label6.Name = "label6";
             label6.Size = new Size(193, 27);
             label6.TabIndex = 28;
@@ -1232,7 +1815,7 @@ namespace inventoryManagementGUI
             label7.AutoSize = true;
             label7.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.FromArgb(76, 75, 78);
-            label7.Location = new Point(66, 280);
+            label7.Location = new Point(66, 464);
             label7.Name = "label7";
             label7.Size = new Size(200, 27);
             label7.TabIndex = 27;
@@ -1309,13 +1892,13 @@ namespace inventoryManagementGUI
             cyberTextBox8.ForeColor = Color.FromArgb(245, 245, 245);
             cyberTextBox8.Lighting = false;
             cyberTextBox8.LinearGradientPen = false;
-            cyberTextBox8.Location = new Point(55, 500);
+            cyberTextBox8.Location = new Point(55, 186);
             cyberTextBox8.Name = "cyberTextBox8";
             cyberTextBox8.PenWidth = 15;
             cyberTextBox8.RGB = false;
             cyberTextBox8.Rounding = true;
             cyberTextBox8.RoundingInt = 60;
-            cyberTextBox8.Size = new Size(246, 55);
+            cyberTextBox8.Size = new Size(358, 55);
             cyberTextBox8.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             cyberTextBox8.TabIndex = 35;
             cyberTextBox8.TabStop = false;
@@ -1323,17 +1906,6 @@ namespace inventoryManagementGUI
             cyberTextBox8.TextButton = "";
             cyberTextBox8.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             cyberTextBox8.Timer_RGB = 300;
-            // 
-            // orderProductNameBtn
-            // 
-            orderProductNameBtn.BackColor = Color.FromArgb(236, 236, 236);
-            orderProductNameBtn.BorderStyle = BorderStyle.None;
-            orderProductNameBtn.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            orderProductNameBtn.ForeColor = Color.FromArgb(76, 75, 78);
-            orderProductNameBtn.Location = new Point(70, 198);
-            orderProductNameBtn.Name = "orderProductNameBtn";
-            orderProductNameBtn.Size = new Size(435, 28);
-            orderProductNameBtn.TabIndex = 20;
             // 
             // cyberTextBox6
             // 
@@ -1352,13 +1924,13 @@ namespace inventoryManagementGUI
             cyberTextBox6.ForeColor = Color.FromArgb(245, 245, 245);
             cyberTextBox6.Lighting = false;
             cyberTextBox6.LinearGradientPen = false;
-            cyberTextBox6.Location = new Point(55, 183);
+            cyberTextBox6.Location = new Point(526, 187);
             cyberTextBox6.Name = "cyberTextBox6";
             cyberTextBox6.PenWidth = 15;
             cyberTextBox6.RGB = false;
             cyberTextBox6.Rounding = true;
             cyberTextBox6.RoundingInt = 60;
-            cyberTextBox6.Size = new Size(474, 55);
+            cyberTextBox6.Size = new Size(428, 55);
             cyberTextBox6.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             cyberTextBox6.TabIndex = 19;
             cyberTextBox6.TabStop = false;
@@ -1384,7 +1956,7 @@ namespace inventoryManagementGUI
             cyberTextBox9.ForeColor = Color.FromArgb(245, 245, 245);
             cyberTextBox9.Lighting = false;
             cyberTextBox9.LinearGradientPen = false;
-            cyberTextBox9.Location = new Point(55, 328);
+            cyberTextBox9.Location = new Point(66, 512);
             cyberTextBox9.Name = "cyberTextBox9";
             cyberTextBox9.PenWidth = 15;
             cyberTextBox9.RGB = false;
@@ -1416,7 +1988,7 @@ namespace inventoryManagementGUI
             cyberTextBox7.ForeColor = Color.FromArgb(245, 245, 245);
             cyberTextBox7.Lighting = false;
             cyberTextBox7.LinearGradientPen = false;
-            cyberTextBox7.Location = new Point(618, 183);
+            cyberTextBox7.Location = new Point(55, 346);
             cyberTextBox7.Name = "cyberTextBox7";
             cyberTextBox7.PenWidth = 15;
             cyberTextBox7.RGB = false;
@@ -1468,7 +2040,7 @@ namespace inventoryManagementGUI
             label3.AutoSize = true;
             label3.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(76, 75, 78);
-            label3.Location = new Point(55, 139);
+            label3.Location = new Point(526, 143);
             label3.Name = "label3";
             label3.Size = new Size(166, 27);
             label3.TabIndex = 18;
@@ -1522,12 +2094,12 @@ namespace inventoryManagementGUI
             cyberButton2.Background_WidthPen = 4F;
             cyberButton2.BackgroundPen = true;
             cyberButton2.ColorBackground = Color.FromArgb(236, 236, 236);
-            cyberButton2.ColorBackground_1 = Color.FromArgb(174, 174, 172);
-            cyberButton2.ColorBackground_2 = Color.FromArgb(174, 174, 172);
-            cyberButton2.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
-            cyberButton2.ColorLighting = Color.FromArgb(174, 174, 172);
-            cyberButton2.ColorPen_1 = Color.FromArgb(174, 174, 172);
-            cyberButton2.ColorPen_2 = Color.FromArgb(174, 174, 172);
+            cyberButton2.ColorBackground_1 = SystemColors.ScrollBar;
+            cyberButton2.ColorBackground_2 = SystemColors.ActiveBorder;
+            cyberButton2.ColorBackground_Pen = Color.FromArgb(120, 120, 120);
+            cyberButton2.ColorLighting = Color.White;
+            cyberButton2.ColorPen_1 = SystemColors.WindowFrame;
+            cyberButton2.ColorPen_2 = Color.FromArgb(64, 64, 64);
             cyberButton2.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
             cyberButton2.Effect_1 = true;
             cyberButton2.Effect_1_ColorBackground = Color.FromArgb(29, 200, 238);
@@ -1675,23 +2247,23 @@ namespace inventoryManagementGUI
             supplierTable.BackgroundColor = Color.FromArgb(236, 236, 236);
             supplierTable.BorderStyle = BorderStyle.None;
             supplierTable.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.LightGray;
-            dataGridViewCellStyle3.Font = new Font("Arial Narrow", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            supplierTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.LightGray;
+            dataGridViewCellStyle5.Font = new Font("Arial Narrow", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            supplierTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             supplierTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.WhiteSmoke;
-            dataGridViewCellStyle4.Font = new Font("Arial Narrow", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            supplierTable.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.WhiteSmoke;
+            dataGridViewCellStyle6.Font = new Font("Arial Narrow", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            supplierTable.DefaultCellStyle = dataGridViewCellStyle6;
             supplierTable.EditMode = DataGridViewEditMode.EditProgrammatically;
             supplierTable.EnableHeadersVisualStyles = false;
             supplierTable.Location = new Point(98, 176);
@@ -1719,7 +2291,7 @@ namespace inventoryManagementGUI
             editSupplier.Controls.Add(cyberTextBox15);
             editSupplier.Controls.Add(label26);
             editSupplier.Controls.Add(label23);
-            editSupplier.Controls.Add(textBox5);
+            editSupplier.Controls.Add(editSupplierId);
             editSupplier.Controls.Add(cyberTextBox13);
             editSupplier.Controls.Add(editSupplierName);
             editSupplier.Controls.Add(cyberTextBox14);
@@ -1741,12 +2313,12 @@ namespace inventoryManagementGUI
             saveEditSupplierBtn.Background_WidthPen = 4F;
             saveEditSupplierBtn.BackgroundPen = true;
             saveEditSupplierBtn.ColorBackground = Color.FromArgb(236, 236, 236);
-            saveEditSupplierBtn.ColorBackground_1 = Color.FromArgb(174, 174, 172);
-            saveEditSupplierBtn.ColorBackground_2 = Color.FromArgb(174, 174, 172);
-            saveEditSupplierBtn.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
-            saveEditSupplierBtn.ColorLighting = Color.FromArgb(174, 174, 172);
-            saveEditSupplierBtn.ColorPen_1 = Color.FromArgb(174, 174, 172);
-            saveEditSupplierBtn.ColorPen_2 = Color.FromArgb(174, 174, 172);
+            saveEditSupplierBtn.ColorBackground_1 = SystemColors.ScrollBar;
+            saveEditSupplierBtn.ColorBackground_2 = SystemColors.ActiveBorder;
+            saveEditSupplierBtn.ColorBackground_Pen = Color.FromArgb(120, 120, 120);
+            saveEditSupplierBtn.ColorLighting = Color.White;
+            saveEditSupplierBtn.ColorPen_1 = SystemColors.WindowFrame;
+            saveEditSupplierBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
             saveEditSupplierBtn.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
             saveEditSupplierBtn.Effect_1 = true;
             saveEditSupplierBtn.Effect_1_ColorBackground = Color.FromArgb(29, 200, 238);
@@ -1772,6 +2344,7 @@ namespace inventoryManagementGUI
             saveEditSupplierBtn.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
             saveEditSupplierBtn.Timer_Effect_1 = 5;
             saveEditSupplierBtn.Timer_RGB = 300;
+            saveEditSupplierBtn.Click += saveEditSupplierBtn_Click;
             // 
             // editSupplierAddress
             // 
@@ -1801,13 +2374,13 @@ namespace inventoryManagementGUI
             cyberTextBox17.ForeColor = Color.FromArgb(245, 245, 245);
             cyberTextBox17.Lighting = false;
             cyberTextBox17.LinearGradientPen = false;
-            cyberTextBox17.Location = new Point(634, 331);
+            cyberTextBox17.Location = new Point(629, 331);
             cyberTextBox17.Name = "cyberTextBox17";
             cyberTextBox17.PenWidth = 15;
             cyberTextBox17.RGB = false;
             cyberTextBox17.Rounding = true;
             cyberTextBox17.RoundingInt = 60;
-            cyberTextBox17.Size = new Size(474, 55);
+            cyberTextBox17.Size = new Size(455, 55);
             cyberTextBox17.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             cyberTextBox17.TabIndex = 31;
             cyberTextBox17.TabStop = false;
@@ -1946,18 +2519,18 @@ namespace inventoryManagementGUI
             label23.TabIndex = 23;
             label23.Text = "Supplier Id";
             // 
-            // textBox5
+            // editSupplierId
             // 
-            textBox5.BackColor = Color.FromArgb(236, 236, 236);
-            textBox5.BorderStyle = BorderStyle.None;
-            textBox5.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox5.ForeColor = Color.FromArgb(76, 75, 78);
-            textBox5.Location = new Point(649, 178);
-            textBox5.Name = "textBox5";
-            textBox5.ReadOnly = true;
-            textBox5.Size = new Size(284, 28);
-            textBox5.TabIndex = 22;
-            textBox5.TabStop = false;
+            editSupplierId.BackColor = Color.FromArgb(236, 236, 236);
+            editSupplierId.BorderStyle = BorderStyle.None;
+            editSupplierId.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            editSupplierId.ForeColor = Color.FromArgb(76, 75, 78);
+            editSupplierId.Location = new Point(649, 178);
+            editSupplierId.Name = "editSupplierId";
+            editSupplierId.ReadOnly = true;
+            editSupplierId.Size = new Size(284, 28);
+            editSupplierId.TabIndex = 22;
+            editSupplierId.TabStop = false;
             // 
             // cyberTextBox13
             // 
@@ -2400,6 +2973,15 @@ namespace inventoryManagementGUI
             textBox6.TabIndex = 33;
             textBox6.TabStop = false;
             // 
+            // tabPage2
+            // 
+            tabPage2.Location = new Point(4, 5);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Size = new Size(1140, 795);
+            tabPage2.TabIndex = 9;
+            tabPage2.Text = "tabPage2";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
             // sqlCommand1
             // 
             sqlCommand1.CommandTimeout = 30;
@@ -2408,10 +2990,10 @@ namespace inventoryManagementGUI
             // pictureBox3
             // 
             pictureBox3.Image = Resources.profileIcon;
-            pictureBox3.Location = new Point(1418, 30);
+            pictureBox3.Location = new Point(1418, 36);
             pictureBox3.Margin = new Padding(4);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(58, 69);
+            pictureBox3.Size = new Size(58, 52);
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
             // 
@@ -2443,13 +3025,13 @@ namespace inventoryManagementGUI
             categoryMore.ImageScalingSize = new Size(24, 24);
             categoryMore.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1 });
             categoryMore.Name = "categoryMore";
-            categoryMore.Size = new Size(190, 32);
+            categoryMore.Size = new Size(165, 32);
             // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(189, 28);
-            toolStripMenuItem1.Text = "Add Category";
+            toolStripMenuItem1.Size = new Size(164, 28);
+            toolStripMenuItem1.Text = "View More";
             toolStripMenuItem1.Click += toolStripMenuItem1_Click;
             // 
             // supplierMoreStrip
@@ -2466,14 +3048,16 @@ namespace inventoryManagementGUI
             toolStripMenuItem2.Text = "View Suppliers";
             toolStripMenuItem2.Click += toolStripMenuItem2_Click;
             // 
-            // pictureBox4
+            // button3
             // 
-            pictureBox4.Image = Resources.icons8_back_64;
-            pictureBox4.Location = new Point(395, 30);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(69, 75);
-            pictureBox4.TabIndex = 5;
-            pictureBox4.TabStop = false;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Image = Resources.icons8_back_64;
+            button3.Location = new Point(395, 30);
+            button3.Name = "button3";
+            button3.Size = new Size(63, 58);
+            button3.TabIndex = 5;
+            button3.UseVisualStyleBackColor = true;
             // 
             // mainForm
             // 
@@ -2481,7 +3065,7 @@ namespace inventoryManagementGUI
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1515, 919);
-            Controls.Add(pictureBox4);
+            Controls.Add(button3);
             Controls.Add(headerLbl);
             Controls.Add(userLbl);
             Controls.Add(pictureBox3);
@@ -2497,9 +3081,9 @@ namespace inventoryManagementGUI
             tabControl1.ResumeLayout(false);
             viewProducts.ResumeLayout(false);
             viewProducts.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)productTable).EndInit();
+            addProduct.ResumeLayout(false);
+            addProduct.PerformLayout();
             editProducts.ResumeLayout(false);
             editProducts.PerformLayout();
             orderProduct.ResumeLayout(false);
@@ -2514,7 +3098,6 @@ namespace inventoryManagementGUI
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             categoryMore.ResumeLayout(false);
             supplierMoreStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
             PerformLayout();
 
@@ -2538,7 +3121,6 @@ namespace inventoryManagementGUI
         private Button button1;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private TextBox textBox1;
-        private PictureBox pictureBox2;
         private Label label1;
         private Label label9;
         private Label label10;
@@ -2548,7 +3130,6 @@ namespace inventoryManagementGUI
         private Label label11;
         private TextBox textBox2;
         private Label label12;
-        private PictureBox pictureBox1;
         private ReaLTaiizor.Controls.CyberTextBox cyberTextBox1;
         public ReaLTaiizor.Controls.CyberTextBox lbltextt;
         private Label label13;
@@ -2578,7 +3159,6 @@ namespace inventoryManagementGUI
         private ToolStripMenuItem toolStripMenuItem2;
         private TabPage orderProduct;
         private Label label19;
-        private TextBox orderProductIdBtn;
         private ReaLTaiizor.Controls.CyberButton orderProductBtn;
         private TextBox orderProductQtyBtn;
         private Label label5;
@@ -2590,7 +3170,6 @@ namespace inventoryManagementGUI
         private TextBox orderProductPriceBtn;
         private ReaLTaiizor.Controls.CyberTextBox cyberTextBox5;
         private ReaLTaiizor.Controls.CyberTextBox cyberTextBox8;
-        private TextBox orderProductNameBtn;
         private ReaLTaiizor.Controls.CyberTextBox cyberTextBox6;
         public ReaLTaiizor.Controls.CyberTextBox cyberTextBox9;
         private ReaLTaiizor.Controls.CyberTextBox cyberTextBox7;
@@ -2609,7 +3188,7 @@ namespace inventoryManagementGUI
         private ReaLTaiizor.Controls.CyberButton cyberButton2;
         private TabPage editSupplier;
         private Label label23;
-        private TextBox textBox5;
+        private TextBox editSupplierId;
         private ReaLTaiizor.Controls.CyberTextBox cyberTextBox13;
         private TextBox editSupplierName;
         private ReaLTaiizor.Controls.CyberTextBox cyberTextBox14;
@@ -2627,7 +3206,6 @@ namespace inventoryManagementGUI
         private ReaLTaiizor.Controls.CyberTextBox cyberTextBox15;
         private Label label26;
         private ReaLTaiizor.Controls.CyberButton saveEditSupplierBtn;
-        private PictureBox pictureBox4;
         private ReaLTaiizor.Controls.CyberTextBox info_supplierAdd;
         private Label label29;
         private ReaLTaiizor.Controls.CyberTextBox info_supplierEmail;
@@ -2643,5 +3221,34 @@ namespace inventoryManagementGUI
         private Label label35;
         private ReaLTaiizor.Controls.DungeonComboBox info_supplierProductsCmb;
         private ReaLTaiizor.Controls.CyberTextBox cyberTextBox18;
+        private Button button3;
+        private TabPage addProduct;
+        private Label label36;
+        private TextBox addProductIdField;
+        private ReaLTaiizor.Controls.DungeonComboBox addProductSupplierCmb;
+        private ReaLTaiizor.Controls.DungeonComboBox addProductCategoryCmb;
+        private Label label38;
+        private Label label39;
+        private Label label40;
+        private TextBox addProductPrice;
+        private ReaLTaiizor.Controls.CyberTextBox cyberTextBox19;
+        private ReaLTaiizor.Controls.CyberTextBox cyberTextBox20;
+        private TextBox addProductNameField;
+        private ReaLTaiizor.Controls.CyberTextBox cyberTextBox21;
+        public ReaLTaiizor.Controls.CyberTextBox cyberTextBox22;
+        private ReaLTaiizor.Controls.CyberTextBox cyberTextBox23;
+        private Label label41;
+        private TabPage tabPage2;
+        private ReaLTaiizor.Controls.CyberButton addProductBtn;
+        private Button addProdSupViewMore;
+        private Button addProdCatViewMore;
+        private Label label37;
+        private TextBox textBox12;
+        private ReaLTaiizor.Controls.CyberTextBox cyberTextBox24;
+        private ReaLTaiizor.Controls.CyberTextBox cyberTextBox25;
+        private TextBox orderProductIDField;
+        private ReaLTaiizor.Controls.DungeonComboBox orderProductNamecmb;
+        private ReaLTaiizor.Controls.CyberButton addProductNavBtn;
+        private Label noProductPrompt;
     }
 }

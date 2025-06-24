@@ -231,7 +231,7 @@ namespace inventoryManagement
             Console.WriteLine("Please enter new product category.");
             var newCategory = Console.ReadLine();
 
-            inventoryProcess.updateProduct(id, newProductName, newProdId, newProdQty, newProdPrice, newProdSupplier, newCategory);
+            inventoryProcess.updateProduct( newProductName, newProdId, newProdQty, newProdPrice, newProdSupplier, newCategory);
 
 
         }

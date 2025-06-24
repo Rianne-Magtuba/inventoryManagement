@@ -103,7 +103,7 @@ namespace BusinessLogic
         }
 
 
-        public void updateProduct(string SelectedId, string NewProductName, string NewProductId, int NewProductQuantity, double NewProductPrice, string NewProductSupplier, string newCategory)
+        public void updateProduct(string NewProductName, string NewProductId, int NewProductQuantity, double NewProductPrice, string NewProductSupplier, string newCategory)
         {
 
             Product product1 = new Product();
@@ -117,7 +117,7 @@ namespace BusinessLogic
             product1.dateModified = DateOnly.FromDateTime(DateTime.Now);
 
 
-            InventoryData.updateProduct(product1, SelectedId);
+            InventoryData.updateProduct(product1);
 
 
         }
@@ -128,6 +128,12 @@ namespace BusinessLogic
             return InventoryData.getSuppliers();
         }
 
+        public List<string> getSupplierNames()
+        {
+            return InventoryData.getSuppliers()
+                       .Select(s => s.Name)
+                       .ToList();
+        }
         public List<Supplier> getSupplier(string supplierId)
         {
            List<Supplier> suppliers = InventoryData.getSuppliers();
@@ -141,6 +147,7 @@ namespace BusinessLogic
             }
             return searchedSupplier;
         }
+       
 
         public List<string> getSupplierProducts(string supplierId)
         {
@@ -175,6 +182,18 @@ namespace BusinessLogic
             }
             return null;
         }
+        public string getSupplierId(string supplierName)
+        {
+            List<Supplier> suppliers = InventoryData.getSuppliers();
+            for (int i = 0; i < suppliers.Count; i++)
+            {
+                if (suppliers[i].Name == supplierName)
+                {
+                    return suppliers[i].Id;
+                }
+            }
+            return null;
+        }
 
         public void addSupplier(string supplierId, string supplierName, string supplierAddress, string supplierContactNum, string supplierEmailAdd)
         {
@@ -201,7 +220,7 @@ namespace BusinessLogic
             return false;
         }
 
-        public void updateSupplier(string SelectedId, string NewSupplierId, string NewSupplierName, string NewSupplierAddress, string NewSupplierContactNum, string NewSupplierEmailAdd)
+        public void updateSupplier(string NewSupplierId, string NewSupplierName, string NewSupplierAddress, string NewSupplierContactNum, string NewSupplierEmailAdd)
         {
             Supplier supplier1 = new Supplier();
             supplier1.Id = NewSupplierId;
@@ -209,7 +228,9 @@ namespace BusinessLogic
             supplier1.Address = NewSupplierAddress;
             supplier1.ContactNum = NewSupplierContactNum;
             supplier1.EmailAdd = NewSupplierEmailAdd;
-            InventoryData.updateSupplier(supplier1, SelectedId);
+            InventoryData.updateSupplier(supplier1);
+
+           
         }
 
         //ACCOUNT METHODS
@@ -239,8 +260,67 @@ namespace BusinessLogic
             account1.password = password;
             InventoryData.addAccount(account1);
         }
+
+
+        //Category METHODS
+
+        public List<Category> GetCategories()
+        {
+            return InventoryData.getCategories();
+        }
+
+        public List<string> GetCategoryNames()
+        {
+            return InventoryData.getCategories()
+                       .Select(c => c.Name)
+                       .ToList();
+        }
+        public void addCategory( string categoryName)
+        {
+            Category category1 = new Category();
+            category1.Name = categoryName;
+            InventoryData.addCategory(category1);
+        }
+        public int getCategoryId(string categoryName)
+        {
+          
+            List<Category> categories = InventoryData.getCategories();
+
+            int categoryId = 0;
+              for (int i =0; i<categories.Count; i++)
+            {
+                if (categories[i].Name == categoryName)
+                {
+                    categoryId = categories[i].Id;
+                    break;
+                }
+            }
+
+         
+
+                return categoryId;
+        }
+        public void removeCategory(string categoryName)
+        {
+           Category category1 = new Category();
+            category1.Name = categoryName;
+            category1.Id = getCategoryId(categoryName);
+            InventoryData.removeCategory(category1);
+        }
+
+        public void updateCategory(string newCategoryName, string oldCategoryName)
+        {
+            Category category1 = new Category();
+            category1.Name = newCategoryName;
+            category1.Id = getCategoryId(oldCategoryName);
+            InventoryData.updateCategory(category1);
+        }
     }
-    
+
+
+
+
+
 
 
 }

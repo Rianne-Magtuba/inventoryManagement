@@ -179,7 +179,7 @@ namespace DataLogic
         }
 
 
-        public void updateProduct(Product product, string prodID)  
+        public void updateProduct(Product product)  
         {
             int index = getIndex(products, product);
             if (index != -1) { 
@@ -257,7 +257,7 @@ namespace DataLogic
             this.suppliers.Add(suppliers);
         }
 
-        public void updateSupplier(Supplier suppliers, string id)
+        public void updateSupplier(Supplier suppliers)
         {
             int index = getIndex(this.suppliers, suppliers);
 
@@ -295,7 +295,7 @@ namespace DataLogic
            categories.Add(category);
         }
 
-        public void updateCategory(Category category, int id)
+        public void updateCategory(Category category)
         {
             int index = getIndex(categories, category);
 
@@ -322,6 +322,26 @@ namespace DataLogic
                   
 
                
+        }
+
+        public List<Orders> getOrders()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void addOrders(Orders orders)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void updateOrders(Orders orders)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void removeOrders(Orders orders)
+        {
+            throw new NotImplementedException();
         }
     }
 }

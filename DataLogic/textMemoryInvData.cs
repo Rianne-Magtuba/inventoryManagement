@@ -198,7 +198,7 @@ public class textMemoryInvData : IinventoryDataService
     }
   
 
-    public void updateProduct(Product products, string prodID)
+    public void updateProduct(Product products)
     {
      
         
@@ -303,7 +303,7 @@ public class textMemoryInvData : IinventoryDataService
         writeSupplierDataToFile();
     }
 
-    public void updateSupplier(Supplier suppliers, string id)
+    public void updateSupplier(Supplier suppliers)
     {
         int index = getIndex(this.suppliers, suppliers);
         if (index != -1)
@@ -356,7 +356,7 @@ public class textMemoryInvData : IinventoryDataService
         writeCategoryDataToFile();
     }
 
-    public void updateCategory(Category category, int id)
+    public void updateCategory(Category category)
     {
         int index = getIndex(categories, category);
         if (index != -1)
@@ -379,5 +379,25 @@ public class textMemoryInvData : IinventoryDataService
             writeCategoryDataToFile();
         }
                
+    }
+
+    public List<Orders> getOrders()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void addOrders(Orders orders)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void updateOrders(Orders orders)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void removeOrders(Orders orders)
+    {
+        throw new NotImplementedException();
     }
 }
