@@ -185,7 +185,7 @@ namespace inventoryManagementGUI
             if (e.RowIndex < 0 || e.ColumnIndex < 0)
                 return;
 
-            // Assuming your icon columns are at index 3 and 4 (adjust as needed)
+            // Assuming icon columns are at index 3 and 4 (adjust as needed)
             if (productTable.Columns[e.ColumnIndex].Name == "Edit")
             {
                 string productId = productTable.Rows[e.RowIndex].Cells["ProductID"].Value.ToString();
@@ -194,7 +194,7 @@ namespace inventoryManagementGUI
                 headerLbl.Text = "Products/ edit information ";
                 tabControl1.SelectedTab = editProducts;
                 loadCategories();
-                // TODO: open your edit form or logic here
+               
             }
             else if (productTable.Columns[e.ColumnIndex].Name == "More")
             {
@@ -216,19 +216,20 @@ namespace inventoryManagementGUI
             // Ignore clicks on header row or out-of-range indexes
             if (e.RowIndex < 0 || e.ColumnIndex < 0)
                 return;
-
+            string supplierId = "";
             // Assuming  icon columns are at index 3 and 4 (adjust as needed)
             if (supplierTable.Columns[e.ColumnIndex].Name == "Edit")
             {
-                string supplierId = supplierTable.Rows[e.RowIndex].Cells["supplierId"].Value.ToString();
+                supplierId = supplierTable.Rows[e.RowIndex].Cells["supplierId"].Value.ToString();
                 MessageBox.Show($"Edit clicked for Product ID: {supplierId}");
+                tabControl1.SelectedTab = editSupplier;
+                setupSupplierEditPanel(supplierId);
 
-
-                //  open  edit form or logic 
+            
             }
             else if (supplierTable.Columns[e.ColumnIndex].Name == "More")
             {
-                string supplierId = supplierTable.Rows[e.RowIndex].Cells["supplierId"].Value.ToString();
+                 supplierId = supplierTable.Rows[e.RowIndex].Cells["supplierId"].Value.ToString();
 
                 var cellRect = supplierTable.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
                 var cellScreenLocation = supplierTable.PointToScreen(new Point(cellRect.X, cellRect.Y + cellRect.Height));
@@ -239,7 +240,13 @@ namespace inventoryManagementGUI
             }
         }
 
+        private void setupSupplierEditPanel(string selectedSupplierId)
+        {
+            List<Supplier> suppliers = inventoryProcess.getSupplier(selectedSupplierId);
 
+            editSupplierAddress.Text = suppliers[0].Address;
+
+        }
         private void setupSupllierInfoPanel(string selectedSupllierId)
         {
             List<Supplier> suppliers = inventoryProcess.getSupplier(selectedSupllierId);
