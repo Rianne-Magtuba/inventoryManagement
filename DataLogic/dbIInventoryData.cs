@@ -21,6 +21,7 @@ namespace DataLogic
         List<Accounts> accounts = new List<Accounts>();
         List<Supplier> suppliers = new List<Supplier>();
         List<Category> categories = new List<Category>();
+        List<Orders> Orders = new List<Orders>();
         public dbIInventoryData()
         {
             sqlConnection = new SqlConnection(connectionString);
@@ -321,24 +322,86 @@ namespace DataLogic
             sqlConnection.Close();
         }
 
+   
+        /// ORDERS METHOD
+ 
         public List<Orders> getOrders()
         {
-            throw new NotImplementedException();
+            Orders.Clear();
+            var selectStatement = "Select orderId, supplierId, productId,orderQty, orderDate,orderStatus, estArrival FROM orderTable";
+            sqlConnection.Open();
+            SqlCommand selectCommand = new SqlCommand(selectStatement, sqlConnection);
+
+            SqlDataReader sqlRead = selectCommand.ExecuteReader();
+
+            while (sqlRead.Read())
+            {
+                Orders.Add(new Orders
+                {
+                   Id = Convert.ToInt16(sqlRead["orderId"].ToString()),
+                    supplierId = sqlRead["supplierId"].ToString(),
+                    productId = sqlRead["productId"].ToString(),
+                    qty = Convert.ToInt32(sqlRead["orderQty"].ToString()),
+                    orderDate = DateOnly.FromDateTime((DateTime)sqlRead["orderDate"]),
+                    status = sqlRead["orderStatus"].ToString(),
+                    estimatedDate = DateOnly.FromDateTime((DateTime)sqlRead["estArrival"]),
+
+
+
+                });
+
+            }
+
+
+            sqlConnection.Close();
+
+            return Orders;
         }
 
         public void addOrders(Orders orders)
         {
-            throw new NotImplementedException();
+      
+            sqlConnection.Open();
+            var insertStatement = "INSERT INTO  orderTable  VALUES (@supplierId,  @productId, @qty, @orderDate,  @status, @estimatedDate)";
+            SqlCommand insertCommand = new SqlCommand(insertStatement, sqlConnection);
+
+            insertCommand.Parameters.AddWithValue("@orderDate", orders.orderDate);
+            insertCommand.Parameters.AddWithValue("@supplierId", orders.supplierId);
+            insertCommand.Parameters.AddWithValue("@productId", orders.productId);
+            insertCommand.Parameters.AddWithValue("@qty", orders.qty);
+            insertCommand.Parameters.AddWithValue("@status", orders.status);
+            insertCommand.Parameters.AddWithValue("@estimatedDate", orders.estimatedDate.ToDateTime(TimeOnly.MinValue));
+
+
+
+            insertCommand.ExecuteNonQuery();
+            sqlConnection.Close();
         }
 
         public void updateOrders(Orders orders)
         {
-            throw new NotImplementedException();
+            string updateStatement = $"UPDATE orderTable SET  orderStatus = @orderStatus WHERE orderId = @orderId ";
+            sqlConnection.Open();
+            SqlCommand updateCommand = new SqlCommand(updateStatement, sqlConnection);
+
+            updateCommand.Parameters.AddWithValue("@orderStatus", orders.status);
+            updateCommand.Parameters.AddWithValue("@orderId", orders.Id);
+
+
+
+            updateCommand.ExecuteNonQuery();
+
+            sqlConnection.Close();
         }
 
         public void removeOrders(Orders orders)
         {
-            throw new NotImplementedException();
+            string deleteStatement = "DELETE FROM orderTable WHERE orderId = @id";
+            sqlConnection.Open();
+            SqlCommand deleteCommand = new SqlCommand(deleteStatement, sqlConnection);
+            deleteCommand.Parameters.AddWithValue("@id", orders.Id);
+            deleteCommand.ExecuteNonQuery();
+            sqlConnection.Close();
         }
     }
 }

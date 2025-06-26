@@ -8,7 +8,7 @@ namespace InventoryCommon
 {
     public class Orders
     {
-       public  string Id { get; set; }
+       public  int Id { get; set; }
         public DateOnly orderDate    { get; set; }
         public string supplierId { get; set; }
         public string productId { get; set; }

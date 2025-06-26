@@ -22,13 +22,117 @@ namespace BusinessLogic
         //}
 
         //PRODUT METHODS
-        public List<Product> getProduct(string productId)
+
+
+        public List<Product> getProductByName(string productName)
         {
             List<Product> products = InventoryData.getProducts();
             List<Product> searchedProduct = new List<Product>();
+            if(productName == "" || productName=="Search Product Name")
+            {
+                return products;
+            }
             for (int i = 0; i < products.Count; i++)
             {
+                if (products[i].Name.ToLowerInvariant().StartsWith(productName.ToLowerInvariant()))
+                {
+                    searchedProduct.Add(products[i]);
+                }
+            }
+            return searchedProduct;
+        }
+        public string getProductNameById(string productId)
+        {
+            List<Product> products = getProducts();
+
+         
+
+            for(int i =0; i < products.Count; i++)
+            {
                 if (products[i].Id == productId)
+                {
+                   return products[i].Name;
+                }
+            }
+            return "";
+         
+        }
+
+        public string getProductIdByName(string productName)
+        {
+            List<Product> products = getProducts();
+
+
+
+            for (int i = 0; i < products.Count; i++)
+            {
+                if (products[i].Name.Trim().ToLowerInvariant().StartsWith(productName.Trim().ToLowerInvariant()))
+                {
+                    return products[i].Id;
+                }
+            }
+            return "";
+        }
+      
+        public bool productNameExist(string productName)
+        {
+            List<Product> products = InventoryData.getProducts();
+            for (int i = 0; i < products.Count; i++)
+            {
+                if (products[i].Name == productName)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public List<Product> getProductById(string productId)
+        {
+            List<Product> products = InventoryData.getProducts();
+            List<Product> searchedProduct = new List<Product>();
+           
+            for (int i = 0; i < products.Count; i++)
+            {
+                if (products[i].Id==productId)
+                {
+                    searchedProduct.Add(products[i]);
+                }
+            }
+            return searchedProduct;
+        }
+
+        public List<Product> getProductByCategory(string categoryName)
+        {
+            List<Product> searchedProduct = new List<Product>();
+            List<Product> products = InventoryData.getProducts();
+            if (categoryName == "All")
+            {
+                return products;
+            }
+            for (int i = 0; i < products.Count; i++)
+            {
+                if (products[i].category == categoryName)
+                {
+                    searchedProduct.Add(products[i]);
+                }
+            }
+            return searchedProduct;
+        }
+        public List<Product> getProductByCategoryAndName(string categoryName , string selectedName, List<Product> products)
+        { 
+            List<Product> searchedProduct = new List<Product>();
+          
+            if(categoryName == "All")
+            {
+                return getProductByName(selectedName);
+            }
+            if(selectedName == "Search Product Name" || selectedName == "" )
+            {
+                return getProductByCategory(categoryName);
+            }
+            for (int i = 0; i < products.Count; i++)
+            {
+                if (products[i].category == categoryName && products[i].Name.StartsWith(selectedName))
                 {
                     searchedProduct.Add(products[i]);
                 }
@@ -128,6 +232,18 @@ namespace BusinessLogic
             return InventoryData.getSuppliers();
         }
 
+        public bool supplierExist(string supplierId)
+        {
+            List<Supplier> suppliers = InventoryData.getSuppliers();
+            for (int i = 0; i < suppliers.Count; i++)
+            {
+                if (suppliers[i].Id == supplierId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public List<string> getSupplierNames()
         {
             return InventoryData.getSuppliers()
@@ -148,7 +264,21 @@ namespace BusinessLogic
             return searchedSupplier;
         }
        
+        public List<Supplier> getSupplierByName(string supplierName)
+        {
+            List<Supplier> suppliers = InventoryData.getSuppliers();
+            List<Supplier> searchedSupplier = new List<Supplier>();
+            for (int i = 0; i < suppliers.Count; i++)
+            {
+                if (suppliers[i].Name.StartsWith(supplierName))
+                {
+                    searchedSupplier.Add(suppliers[i]);
+                }
+            }
+            return searchedSupplier;
+        }
 
+      
         public List<string> getSupplierProducts(string supplierId)
         {
             List<Product> products = InventoryData.getProducts();
@@ -163,11 +293,7 @@ namespace BusinessLogic
                 }
             }
 
-            if(productCount == 0)
-            {
-                supplierProducts.Add("No products found");
-            }
-           
+         
             return supplierProducts;
         }
         public string getSupplierName(string supplierId)
@@ -180,7 +306,7 @@ namespace BusinessLogic
                     return suppliers[i].Name;
                 }
             }
-            return null;
+            return "";
         }
         public string getSupplierId(string supplierName)
         {
@@ -315,6 +441,93 @@ namespace BusinessLogic
             category1.Id = getCategoryId(oldCategoryName);
             InventoryData.updateCategory(category1);
         }
+
+
+        //ORDERS METHOD
+
+        public List<Orders> getOrders()
+        {
+            return InventoryData.getOrders();
+        }
+        public Orders getOrder(int id)
+        {   List<Orders> orders = InventoryData.getOrders();
+            Orders order = new Orders();
+
+            for(int i = 0; i < orders.Count; i++)
+            {
+                if (orders[i].Id == id)
+                {
+                    order = orders[i];
+                    break;
+                }
+            }
+
+            return order;
+        }
+
+        public List<Orders> getOrderByProductId(string productId)
+        {
+            List<Orders> orders = getOrders();
+            List<Orders> filteredOrders = new List<Orders>();
+            
+
+            for(int i=0;i <orders.Count; i++)
+            {
+                if (orders[i].productId==productId)
+                {
+                    filteredOrders.Add(orders[i]);
+                }
+            }
+            return filteredOrders;
+
+        }
+        public string  getProductNameByOrderId(int orderId)
+        {
+         
+            List<Orders> orders = InventoryData.getOrders();
+            for(int i = 0; i < orders.Count; i++)
+            {
+                if(orderId == orders[i].Id)
+                {
+                    return getProductNameById(orders[i].productId);
+                }
+            }
+            return "";
+
+        }
+        public void addOrder(DateOnly orderDate, string supplierId, string productId, int qty, string status, DateOnly estimatedDate)
+        {
+            Orders orders = new Orders();
+         
+            orders.orderDate = orderDate;
+            orders.supplierId = supplierId;
+            orders.productId = productId;
+            orders.qty = qty;
+            orders.status = status;
+            orders.estimatedDate = estimatedDate;
+          
+
+            InventoryData.addOrders(orders);
+        }
+        public void updateOrder(int orderId, string newStatus)
+        {
+            Orders order = getOrder(orderId);
+            order.status = newStatus;
+            InventoryData.updateOrders(order);
+        }
+        public void removeOrder(int  orderId)
+        {
+            List<Orders> orders = InventoryData.getOrders();
+            for (int i = 0; i < orders.Count; i++)
+            {
+                if (orders[i].Id == orderId)
+                {
+                    InventoryData.removeOrders(orders[i]);
+                    
+                }
+            }
+           
+        }
     }
 
 
@@ -322,6 +535,5 @@ namespace BusinessLogic
 
 
 
-
-}
+    }
 

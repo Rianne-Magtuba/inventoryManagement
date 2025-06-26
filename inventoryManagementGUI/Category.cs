@@ -29,8 +29,9 @@ namespace inventoryManagementGUI
         }
         private void AddProductForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            mainFormRef.setupAddProductPanel(); 
-            mainFormRef.setupEditProductPanel();
+            mainFormRef.loadCategoriesNSsupplier();
+
+
         }
         private void cyberButton3_Click(object sender, EventArgs e)
         { string catName = catNameField.Text.Trim();
