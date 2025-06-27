@@ -13,6 +13,7 @@ namespace DataLogic
         List<Accounts> accounts = new List<Accounts>();
         List<Supplier> suppliers = new List<Supplier>();
         List<Category> categories = new List<Category>();
+        List<Orders> orders = new List<Orders>();
         public inMemoryInvData()
         {
 
@@ -46,6 +47,7 @@ namespace DataLogic
             product1.supplierId = "1019";
             product1.Price = 32;
             product1.dateModified = DateOnly.Parse("2024-12-10");
+            product1.category = "GPU";
 
             products.Add(product1);
 
@@ -57,7 +59,7 @@ namespace DataLogic
             product2.supplierId = "1019";
             product2.Price = 322;
             product2.dateModified = DateOnly.Parse("2025-02-10");
-
+            product2.category = "CPU";
             products.Add(product2);
 
 
@@ -69,32 +71,43 @@ namespace DataLogic
 
             Supplier supplier1 = new Supplier();
             supplier1.Id = "1019";
-            supplier1.Name = "coke ph";
+            supplier1.Name = "Amd";
             supplier1.ContactNum = "09123456789";
             supplier1.Address = "1234 MAnila st";
-            supplier1.EmailAdd = "coke@corp.ph.com";
+            supplier1.EmailAdd = "amd@amd.ph.com";
             suppliers.Add(supplier1);
 
             Supplier supplier2 = new Supplier();
             supplier2.Id = "1027";
-            supplier2.Name = "pepsi ph";
+            supplier2.Name = "Nvidia";
             supplier2.ContactNum = "123141414";
             supplier2.Address = "6969 MAnila st";
-            supplier2.EmailAdd = "spolilarium@corp.ph.com";
+            supplier2.EmailAdd = "Nvdia@NVIDIA.ph.com";
             suppliers.Add(supplier2);
 
             Category cat1 = new Category();
             cat1.Id = 1;
-            cat1.Name = "Drink";
+            cat1.Name = "GPU";
             categories.Add(cat1);
 
 
             Category cat2 = new Category();
             cat2.Id = 2;
-            cat2.Name = "beverage";
+            cat2.Name = "CPU";
+
             categories.Add(cat2);
 
+            Orders order1 = new Orders();
+            order1.Id = 1;
+            order1.productId = "1234";
+            order1.supplierId = "1019";
+            order1.qty = 10;
+            order1.orderDate = DateOnly.Parse("2025-06-15");
+            order1.status = "Ordered";
+            order1.estimatedDate = DateOnly.Parse("2025-06-28");
 
+
+            orders.Add(order1);
 
 
         }
@@ -326,22 +339,40 @@ namespace DataLogic
 
         public List<Orders> getOrders()
         {
-            throw new NotImplementedException();
+            return orders;
         }
 
         public void addOrders(Orders orders)
         {
-            throw new NotImplementedException();
+          this.orders.Add(orders);
         }
 
         public void updateOrders(Orders orders)
         {
-            throw new NotImplementedException();
+            int index = getIndex(this.orders, orders);
+
+            if (index != -1)
+            {
+                this.orders[index].Id = orders.Id;
+                this.orders[index].orderDate = orders.orderDate;
+                this.orders[index].supplierId = orders.supplierId;
+                this.orders[index].productId = orders.productId;
+                this.orders[index].qty = orders.qty;
+                this.orders[index].status = orders.status;
+                this.orders[index].estimatedDate = orders.estimatedDate;
+
+
+            }
         }
 
         public void removeOrders(Orders orders)
         {
-            throw new NotImplementedException();
+            int index = getIndex(this.orders, orders);
+            if (index != -1)
+            {
+                this.categories.RemoveAt(index);
+
+            }
         }
     }
 }

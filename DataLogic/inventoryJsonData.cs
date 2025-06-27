@@ -14,18 +14,31 @@ namespace DataLogic
         string jsonAccFilePath = "json_accData.json";
         string jsonSupFilePath = "json_supData.json";
         string jsonCatFilePath = "json_catData.json";
+        string jsonOrderFilePath = "json_orderData.json";
         List<Product> products = new List<Product>();
         List<Accounts> accounts = new List<Accounts>();
         List<Supplier> suppliers = new List<Supplier>();
         List<Category> categories = new List<Category>();
+        List<Orders> orders = new List<Orders>();
         public inventoryJsonData()
         {
             ReadJsonDataFromFile();
 
         }
-
+        private void JsonFileExists(string path)
+        {
+            if (!File.Exists(path))
+            {
+                File.WriteAllText(path, "[]"); // Write empty JSON array
+            }
+        }
         public void ReadJsonDataFromFile()
         {
+            JsonFileExists(jsonProdDataPath);
+            JsonFileExists(jsonAccFilePath);
+            JsonFileExists(jsonSupFilePath);
+            JsonFileExists(jsonCatFilePath);
+            JsonFileExists(jsonOrderFilePath);
             string jsonProdText = File.ReadAllText(jsonProdDataPath);
 
             products = JsonSerializer.Deserialize<List<Product>>(jsonProdText,
@@ -46,6 +59,12 @@ namespace DataLogic
             categories = JsonSerializer.Deserialize<List<Category>>(jsonCatText,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
             );
+
+            string jsonOrdertext = File.ReadAllText(jsonOrderFilePath);
+            orders = JsonSerializer.Deserialize<List<Orders>>(jsonCatText,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
+            );
+
 
         }
         public int getIndex<T>(List<T> objs, T obj) where T : class
@@ -254,24 +273,52 @@ namespace DataLogic
                 
         }
 
+        private void WriteJsonOrderDataToFile()
+        {
+            string jsonString = JsonSerializer.Serialize(orders, new JsonSerializerOptions
+            { WriteIndented = true });
+
+            File.WriteAllText(jsonCatFilePath, jsonString);
+        }
         public List<Orders> getOrders()
         {
-            throw new NotImplementedException();
+           return orders;
         }
 
         public void addOrders(Orders orders)
         {
-            throw new NotImplementedException();
+           this.orders.Add(orders);
+            WriteJsonOrderDataToFile();
         }
 
         public void updateOrders(Orders orders)
         {
-            throw new NotImplementedException();
+            int index = getIndex(this.orders, orders);
+
+            if (index != -1)
+            {
+                this.orders[index].Id = orders.Id;
+                this.orders[index].orderDate = orders.orderDate;
+                this.orders[index].supplierId = orders.supplierId;
+                this.orders[index].productId = orders.productId;
+                this.orders[index].qty = orders.qty;
+                this.orders[index].status = orders.status;
+                this.orders[index].estimatedDate = orders.estimatedDate;
+
+
+            }
+            WriteJsonOrderDataToFile();
         }
 
         public void removeOrders(Orders orders)
         {
-            throw new NotImplementedException();
+            int index = getIndex(this.orders, orders);
+            if (index != -1)
+            {
+                this.categories.RemoveAt(index);
+
+            }
+            WriteJsonOrderDataToFile();
         }
     }
 }

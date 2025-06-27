@@ -16,10 +16,7 @@ namespace BusinessLogic
            InventoryData = new inventoryDataService();
         }
 
-        //public string getProductName(string productId)
-        //{
-        //    return InventoryData.getProductName(productId);
-        //}
+    
 
         //PRODUT METHODS
 
@@ -139,6 +136,8 @@ namespace BusinessLogic
             }
             return searchedProduct;
         }
+
+
         public void addProduct(string productId, string productName, int productQuantity, string productSupplier, double productPrice, string prodCategory)
         {
             Product product1 = new Product();
@@ -224,6 +223,45 @@ namespace BusinessLogic
             InventoryData.updateProduct(product1);
 
 
+        }
+      
+        
+        public int getTotalStockProduct(List<Product> products )
+        {
+         
+            int totalQty = 0;
+            for (int i = 0; i < products.Count; i++)
+            {
+                totalQty += products[i].Quantity;
+            }
+            return totalQty;
+        }
+
+    
+        public int getLowStockProduct(List<Product> products)
+        {
+            int lowStockProduct = 0;
+            for(int i =0; i < products.Count; i++)
+            {
+                if (products[i].Quantity < 5)
+                {
+                    lowStockProduct++;
+                }
+            }
+            return lowStockProduct;
+        }
+
+        public int getOutOfStockProduct(List<Product> products)
+        {
+            int OutOfStockProduct = 0;
+            for (int i = 0; i < products.Count; i++)
+            {
+                if (products[i].Quantity ==0)
+                {
+                    OutOfStockProduct++;
+                }
+            }
+            return OutOfStockProduct;
         }
         //SUPPLIER METHODS
 
@@ -465,9 +503,9 @@ namespace BusinessLogic
             return order;
         }
 
-        public List<Orders> getOrderByProductId(string productId)
+        public List<Orders> getOrderByProductId(string productId,  List<Orders> orders)
         {
-            List<Orders> orders = getOrders();
+        
             List<Orders> filteredOrders = new List<Orders>();
             
 
@@ -481,6 +519,49 @@ namespace BusinessLogic
             return filteredOrders;
 
         }
+
+        public List<Orders> getOrdersByStatus(string status, List<Orders> orders)
+        {
+            List<Orders> filteredOrders = new List<Orders>();
+            for(int i = 0; i < orders.Count; i++)
+            {
+                if (orders[i].status == status)
+                {
+                    filteredOrders.Add(orders[i]);
+                }
+            }
+
+            return filteredOrders;
+        }
+        public List<Orders> getOrderByProductIdAndStatus(string productName, string status, List<Orders> orders)
+        {
+
+            string productId = getProductIdByName(productName);
+
+            List<Orders> filteredOrders = new List<Orders>();
+           
+            if (status == "All")
+            {
+                return orders; 
+            }
+            if (string.IsNullOrWhiteSpace(productName) || productName == "Search Product Name")
+            {
+                return getOrdersByStatus(status, orders);
+            }
+
+            for (int i = 0; i < orders.Count; i++)
+            {
+                if (orders[i].productId == productId && orders[i].status == status)
+                {
+                    filteredOrders.Add(orders[i]);
+                }
+            }
+
+            return filteredOrders;
+        }
+            
+
+
         public string  getProductNameByOrderId(int orderId)
         {
          
@@ -495,10 +576,27 @@ namespace BusinessLogic
             return "";
 
         }
+
+        public List<Orders> getArrivingOrders()
+        {
+            List<Orders> orders = InventoryData.getOrders();
+            List<Orders> arrivingOrders = new List<Orders>();
+            DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+            DateOnly targetDate = today.AddDays(2);
+            for (int i = 0; i < orders.Count; i++)
+            {
+                if (orders[i].status == "Ordered" && orders[i].estimatedDate >= today && orders[i].estimatedDate <= targetDate)
+                {
+                    arrivingOrders.Add(orders[i]);
+                }
+            }
+            return arrivingOrders;
+
+        }
         public void addOrder(DateOnly orderDate, string supplierId, string productId, int qty, string status, DateOnly estimatedDate)
         {
-            Orders orders = new Orders();
          
+            Orders orders = new Orders();
             orders.orderDate = orderDate;
             orders.supplierId = supplierId;
             orders.productId = productId;

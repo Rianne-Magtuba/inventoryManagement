@@ -18,89 +18,133 @@ namespace inventoryManagementGUI
     public partial class mainForm : Form
     {
 
-        public mainForm()
+        public mainForm(string userName)
         {
             InitializeComponent();
-            if (this.DesignMode)
-            {
-                // Hide non-essential tabs during design time
-                for (int i = 1; i < tabControl1.TabPages.Count; i++)
-                {
-                    tabControl1.TabPages[i].Text += " (Hidden in Designer)";
-                }
-            }
+
+            setupDashboardTable();
+            setupDashBoardPage();
 
             setupProductTable();
 
             setupSupplierTable();
             setupOrderTable();
-            productTable.CellClick += productTable_CellClick;
+            setupStocksTable();
+            userLbl.Text = userName;
+
 
         }
 
         string selectedProductId = "";
         string selectedSupplierId = "";
+        string selectedStock = "";
+
         List<Product> products = new List<Product>();
-        int selectedOrderId = 0;
+        List<Orders> orders = new List<Orders>();
 
 
-
-        private void mainForm_Load(object sender, EventArgs e)
+        // Dashboard page methods
+        private void setupDashboardTable()
         {
+
+            arrivingProductTable.AutoGenerateColumns = false;
+
+            DataGridViewTextBoxColumn col1 = new DataGridViewTextBoxColumn();
+
+            col1.Name = "ProductName";
+            col1.DataPropertyName = "ProductName";
+            col1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            col1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            DataGridViewTextBoxColumn col2 = new DataGridViewTextBoxColumn();
+
+            col2.Name = "ProductQty";
+            col2.DataPropertyName = "ProductQty";
+            col2.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            col2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+
+
+
+            arrivingProductTable.Columns.AddRange(new DataGridViewColumn[] { col1, col2 });
+
+            StyleDataGridView(arrivingProductTable);
+            arrivingProductTable.DefaultCellStyle.BackColor = Color.White;
+            arrivingProductTable.ForeColor = Color.Black;
+            arrivingProductTable.DefaultCellStyle.SelectionBackColor = Color.White;
+            arrivingProductTable.GridColor = Color.Black;
+
+        }
+        private void setupDashBoardPage()
+        {
+            List<Orders> updatedOrders = inventoryProcess.getOrders();
+            List<Product> updatedProducts = inventoryProcess.getProducts();
+            headerLbl.Text = "Dashboard";
+            tabControl1.SelectedTab = Dashboard;
+
+            lowStockLblOverView.Text = inventoryProcess.getLowStockProduct(updatedProducts).ToString();
+            NoOfProdLblOverView.Text = updatedProducts.Count.ToString();
+            totalStocksLbl.Text = inventoryProcess.getTotalStockProduct(updatedProducts).ToString();
+            OutOfStockLbl.Text = inventoryProcess.getOutOfStockProduct(updatedProducts).ToString();
+            ReloadDashBoardGrid(updatedOrders);
+
+
+
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+
+        private void ReloadDashBoardGrid(List<Orders> updatedOrders)
         {
 
+            try
+            {
+
+                var filteredData = updatedOrders.Select(o => new
+
+                {
+
+                    ProductQty = o.qty,
+                    ProductName = inventoryProcess.getProductNameByOrderId(o.Id),
+
+
+                }).ToList();
+
+                if (filteredData.Count == 0)
+                {
+                    arrivingSoonPrompt.Visible = true;
+                    return;
+                }
+                arrivingSoonPrompt.Visible = false;
+                arrivingProductTable.DataSource = null;
+                arrivingProductTable.DataSource = filteredData;
+
+                StyleDataGridView(arrivingProductTable);
+
+                arrivingProductTable.DefaultCellStyle.BackColor = Color.White;
+                arrivingProductTable.ForeColor = Color.Black;
+                arrivingProductTable.DefaultCellStyle.SelectionBackColor = Color.White;
+                arrivingProductTable.GridColor = Color.Black;
+
+                arrivingProductTable.ClearSelection();
+                arrivingProductTable.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error reloading product grid: " + ex.Message);
+            }
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+
+
+
+        //dashboard page action methods
+        private void dashBoardNavBtn_Click(object sender, EventArgs e)
         {
-
+            tabControl1.SelectedTab = Dashboard;
+            setupDashBoardPage();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            headerLbl.Text = "Order  Product";
-            tabControl1.SelectedTab = orderProduct;
-        }
-
-        private void tab2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void StyleDataGridView(DataGridView grid)
-        {
-            grid.ColumnHeadersVisible = false;
-            grid.RowHeadersVisible = false;
-            grid.BorderStyle = BorderStyle.None;
-            grid.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-
-            grid.DefaultCellStyle.BackColor = Color.FromArgb(236, 236, 236);
-            grid.DefaultCellStyle.SelectionBackColor = Color.LightGray;
-            grid.DefaultCellStyle.SelectionForeColor = Color.Black;
-
-            grid.DefaultCellStyle.Font = new Font("Segoe UI", 10F);
-            grid.DefaultCellStyle.Padding = new Padding(0, 8, 0, 8);
-            grid.AllowUserToResizeColumns = false;
-            grid.AllowUserToResizeRows = false;
-            grid.GridColor = Color.LightGray;
-        }
-        public void loadCategoriesNSsupplier()
-        {
-            cmbCategory.DataSource = inventoryProcess.GetCategoryNames();
-            cmbSuppliers.DataSource = inventoryProcess.getSupplierNames();
-
-        }
 
         // Product page methods
 
@@ -359,7 +403,7 @@ namespace inventoryManagementGUI
             {
                 searchProductField.Text = " ";
             }
-            if (searchProductField.Text.StartsWith("") || searchProductField.Text.Trim() == "Search Product Name")
+            if (searchProductField.Text.StartsWith(" ") || searchProductField.Text.Trim() == "Search Product Name")
             {
                 productTable.DataSource = null;
                 productTable.Refresh();
@@ -493,10 +537,10 @@ namespace inventoryManagementGUI
         // Supplier page methods
         private void setupSupplierPage()
         {
-            //headerLbl.Text = "Suppliers";
-            //tabControl1.SelectedTab = supplierPanel;
-            //List<Supplier> updatedSupplier = inventoryProcess.getSuppliers();
-            //ReloadSupplierGrid(updatedSupplier);
+            headerLbl.Text = "Suppliers";
+            tabControl1.SelectedTab = supplierPanel;
+            List<Supplier> updatedSupplier = inventoryProcess.getSuppliers();
+            ReloadSupplierGrid(updatedSupplier);
         }
         private void setupSupplierTable()
         {
@@ -543,7 +587,7 @@ namespace inventoryManagementGUI
 
 
             supplierTable.Columns.AddRange(new DataGridViewColumn[] { supTableCol1, supTableCol2, supTableCol3, supEditCol, supMoreCol });
-
+            StyleDataGridView(supplierTable);
 
         }
         private void ReloadSupplierGrid(List<Supplier> updatedSupplier)
@@ -648,11 +692,7 @@ namespace inventoryManagementGUI
 
         private void supplierNavbtn_Click(object sender, EventArgs e)
         {
-            headerLbl.Text = "Suppliers";
-            tabControl1.SelectedTab = supplierPanel;
-
-            List<Supplier> updatedSupplier = inventoryProcess.getSuppliers();
-            ReloadSupplierGrid(updatedSupplier);
+            setupSupplierPage();
         }
         private void supplierTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -764,10 +804,16 @@ namespace inventoryManagementGUI
                 }
             }
         }
+
         //Order page methods
 
         public void setupOrderPage()
         {
+            headerLbl.Text = "Orders";
+            tabControl1.SelectedTab = Orders;
+            List<Orders> orders = inventoryProcess.getOrders();
+            this.orders = orders;
+            ReloadOrderGrid(orders);
 
         }
 
@@ -781,11 +827,6 @@ namespace inventoryManagementGUI
             {
                 return;
             }
-
-
-
-
-
 
 
 
@@ -838,7 +879,20 @@ namespace inventoryManagementGUI
             return true;
 
         }
+        private void setupOrderInformationPanel(Orders order)
+        {
+            viewOrderStatusLbl.Text = order.status;
+            ViewEstArrivalLbl.Text = order.estimatedDate.ToString("yyyy-MM-dd");
+            ViewdateOrderedLbl.Text = order.orderDate.ToString("yyyy-MM-dd");
+            viewProductSupOrderLbl.Text = inventoryProcess.getSupplierName(order.supplierId);
+            viewProductNameOrderLbl.Text = inventoryProcess.getProductNameByOrderId(order.Id);
+            viewProdQtyOrderLbl.Text = order.qty.ToString();
+            viewOrderIdLbl.Text = order.Id.ToString();
 
+
+
+
+        }
         private void setupOrderTable()
         {
 
@@ -893,20 +947,7 @@ namespace inventoryManagementGUI
             StyleDataGridView(ordersTable);
 
         }
-        private void setupOrderInformationPanel(Orders order)
-        {
-            viewOrderStatusLbl.Text = order.status;
-            ViewEstArrivalLbl.Text = order.estimatedDate.ToString("yyyy-MM-dd");
-            ViewdateOrderedLbl.Text = order.orderDate.ToString("yyyy-MM-dd");
-            viewProductSupOrderLbl.Text = inventoryProcess.getSupplierName(order.supplierId);
-            viewProductNameOrderLbl.Text = inventoryProcess.getProductNameByOrderId(order.Id);
-            viewProdQtyOrderLbl.Text = order.qty.ToString();
-            viewOrderIdLbl.Text = order.Id.ToString();
 
-
-
-
-        }
         private void ReloadOrderGrid(List<Orders> updatedOrders)
         {
 
@@ -945,15 +986,40 @@ namespace inventoryManagementGUI
                 MessageBox.Show("Error reloading product grid: " + ex.Message);
             }
         }
+        private void FilterOrders()
+        {
+            string productName = orderPanelSearchField.Text?.Trim() ?? "";
+            string selectedStatusText = selectedStatus.Text?.Trim() ?? "All";
 
+            // Normalize input
+            if (string.IsNullOrWhiteSpace(productName) || productName == "Search Product Name")
+            {
+                productName = "";
+            }
+
+            List<Orders> allOrders = orders;
+
+            // Use your combined filter method
+            List<Orders> filteredOrders = inventoryProcess.getOrderByProductIdAndStatus(productName, selectedStatusText, allOrders);
+
+            if (filteredOrders.Count == 0)
+            {
+                noOrdersPrompt.Visible = true;
+                ordersTable.DataSource = null;
+                ordersTable.Refresh();
+                return;
+            }
+
+            noOrdersPrompt.Visible = false;
+            ReloadOrderGrid(filteredOrders);
+        }
 
         //Order Page action methods
         private void OrderTabNavBtn_Click(object sender, EventArgs e)
         {
-            headerLbl.Text = "Orders";
-            tabControl1.SelectedTab = Orders;
-            List<Orders> orders = inventoryProcess.getOrders();
-            ReloadOrderGrid(orders);
+
+            setupOrderPage();
+
         }
 
         private void orderProdNavBtn_Click(object sender, EventArgs e)
@@ -979,6 +1045,7 @@ namespace inventoryManagementGUI
             inventoryProcess.addOrder(currentDate, supplierId, prodId, qty, status, estDate);
             MessageBox.Show("Order placed successfully! returning to Order Page");
             returnToPreviousTab();
+            setupOrderPage();
 
         }
 
@@ -1010,6 +1077,11 @@ namespace inventoryManagementGUI
 
         }
 
+        private void selectedStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FilterOrders();
+        }
+
         private void orderTables_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Ignore clicks on header row or out-of-range indexes
@@ -1021,8 +1093,8 @@ namespace inventoryManagementGUI
             {
                 orderId = Convert.ToInt16(ordersTable.Rows[e.RowIndex].Cells["orderId"].Value);
 
-                var cellRect = supplierTable.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
-                var cellScreenLocation = supplierTable.PointToScreen(new Point(cellRect.X, cellRect.Y + cellRect.Height));
+                var cellRect = ordersTable.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
+                var cellScreenLocation = ordersTable.PointToScreen(new Point(cellRect.X, cellRect.Y + cellRect.Height));
 
                 headerLbl.Text = "Orders/ View information";
                 Orders orders = inventoryProcess.getOrder(orderId);
@@ -1030,7 +1102,7 @@ namespace inventoryManagementGUI
                 setupOrderInformationPanel(orders);
 
 
-                selectedOrderId = orderId;
+
 
 
             }
@@ -1070,19 +1142,320 @@ namespace inventoryManagementGUI
 
 
         }
+        private void delOrderBtn_Click(object sender, EventArgs e)
+        {
+            string status = viewOrderStatusLbl.Text;
+            int orderId = Convert.ToInt16(viewOrderIdLbl.Text);
+
+            DialogResult result = MessageBox.Show(
+    "Are you sure you want to delete this order?",
+    "Confirm Action",
+    MessageBoxButtons.YesNo,
+    MessageBoxIcon.Question
+);
+
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+
+            if (status == "Ordered")
+            {
+                MessageBox.Show("Cannot delete order that has been received");
+                return;
+            }
+
+            inventoryProcess.removeOrder(orderId);
+            MessageBox.Show("Order deleted successfully");
+            returnToPreviousTab();
+            setupOrderPage();
+
+
+        }
+        private void orderPanelSearchField_KeyUp(object sender, KeyEventArgs e)
+        {
+            FilterOrders();
+
+
+        }
+
+
+
+
+        //View stocks method
+        private void setupStocksTable()
+        {
+
+            stocksTable.AutoGenerateColumns = false;
+
+
+            DataGridViewTextBoxColumn col1 = new DataGridViewTextBoxColumn();
+
+            col1.Name = "ProductID";
+            col1.DataPropertyName = "ProductID";
+            col1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            col1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            DataGridViewTextBoxColumn col2 = new DataGridViewTextBoxColumn();
+
+            col2.Name = "ProductName";
+            col2.DataPropertyName = "ProductName";
+            col2.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            col2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+
+            DataGridViewTextBoxColumn col3 = new DataGridViewTextBoxColumn();
+
+            col3.Name = "ProductQty";
+            col3.DataPropertyName = "ProductQty";
+            col3.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            col3.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            DataGridViewTextBoxColumn col4 = new DataGridViewTextBoxColumn();
+
+            col4.Name = "DateModified";
+            col4.DataPropertyName = "DateModified";
+            col4.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            col4.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+
+
+            DataGridViewImageColumn moreCol = new DataGridViewImageColumn();
+            moreCol.Image = Resources.moreIcon;
+            moreCol.Name = "More";
+
+            moreCol.Width = 40;
+            moreCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+            DataGridViewImageColumn warningCol = new DataGridViewImageColumn();
+
+            warningCol.Name = "Warning";
+
+            warningCol.Width = 40;
+            warningCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+
+            stocksTable.Columns.AddRange(new DataGridViewColumn[] { col1, col2, col3, col4, moreCol, warningCol });
+
+            StyleDataGridView(stocksTable);
+
+
+        }
+
+        private void ReloadStocksGrid(List<Product> updatedProduct)
+        {
+
+            try
+            {
+
+
+                var filteredData = updatedProduct.Select(p => new
+                {
+                    ProductID = p.Id,
+                    ProductName = p.Name,
+                    ProductCategory = p.category,
+                    ProductQty = p.Quantity,
+                    DateModified = p.dateModified.ToString("dd/MM/yyyy")
+
+                }).ToList();
+
+                if (filteredData.Count == 0)
+                {
+                    stocksTablePrompt.Visible = true;
+                    return;
+                }
+
+
+
+                stocksTablePrompt.Visible = false;
+                stocksTable.DataSource = null;
+                stocksTable.DataSource = filteredData;
+
+                for (int i = 0; i < stocksTable.Rows.Count; i++)
+                {
+                    var row = stocksTable.Rows[i];
+
+
+                    var qtyValue = row.Cells["ProductQty"].Value?.ToString();
+                    int qty = Convert.ToInt16(qtyValue);
+
+
+                    if (qty == 0)
+                    {
+                        row.Cells["Warning"].Value = Resources.warningIcon;
+                    }
+                    else
+                    {
+
+                        row.Cells["Warning"].Value = Resources.newBlankIcon;
+
+                    }
+                }
+                StyleDataGridView(stocksTable);
+                stocksTable.ClearSelection();
+                stocksTable.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error reloading product grid: " + ex.Message);
+            }
+        }
+        private void setupStocksPage()
+        {
+            products = inventoryProcess.getProducts();
+            headerLbl.Text = "Stocks";
+            tabControl1.SelectedTab = viewStocks;
+            List<Product> updatedProduct = products;
+            ReloadStocksGrid(updatedProduct);
+
+        }
+        private void setupInvoicePanel(string selectedId)
+        {
+            List<Product> product = inventoryProcess.getProductById(selectedId);
+
+            invoiceProdName.Text = product[0].Name;
+            InvoiceDateMod.Text = product[0].dateModified.ToString("dd/MM/yyyy");
+            invoiceProdPrice.Text = product[0].Price.ToString();
+            InvoiceSalesQty.Text = "0";
+            invoiceProdQuantity.Text = product[0].Quantity.ToString();
+            InvoiceSup.Text = inventoryProcess.getSupplierName(product[0].supplierId);
+            InvoiceProdCat.Text = product[0].category;
+            InvoiceTotalSalesQty.Text = "";
+
+
+        }
+
+
+
+        //view stockss action method
+
+        private void viewStocksBtn_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = viewStocks;
+            setupStocksPage();
+        }
+
+
+
+
+        private void stocksTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            // Assuming icon columns are at index 3 and 4 (adjust as needed)
+            if (stocksTable.Columns[e.ColumnIndex].Name == "More")
+            {
+                string selectedProdId = stocksTable.Rows[e.RowIndex].Cells["ProductID"].Value.ToString();
+                //MessageBox.Show($"Edit clicked for Product ID: {productId}");
+
+
+                tabControl1.SelectedTab = invoicePanel;
+                setupInvoicePanel(selectedProdId);
+
+            }
+            else if (stocksTable.Columns[e.ColumnIndex].Name == "Warning")
+            {
+                string selectedProdId = stocksTable.Rows[e.RowIndex].Cells["ProductID"].Value.ToString();
+                Rectangle cellRect = stocksTable.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
+                Point locationOnScreen = stocksTable.PointToScreen(new Point(cellRect.X, cellRect.Y));
+
+                outOfStockStrip.Show(locationOnScreen);
+
+                selectedStock = selectedProdId;
+            }
+        }
+
+
+        private void addStocks_Click(object sender, EventArgs e)
+        {
+            setupOrderProductPage();
+            tabControl1.SelectedTab = orderProduct;
+        }
+        private void CreateInvoiceBtn_Click(object sender, EventArgs e)
+        {
+            double totalSales = Convert.ToDouble(InvoiceTotalSalesQty.Text);
+
+            if (totalSales == 0 || string.IsNullOrEmpty(InvoiceSalesQty.Text) || InvoiceSalesQty.Text == "0")
+            {
+                MessageBox.Show("Please enter a valid sales quantity.");
+                return;
+            }
+
+            int salesQty = Convert.ToInt32(InvoiceSalesQty.Text);
+            int productQty = Convert.ToInt32(invoiceProdQuantity.Text);
+            if (salesQty > productQty)
+            {
+                MessageBox.Show("Sales quantity cannot be greater than product quantity.");
+                InvoiceSalesQty.Text = "0";
+                InvoiceTotalSalesQty.Text = "0";
+                return;
+            }
+
+
+            int newQuantity = productQty - salesQty;
+            string productName = invoiceProdName.Text.Trim();
+            List<Product> product = inventoryProcess.getProductByName(productName);
+            product[0].Quantity = newQuantity;
+
+            DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
+
+
+            inventoryProcess.updateProduct(product[0].Name, product[0].Id, product[0].Quantity, product[0].Price, product[0].supplierId, product[0].category);
+            // I CAN MODIFY LATER TO IF I ADD A SALES TABLE
+            MessageBox.Show("Invoice created successfully! Returning to Stocks Page");
+            returnToPreviousTab();
+            setupStocksPage();
+
+
+        }
+
+        private void InvoiceSalesQty_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (InvoiceSalesQty.Text == "" || InvoiceSalesQty.Text == "0" || string.IsNullOrEmpty(InvoiceSalesQty.Text))
+            {
+                InvoiceTotalSalesQty.Text = "0";
+                return;
+            }
+
+            int salesQty = Convert.ToInt32(InvoiceSalesQty.Text);
+            int productQty = Convert.ToInt32(invoiceProdQuantity.Text);
+            if (salesQty > productQty)
+            {
+                MessageBox.Show("Sales quantity cannot be greater than product quantity.");
+                InvoiceSalesQty.Text = "0";
+                InvoiceTotalSalesQty.Text = "0";
+                return;
+            }
+
+            double productPrice = Convert.ToDouble(invoiceProdPrice.Text);
+
+            InvoiceTotalSalesQty.Text = (salesQty * productPrice).ToString("F2");
+
+
+
+
+
+        }
 
         //General MEthods
         private void returnToPreviousTab()
         {
             int tab = tabControl1.SelectedIndex;
             int movement = 1;
+            if (tab == 0)
+            {
+                return;
+            }
             if (tabControl1.SelectedTab == addProduct || tabControl1.SelectedTab == orderProduct || tabControl1.SelectedTab == addSupplier)
             {
                 movement = 2;
             }
-            tabControl1.SelectedIndex = tab - movement;
 
             headerLbl.Text = tabControl1.SelectedTab.Text;
+            tabControl1.SelectedIndex = tab - movement;
+
+
 
         }
 
@@ -1108,56 +1481,61 @@ namespace inventoryManagementGUI
             Category AddCategory = new Category(this);
             AddCategory.Show();
         }
+        private void StyleDataGridView(DataGridView grid)
+        {
+            grid.ColumnHeadersVisible = false;
+            grid.RowHeadersVisible = false;
+            grid.BorderStyle = BorderStyle.None;
+            grid.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
 
+            grid.DefaultCellStyle.BackColor = Color.FromArgb(236, 236, 236);
+            grid.DefaultCellStyle.SelectionBackColor = Color.LightGray;
+            grid.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            grid.DefaultCellStyle.Font = new Font("Arial", 10F);
+            grid.DefaultCellStyle.Padding = new Padding(0, 8, 0, 8);
+            grid.AllowUserToResizeColumns = false;
+            grid.AllowUserToResizeRows = false;
+            grid.GridColor = Color.LightGray;
+        }
+        public void loadCategoriesNSsupplier()
+        {
+            cmbCategory.DataSource = inventoryProcess.GetCategoryNames();
+            cmbSuppliers.DataSource = inventoryProcess.getSupplierNames();
+
+        }
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedTab = supplierMorePanel;
         }
 
-        private void orderPanelSearchField_TextChanged(object sender, EventArgs e)
+        private void profileBtn_Click(object sender, EventArgs e)
         {
-
-
-
+            var locationOnScreen = profileBtn.PointToScreen(new Point(0, profileBtn.Height));
+            accountStrip.Show(locationOnScreen);
         }
 
-        private void orderPanelSearchField_KeyUp(object sender, KeyEventArgs e)
+        private void regAccount_Click(object sender, EventArgs e)
         {
-
-            string searchedItem = orderPanelSearchField.Text;
-            if (string.IsNullOrWhiteSpace(searchedItem) || searchedItem == "Search Order ID")
-            {
-                List<Orders> orders = inventoryProcess.getOrders();
-                ReloadOrderGrid(orders);
-                ordersTable.Refresh();
-                return;
-            }
-
-            string productId = inventoryProcess.getProductIdByName(searchedItem);
-            if (string.IsNullOrEmpty(productId))
-            {
-                noOrdersPrompt.Visible = true;
-                ordersTable.DataSource = null;
-                ordersTable.Refresh();
-                return;
-            }
-
-            List<Orders> filteredOrders = inventoryProcess.getOrderByProductId(productId);
-            if (filteredOrders.Count == 0 || filteredOrders == null)
-            {
-                noOrdersPrompt.Visible = true;
-                ordersTable.DataSource = null;
-                ordersTable.Refresh();
-                return;
-            }
-
-            noOrdersPrompt.Visible = false;
-
-            ordersTable.DataSource = null;
-            ReloadOrderGrid(filteredOrders);
+            registrationForm regForm = new registrationForm();
+            regForm.Show();
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+    "Are you sure you want to Exit the application?",
+    "Confirm Action",
+    MessageBoxButtons.YesNo,
+    MessageBoxIcon.Question
+);
 
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+            this.Close();
+        }
     }
 
 

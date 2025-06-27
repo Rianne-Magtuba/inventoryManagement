@@ -11,10 +11,12 @@ public class textMemoryInvData : IinventoryDataService
     string accFilePath = "accounts_data.txt";
     string suppliersFilePath = "suppliers_data.txt";
     string categoryFilePath = "categories_data.txt";
+    string orderFilePath = "orders_data.txt";
     List<Product> product = new List<Product>();
     List<Accounts> accounts = new List<Accounts>();
     List<Supplier> suppliers = new List<Supplier>();
     List<Category> categories = new List<Category>();
+    List<Orders> orders = new List<Orders>();
     public textMemoryInvData()
     {
         GetDataFromFile();
@@ -25,13 +27,15 @@ public class textMemoryInvData : IinventoryDataService
 
     private void GetDataFromFile()
     {
-        if (!File.Exists(prodFilePath) | !File.Exists(accFilePath) | !File.Exists(suppliersFilePath) | !File.Exists(categoryFilePath))
+        if (!File.Exists(prodFilePath) || !File.Exists(accFilePath) || !File.Exists(suppliersFilePath) 
+            || !File.Exists(categoryFilePath) || !File.Exists(orderFilePath))
         {
            
             File.WriteAllText(prodFilePath, string.Empty);
             File.WriteAllText(accFilePath, string.Empty);
             File.WriteAllText(suppliersFilePath, string.Empty);
             File.WriteAllText(categoryFilePath, string.Empty);
+            File.WriteAllText(orderFilePath, string.Empty);
             return;
         }
 
@@ -76,7 +80,8 @@ public class textMemoryInvData : IinventoryDataService
 
         var supplierLines = File.ReadAllLines(suppliersFilePath);
 
-        foreach (var line in accLines)
+
+        foreach (var line in supplierLines)
         {
             if (string.IsNullOrWhiteSpace(line)) continue;
 
@@ -97,7 +102,7 @@ public class textMemoryInvData : IinventoryDataService
 
         var categoryLines = File.ReadAllLines(categoryFilePath);
 
-        foreach (var line in accLines)
+        foreach (var line in categoryLines)
         {
             if (string.IsNullOrWhiteSpace(line)) continue;
 
@@ -114,25 +119,37 @@ public class textMemoryInvData : IinventoryDataService
 
         }
 
+
+
+        var orderLines = File.ReadAllLines(orderFilePath);
+        foreach (var line in orderLines)
+        {
+            if (string.IsNullOrWhiteSpace(line)) continue;
+
+            var parts = line.Split('|');
+
+
+            orders.Add(new Orders
+            {
+                Id = Convert.ToInt16(parts[0]),
+                orderDate = DateOnly.Parse(parts[1]),
+                supplierId = parts[2],
+                productId = parts[3],
+                qty = Convert.ToInt32(parts[4]),
+                status = parts[5],
+                estimatedDate = DateOnly.Parse(parts[6])
+
+
+
+            });
+
+        }
     }
 
   
-    private void writeProdDataToFile()
-    {
-        var lines = new string[product.Count];
-
-        for (int i = 0; i < product.Count; i++)
-        {
-            lines[i] = $"{product[i].Id}|{product[i].Name}|{product[i].Quantity}|{product[i].supplierId}|{product[i].Price} | {product[i].dateModified}";
-        }
-
-        File.WriteAllLines(prodFilePath, lines);
 
 
 
-
-
-    }
     public int getIndex<T>(List<T> objs, T obj) where T : class
     {
         for (int i = 0; i < objs.Count; i++)
@@ -150,7 +167,22 @@ public class textMemoryInvData : IinventoryDataService
         return -1;
     }
 
+    private void writeProdDataToFile()
+    {
+        var lines = new string[product.Count];
 
+        for (int i = 0; i < product.Count; i++)
+        {
+            lines[i] = $"{product[i].Id}|{product[i].Name}|{product[i].Quantity}|{product[i].supplierId}|{product[i].Price} | {product[i].dateModified}";
+        }
+
+        File.WriteAllLines(prodFilePath, lines);
+
+
+
+
+
+    }
 
     public List<Product> searchProduct(Product products)
     {
@@ -345,6 +377,8 @@ public class textMemoryInvData : IinventoryDataService
 
 
     }
+  
+
     public List<Category> getCategories()
     {
         return categories;
@@ -381,23 +415,56 @@ public class textMemoryInvData : IinventoryDataService
                
     }
 
+
+    private void writeOrderDataToFile()
+    {
+        var lines = new string[orders.Count];
+        for (int i = 0; i < orders.Count; i++)
+        {
+            lines[i] = $"{orders[i].Id}|{orders[i].orderDate}|{orders[i].supplierId}|{orders[i].productId}|{orders[i].qty}|{orders[i].status}|{orders[i].estimatedDate}";
+        }
+        File.WriteAllLines(orderFilePath, lines);
+
+
+    }
     public List<Orders> getOrders()
     {
-        throw new NotImplementedException();
+        return orders;
     }
 
     public void addOrders(Orders orders)
     {
-        throw new NotImplementedException();
+       this.orders.Add(orders);
+        writeOrderDataToFile();
     }
 
     public void updateOrders(Orders orders)
     {
-        throw new NotImplementedException();
+        int index = getIndex(this.orders, orders);
+
+        if (index != -1)
+        {
+            this.orders[index].Id = orders.Id;
+            this.orders[index].orderDate = orders.orderDate;
+            this.orders[index].supplierId = orders.supplierId;
+            this.orders[index].productId = orders.productId;
+            this.orders[index].qty = orders.qty;
+            this.orders[index].status = orders.status;
+            this.orders[index].estimatedDate = orders.estimatedDate;
+
+
+        }
+        writeOrderDataToFile();
     }
 
     public void removeOrders(Orders orders)
     {
-        throw new NotImplementedException();
+        int index = getIndex(this.orders, orders);
+        if (index != -1)
+        {
+            this.categories.RemoveAt(index);
+
+        }
+        writeOrderDataToFile();
     }
 }

@@ -191,7 +191,7 @@ namespace inventoryManagementGUI
             catNameField.BorderStyle = BorderStyle.None;
             catNameField.Font = new Font("Arial", 12F);
             catNameField.ForeColor = Color.FromArgb(76, 75, 78);
-            catNameField.Location = new Point(107, 119);
+            catNameField.Location = new Point(107, 121);
             catNameField.Name = "catNameField";
             catNameField.Size = new Size(307, 28);
             catNameField.TabIndex = 74;
@@ -509,7 +509,7 @@ namespace inventoryManagementGUI
             categoryHdr.AutoSize = true;
             categoryHdr.BackColor = Color.White;
             categoryHdr.Font = new Font("Arial", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            categoryHdr.Location = new Point(114, 33);
+            categoryHdr.Location = new Point(127, 27);
             categoryHdr.Name = "categoryHdr";
             categoryHdr.Size = new Size(307, 33);
             categoryHdr.TabIndex = 67;
@@ -520,7 +520,7 @@ namespace inventoryManagementGUI
             textBox12.BackColor = Color.FromArgb(222, 224, 235);
             textBox12.BorderStyle = BorderStyle.None;
             textBox12.Font = new Font("Arial Narrow", 8F, FontStyle.Bold);
-            textBox12.Location = new Point(114, 59);
+            textBox12.Location = new Point(111, 63);
             textBox12.Name = "textBox12";
             textBox12.ReadOnly = true;
             textBox12.Size = new Size(323, 19);
@@ -532,6 +532,7 @@ namespace inventoryManagementGUI
             menuBtn.BackColor = Color.White;
             menuBtn.FlatAppearance.BorderSize = 0;
             menuBtn.FlatStyle = FlatStyle.Flat;
+            menuBtn.ForeColor = SystemColors.ActiveBorder;
             menuBtn.Image = Resources.menuIcon;
             menuBtn.Location = new Point(12, 16);
             menuBtn.Name = "menuBtn";
