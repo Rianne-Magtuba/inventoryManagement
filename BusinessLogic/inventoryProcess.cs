@@ -263,6 +263,8 @@ namespace BusinessLogic
             }
             return OutOfStockProduct;
         }
+
+
         //SUPPLIER METHODS
 
         public List<Supplier> getSuppliers()

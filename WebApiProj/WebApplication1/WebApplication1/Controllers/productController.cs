@@ -6,44 +6,106 @@ using DataLogic;
 
 namespace WebApplication1.Controllers
 {
-    [ApiController]
+  [ApiController]
     [Route("[controller]")]
     public class productController : ControllerBase
     {
         inventoryProcess inventoryProcess = new inventoryProcess();
-        [HttpGet]
-        public IEnumerable<Product> get()
+
+        [HttpGet("getAll")]
+        public List<Product> GetAllProducts()
         {
-            var products =  inventoryProcess.getProducts();
-            return products;
+            return inventoryProcess.getProducts();
         }
 
-        [HttpPut]
-        public void  addProduct(Product product)
+        [HttpGet("searchByName/{productName}")]
+        public List<Product> SearchByName(string productName)
         {
-            inventoryProcess.addProduct(product.Id,product.Name,product.Quantity,product.supplierId,  product.Price, product.category);
-          
+            return inventoryProcess.getProductByName(productName);
         }
-        [HttpPatch]
-        public void updateProduct(productModule request)
 
+        [HttpGet("getNameById/{productId}")]
+        public string GetProductNameById(string productId)
         {
-            string id = request.id;
-            string name = request.name;
-            int quantity = request.quantity;
-            double price = request.price;
-            string supplier = request.supplier;
-            string selectedId = request.selectedId;
-            string category = request.category;
-            inventoryProcess.updateProduct(selectedId, name, id, quantity, price, supplier,category);
-            //  inventoryProcess.updateAllProducts(request.selectedId, request.name, request.id, request.quantity, request.price, request.supplier);
-
-
+            return inventoryProcess.getProductNameById(productId);
         }
-        [HttpDelete]
-        public void deleteProduct(string id)
+
+        [HttpGet("getIdByName/{productName}")]
+        public string GetProductIdByName(string productName)
         {
-            inventoryProcess.removeProduct(id);
+            return inventoryProcess.getProductIdByName(productName);
+        }
+
+        [HttpGet("nameExists/{productName}")]
+        public bool ProductNameExists(string productName)
+        {
+            return inventoryProcess.productNameExist(productName);
+        }
+
+        [HttpGet("getById/{productId}")]
+        public List<Product> GetProductById(string productId)
+        {
+            return inventoryProcess.getProductById(productId);
+        }
+
+        [HttpGet("getByCategory/{categoryName}")]
+        public List<Product> GetProductByCategory(string categoryName)
+        {
+            return inventoryProcess.getProductByCategory(categoryName);
+        }
+
+        [HttpGet("getByCategoryAndName/{categoryName}/{selectedName}")]
+        public List<Product> GetByCategoryAndName(string categoryName, string selectedName)
+        {
+            return inventoryProcess.getProductByCategoryAndName(categoryName, selectedName, inventoryProcess.getProducts());
+        }
+
+        [HttpPost("add")]
+        public void AddProduct(Product product)
+        {
+            inventoryProcess.addProduct(product.Id, product.Name, product.Quantity, product.supplierId, product.Price, product.category);
+        }
+
+        [HttpPatch("update")]
+        public void UpdateProduct(productModule request)
+        {
+            inventoryProcess.updateProduct(request.name, request.id, request.quantity, request.price, request.supplier, request.category);
+        }
+
+        [HttpDelete("delete/{productId}")]
+        public bool DeleteProduct(string productId)
+        {
+            return inventoryProcess.removeProduct(productId);
+        }
+
+        [HttpGet("search/{productName}")]
+        public List<Product> SearchProducts(string productName)
+        {
+            return inventoryProcess.searchProduct(productName);
+        }
+
+        [HttpGet("exists/{productId}")]
+        public bool ProductExists(string productId)
+        {
+            return inventoryProcess.productExist(productId);
+        }
+
+        [HttpGet("totalStock")]
+        public int GetTotalStock()
+        {
+            return inventoryProcess.getTotalStockProduct(inventoryProcess.getProducts());
+        }
+
+        [HttpGet("lowStock")]
+        public int GetLowStock()
+        {
+            return inventoryProcess.getLowStockProduct(inventoryProcess.getProducts());
+        }
+
+        [HttpGet("outOfStock")]
+        public int GetOutOfStock()
+        {
+            return inventoryProcess.getOutOfStockProduct(inventoryProcess.getProducts());
         }
     }
 }

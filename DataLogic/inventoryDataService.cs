@@ -15,8 +15,8 @@ namespace DataLogic
         {
             //InventoryDataService = new textMemoryInvData();
             //InventoryDataService = new inMemoryInvData();
-            InventoryDataService = new inventoryJsonData();
-            //InventoryDataService = new dbIInventoryData();
+            //InventoryDataService = new inventoryJsonData();
+            InventoryDataService = new dbIInventoryData();
 
         }
 
