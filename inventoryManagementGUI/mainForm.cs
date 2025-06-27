@@ -523,12 +523,16 @@ namespace inventoryManagementGUI
 
         private void prodQtyAdd_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("ORDER PRODUCTS");
+           tabControl1.SelectedTab = orderProduct;
+            setupOrderProductPage();
+
         }
 
         private void prodQtyMinus_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("INVOICE?");
+            tabControl1.SelectedTab = invoicePanel;
+            headerLbl.Text= "Stocks";
+            setupInvoicePanel(selectedProductId);
         }
 
 
