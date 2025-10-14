@@ -50,6 +50,8 @@ namespace DataLogic
             InventoryDataService.removeAccount(account);
         }
 
+      
+
         //suppliers
         public List<Supplier> getSuppliers()
         {

@@ -59,5 +59,10 @@ namespace inventoryManagementGUI
             userNameField.Text = "";
             passField.Text = "";
         }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

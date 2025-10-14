@@ -28,7 +28,7 @@ namespace inventoryApi.Controllers
         {
             inventoryProcess.addAccount(account.userName, account.password);
         }
-       
+
 
     }
 }

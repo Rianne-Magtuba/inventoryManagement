@@ -16,6 +16,7 @@ namespace DataLogic
         public void updateProduct(Product product);
         public void removeProduct(Product product);
 
+
         //accounts
         public List<Accounts> getAccounts();
         public void addAccount(Accounts account);

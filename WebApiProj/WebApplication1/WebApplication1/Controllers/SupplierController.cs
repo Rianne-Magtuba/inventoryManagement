@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLogic;
 using InventoryCommon;
-using BusinessLogic;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 
 namespace inventoryApi.Controllers
 {

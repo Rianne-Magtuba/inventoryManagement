@@ -31,13 +31,13 @@
             label1 = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
+            cyberTextBox2 = new ReaLTaiizor.Controls.CyberTextBox();
             passField = new TextBox();
-            cyberTextBox3 = new ReaLTaiizor.Controls.CyberTextBox();
             userNameField = new TextBox();
-            cyberTextBox1 = new ReaLTaiizor.Controls.CyberTextBox();
             checkBox1 = new CheckBox();
             clrBtn = new ReaLTaiizor.Controls.CyberButton();
             loginBtn = new ReaLTaiizor.Controls.CyberButton();
+            cyberTextBox1 = new ReaLTaiizor.Controls.CyberTextBox();
             label3 = new Label();
             label41 = new Label();
             panel1.SuspendLayout();
@@ -60,7 +60,7 @@
             // 
             panel1.BackColor = Color.FromArgb(30, 30, 30);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(1, 1);
+            panel1.Location = new Point(1, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(801, 107);
             panel1.TabIndex = 7;
@@ -69,18 +69,51 @@
             // 
             panel2.BackColor = Color.FromArgb(236, 236, 236);
             panel2.Controls.Add(passField);
-            panel2.Controls.Add(cyberTextBox3);
             panel2.Controls.Add(userNameField);
-            panel2.Controls.Add(cyberTextBox1);
             panel2.Controls.Add(checkBox1);
             panel2.Controls.Add(clrBtn);
             panel2.Controls.Add(loginBtn);
+            panel2.Controls.Add(cyberTextBox2);
+            panel2.Controls.Add(cyberTextBox1);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label41);
-            panel2.Location = new Point(1, 139);
+            panel2.Location = new Point(1, 138);
             panel2.Name = "panel2";
-            panel2.Size = new Size(709, 391);
+            panel2.Size = new Size(709, 392);
             panel2.TabIndex = 72;
+            panel2.Paint += panel2_Paint;
+            // 
+            // cyberTextBox2
+            // 
+            cyberTextBox2.Alpha = 20;
+            cyberTextBox2.BackColor = Color.Transparent;
+            cyberTextBox2.Background_WidthPen = 3F;
+            cyberTextBox2.BackgroundPen = true;
+            cyberTextBox2.ColorBackground = Color.FromArgb(236, 236, 236);
+            cyberTextBox2.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
+            cyberTextBox2.ColorLighting = Color.FromArgb(174, 174, 172);
+            cyberTextBox2.ColorPen_1 = Color.FromArgb(174, 174, 172);
+            cyberTextBox2.ColorPen_2 = Color.FromArgb(174, 174, 172);
+            cyberTextBox2.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            cyberTextBox2.Enabled = false;
+            cyberTextBox2.Font = new Font("Arial", 13F);
+            cyberTextBox2.ForeColor = Color.FromArgb(245, 245, 245);
+            cyberTextBox2.Lighting = false;
+            cyberTextBox2.LinearGradientPen = false;
+            cyberTextBox2.Location = new Point(193, 187);
+            cyberTextBox2.Name = "cyberTextBox2";
+            cyberTextBox2.PenWidth = 15;
+            cyberTextBox2.RGB = false;
+            cyberTextBox2.Rounding = true;
+            cyberTextBox2.RoundingInt = 60;
+            cyberTextBox2.Size = new Size(319, 55);
+            cyberTextBox2.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            cyberTextBox2.TabIndex = 81;
+            cyberTextBox2.TabStop = false;
+            cyberTextBox2.Tag = "Cyber";
+            cyberTextBox2.TextButton = "";
+            cyberTextBox2.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            cyberTextBox2.Timer_RGB = 300;
             // 
             // passField
             // 
@@ -88,42 +121,10 @@
             passField.BorderStyle = BorderStyle.None;
             passField.Font = new Font("Arial", 12F);
             passField.ForeColor = Color.Black;
-            passField.Location = new Point(214, 197);
+            passField.Location = new Point(216, 201);
             passField.Name = "passField";
             passField.Size = new Size(266, 28);
             passField.TabIndex = 79;
-            // 
-            // cyberTextBox3
-            // 
-            cyberTextBox3.Alpha = 20;
-            cyberTextBox3.BackColor = Color.Transparent;
-            cyberTextBox3.Background_WidthPen = 3F;
-            cyberTextBox3.BackgroundPen = true;
-            cyberTextBox3.ColorBackground = Color.FromArgb(236, 236, 236);
-            cyberTextBox3.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
-            cyberTextBox3.ColorLighting = Color.FromArgb(174, 174, 172);
-            cyberTextBox3.ColorPen_1 = Color.FromArgb(174, 174, 172);
-            cyberTextBox3.ColorPen_2 = Color.FromArgb(174, 174, 172);
-            cyberTextBox3.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
-            cyberTextBox3.Enabled = false;
-            cyberTextBox3.Font = new Font("Arial", 12F);
-            cyberTextBox3.ForeColor = Color.FromArgb(245, 245, 245);
-            cyberTextBox3.Lighting = false;
-            cyberTextBox3.LinearGradientPen = false;
-            cyberTextBox3.Location = new Point(192, 187);
-            cyberTextBox3.Name = "cyberTextBox3";
-            cyberTextBox3.PenWidth = 15;
-            cyberTextBox3.RGB = false;
-            cyberTextBox3.Rounding = true;
-            cyberTextBox3.RoundingInt = 60;
-            cyberTextBox3.Size = new Size(319, 48);
-            cyberTextBox3.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            cyberTextBox3.TabIndex = 80;
-            cyberTextBox3.TabStop = false;
-            cyberTextBox3.Tag = "Cyber";
-            cyberTextBox3.TextButton = "";
-            cyberTextBox3.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            cyberTextBox3.Timer_RGB = 300;
             // 
             // userNameField
             // 
@@ -131,42 +132,10 @@
             userNameField.BorderStyle = BorderStyle.None;
             userNameField.Font = new Font("Arial", 12F);
             userNameField.ForeColor = Color.Black;
-            userNameField.Location = new Point(216, 96);
+            userNameField.Location = new Point(216, 97);
             userNameField.Name = "userNameField";
             userNameField.Size = new Size(264, 28);
             userNameField.TabIndex = 77;
-            // 
-            // cyberTextBox1
-            // 
-            cyberTextBox1.Alpha = 20;
-            cyberTextBox1.BackColor = Color.Transparent;
-            cyberTextBox1.Background_WidthPen = 3F;
-            cyberTextBox1.BackgroundPen = true;
-            cyberTextBox1.ColorBackground = Color.FromArgb(236, 236, 236);
-            cyberTextBox1.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
-            cyberTextBox1.ColorLighting = Color.FromArgb(174, 174, 172);
-            cyberTextBox1.ColorPen_1 = Color.FromArgb(174, 174, 172);
-            cyberTextBox1.ColorPen_2 = Color.FromArgb(174, 174, 172);
-            cyberTextBox1.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
-            cyberTextBox1.Enabled = false;
-            cyberTextBox1.Font = new Font("Arial", 12F);
-            cyberTextBox1.ForeColor = Color.FromArgb(245, 245, 245);
-            cyberTextBox1.Lighting = false;
-            cyberTextBox1.LinearGradientPen = false;
-            cyberTextBox1.Location = new Point(192, 85);
-            cyberTextBox1.Name = "cyberTextBox1";
-            cyberTextBox1.PenWidth = 15;
-            cyberTextBox1.RGB = false;
-            cyberTextBox1.Rounding = true;
-            cyberTextBox1.RoundingInt = 60;
-            cyberTextBox1.Size = new Size(319, 48);
-            cyberTextBox1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            cyberTextBox1.TabIndex = 76;
-            cyberTextBox1.TabStop = false;
-            cyberTextBox1.Tag = "Cyber";
-            cyberTextBox1.TextButton = "";
-            cyberTextBox1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            cyberTextBox1.Timer_RGB = 300;
             // 
             // checkBox1
             // 
@@ -210,7 +179,7 @@
             clrBtn.PenWidth = 15;
             clrBtn.Rounding = true;
             clrBtn.RoundingInt = 70;
-            clrBtn.Size = new Size(203, 44);
+            clrBtn.Size = new Size(203, 43);
             clrBtn.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             clrBtn.TabIndex = 74;
             clrBtn.Tag = "Cyber";
@@ -251,7 +220,7 @@
             loginBtn.PenWidth = 15;
             loginBtn.Rounding = true;
             loginBtn.RoundingInt = 70;
-            loginBtn.Size = new Size(203, 44);
+            loginBtn.Size = new Size(203, 43);
             loginBtn.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             loginBtn.TabIndex = 73;
             loginBtn.Tag = "Cyber";
@@ -260,6 +229,38 @@
             loginBtn.Timer_Effect_1 = 5;
             loginBtn.Timer_RGB = 300;
             loginBtn.Click += loginBtn_Click_1;
+            // 
+            // cyberTextBox1
+            // 
+            cyberTextBox1.Alpha = 20;
+            cyberTextBox1.BackColor = Color.Transparent;
+            cyberTextBox1.Background_WidthPen = 3F;
+            cyberTextBox1.BackgroundPen = true;
+            cyberTextBox1.ColorBackground = Color.FromArgb(236, 236, 236);
+            cyberTextBox1.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
+            cyberTextBox1.ColorLighting = Color.FromArgb(174, 174, 172);
+            cyberTextBox1.ColorPen_1 = Color.FromArgb(174, 174, 172);
+            cyberTextBox1.ColorPen_2 = Color.FromArgb(174, 174, 172);
+            cyberTextBox1.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            cyberTextBox1.Enabled = false;
+            cyberTextBox1.Font = new Font("Arial", 13F);
+            cyberTextBox1.ForeColor = Color.FromArgb(245, 245, 245);
+            cyberTextBox1.Lighting = false;
+            cyberTextBox1.LinearGradientPen = false;
+            cyberTextBox1.Location = new Point(193, 79);
+            cyberTextBox1.Name = "cyberTextBox1";
+            cyberTextBox1.PenWidth = 15;
+            cyberTextBox1.RGB = false;
+            cyberTextBox1.Rounding = true;
+            cyberTextBox1.RoundingInt = 60;
+            cyberTextBox1.Size = new Size(319, 55);
+            cyberTextBox1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            cyberTextBox1.TabIndex = 80;
+            cyberTextBox1.TabStop = false;
+            cyberTextBox1.Tag = "Cyber";
+            cyberTextBox1.TextButton = "";
+            cyberTextBox1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            cyberTextBox1.Timer_RGB = 300;
             // 
             // label3
             // 
@@ -277,7 +278,7 @@
             label41.AutoSize = true;
             label41.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label41.ForeColor = Color.FromArgb(76, 75, 78);
-            label41.Location = new Point(204, 39);
+            label41.Location = new Point(204, 38);
             label41.Name = "label41";
             label41.Size = new Size(191, 27);
             label41.TabIndex = 42;
@@ -288,7 +289,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(710, 526);
+            ClientSize = new Size(710, 527);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "LoginForm";
@@ -323,6 +324,6 @@
         private TextBox passField;
         private TextBox userNameField;
         private ReaLTaiizor.Controls.CyberTextBox cyberTextBox1;
-        private ReaLTaiizor.Controls.CyberTextBox cyberTextBox3;
+        private ReaLTaiizor.Controls.CyberTextBox cyberTextBox2;
     }
 }

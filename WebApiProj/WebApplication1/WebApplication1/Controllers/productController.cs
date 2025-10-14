@@ -1,12 +1,13 @@
 ﻿
-using Microsoft.AspNetCore.Mvc;
 using BusinessLogic;
 using InventoryCommon;
-using DataLogic;
-
+using Microsoft.AspNetCore.Mvc;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
 namespace WebApplication1.Controllers
 {
-  [ApiController]
+    [ApiController]
     [Route("[controller]")]
     public class productController : ControllerBase
     {
@@ -67,9 +68,9 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPatch("update")]
-        public void UpdateProduct(productModule request)
+        public void UpdateProduct(Product product)
         {
-            inventoryProcess.updateProduct(request.name, request.id, request.quantity, request.price, request.supplier, request.category);
+            inventoryProcess.updateProduct(product.Name, product.Id, product.Quantity, product.Price, product.supplierId, product.category);
         }
 
         [HttpDelete("delete/{productId}")]
@@ -106,6 +107,12 @@ namespace WebApplication1.Controllers
         public int GetOutOfStock()
         {
             return inventoryProcess.getOutOfStockProduct(inventoryProcess.getProducts());
+        }
+
+        [HttpPut("Email Supplier")]
+        public void EmailSupplier(Product product, string supplierName)
+        {
+            inventoryProcess.emailSupplier(product, supplierName);
         }
     }
 }

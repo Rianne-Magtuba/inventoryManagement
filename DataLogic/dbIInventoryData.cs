@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 using Microsoft.Data.Sql;
 using Microsoft.Data.SqlClient;
 using Microsoft.VisualBasic;
+using System.Net.Http.Headers;
+
+using System.Net;
+using System.Net.Mail;
 
 namespace DataLogic
 {
@@ -176,6 +180,8 @@ namespace DataLogic
             sqlConnection.Close();
         }
 
+       
+        //supplier methods
         public List<Supplier> getSuppliers()
         {
             suppliers.Clear();

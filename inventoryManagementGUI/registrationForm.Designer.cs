@@ -52,9 +52,10 @@
             categoryHdr.BackColor = Color.FromArgb(30, 30, 30);
             categoryHdr.Font = new Font("Arial", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             categoryHdr.ForeColor = Color.White;
-            categoryHdr.Location = new Point(200, 43);
+            categoryHdr.Location = new Point(140, 26);
+            categoryHdr.Margin = new Padding(2, 0, 2, 0);
             categoryHdr.Name = "categoryHdr";
-            categoryHdr.Size = new Size(237, 33);
+            categoryHdr.Size = new Size(164, 22);
             categoryHdr.TabIndex = 69;
             categoryHdr.Text = "Account register";
             // 
@@ -72,9 +73,10 @@
             panel1.Controls.Add(label1);
             panel1.Controls.Add(label41);
             panel1.Controls.Add(userLbl);
-            panel1.Location = new Point(2, 132);
+            panel1.Location = new Point(1, 79);
+            panel1.Margin = new Padding(2, 2, 2, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(613, 466);
+            panel1.Size = new Size(429, 280);
             panel1.TabIndex = 71;
             // 
             // conPassField
@@ -83,9 +85,10 @@
             conPassField.BorderStyle = BorderStyle.None;
             conPassField.Font = new Font("Arial", 12F);
             conPassField.ForeColor = Color.Black;
-            conPassField.Location = new Point(180, 315);
+            conPassField.Location = new Point(126, 189);
+            conPassField.Margin = new Padding(2, 2, 2, 2);
             conPassField.Name = "conPassField";
-            conPassField.Size = new Size(257, 28);
+            conPassField.Size = new Size(180, 19);
             conPassField.TabIndex = 82;
             // 
             // cyberTextBox2
@@ -101,17 +104,18 @@
             cyberTextBox2.ColorPen_2 = Color.FromArgb(174, 174, 172);
             cyberTextBox2.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
             cyberTextBox2.Enabled = false;
-            cyberTextBox2.Font = new Font("Arial", 11F);
+            cyberTextBox2.Font = new Font("Arial", 1F);
             cyberTextBox2.ForeColor = Color.Black;
             cyberTextBox2.Lighting = false;
             cyberTextBox2.LinearGradientPen = false;
-            cyberTextBox2.Location = new Point(154, 306);
+            cyberTextBox2.Location = new Point(1, 1);
+            cyberTextBox2.Margin = new Padding(1, 1, 1, 1);
             cyberTextBox2.Name = "cyberTextBox2";
             cyberTextBox2.PenWidth = 15;
             cyberTextBox2.RGB = false;
             cyberTextBox2.Rounding = true;
             cyberTextBox2.RoundingInt = 60;
-            cyberTextBox2.Size = new Size(303, 45);
+            cyberTextBox2.Size = new Size(22, 4);
             cyberTextBox2.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             cyberTextBox2.TabIndex = 81;
             cyberTextBox2.Tag = "Cyber";
@@ -125,9 +129,10 @@
             passField.BorderStyle = BorderStyle.None;
             passField.Font = new Font("Arial", 12F);
             passField.ForeColor = Color.Black;
-            passField.Location = new Point(180, 205);
+            passField.Location = new Point(126, 123);
+            passField.Margin = new Padding(2, 2, 2, 2);
             passField.Name = "passField";
-            passField.Size = new Size(257, 28);
+            passField.Size = new Size(180, 19);
             passField.TabIndex = 79;
             // 
             // cyberTextBox1
@@ -143,17 +148,18 @@
             cyberTextBox1.ColorPen_2 = Color.FromArgb(174, 174, 172);
             cyberTextBox1.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
             cyberTextBox1.Enabled = false;
-            cyberTextBox1.Font = new Font("Arial", 11F);
+            cyberTextBox1.Font = new Font("Arial", 1F);
             cyberTextBox1.ForeColor = Color.Black;
             cyberTextBox1.Lighting = false;
             cyberTextBox1.LinearGradientPen = false;
-            cyberTextBox1.Location = new Point(154, 194);
+            cyberTextBox1.Location = new Point(26, 15);
+            cyberTextBox1.Margin = new Padding(1, 1, 1, 1);
             cyberTextBox1.Name = "cyberTextBox1";
             cyberTextBox1.PenWidth = 15;
             cyberTextBox1.RGB = false;
             cyberTextBox1.Rounding = true;
             cyberTextBox1.RoundingInt = 60;
-            cyberTextBox1.Size = new Size(303, 45);
+            cyberTextBox1.Size = new Size(51, 4);
             cyberTextBox1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             cyberTextBox1.TabIndex = 80;
             cyberTextBox1.Tag = "Cyber";
@@ -167,9 +173,10 @@
             userNameField.BorderStyle = BorderStyle.None;
             userNameField.Font = new Font("Arial", 12F);
             userNameField.ForeColor = Color.Black;
-            userNameField.Location = new Point(180, 95);
+            userNameField.Location = new Point(126, 57);
+            userNameField.Margin = new Padding(2, 2, 2, 2);
             userNameField.Name = "userNameField";
-            userNameField.Size = new Size(257, 28);
+            userNameField.Size = new Size(180, 19);
             userNameField.TabIndex = 78;
             // 
             // clrBtn
@@ -198,12 +205,13 @@
             clrBtn.Lighting = false;
             clrBtn.LinearGradient_Background = false;
             clrBtn.LinearGradientPen = false;
-            clrBtn.Location = new Point(93, 379);
+            clrBtn.Location = new Point(65, 227);
+            clrBtn.Margin = new Padding(2, 2, 2, 2);
             clrBtn.Name = "clrBtn";
             clrBtn.PenWidth = 15;
             clrBtn.Rounding = true;
             clrBtn.RoundingInt = 70;
-            clrBtn.Size = new Size(203, 44);
+            clrBtn.Size = new Size(142, 26);
             clrBtn.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             clrBtn.TabIndex = 74;
             clrBtn.Tag = "Cyber";
@@ -239,12 +247,13 @@
             registerBtn.Lighting = false;
             registerBtn.LinearGradient_Background = false;
             registerBtn.LinearGradientPen = false;
-            registerBtn.Location = new Point(336, 379);
+            registerBtn.Location = new Point(235, 227);
+            registerBtn.Margin = new Padding(2, 2, 2, 2);
             registerBtn.Name = "registerBtn";
             registerBtn.PenWidth = 15;
             registerBtn.Rounding = true;
             registerBtn.RoundingInt = 70;
-            registerBtn.Size = new Size(203, 44);
+            registerBtn.Size = new Size(142, 26);
             registerBtn.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             registerBtn.TabIndex = 73;
             registerBtn.Tag = "Cyber";
@@ -259,9 +268,10 @@
             label2.AutoSize = true;
             label2.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(76, 75, 78);
-            label2.Location = new Point(175, 254);
+            label2.Location = new Point(122, 152);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(213, 27);
+            label2.Size = new Size(139, 18);
             label2.TabIndex = 46;
             label2.Text = "Confirm password:";
             // 
@@ -270,9 +280,10 @@
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(76, 75, 78);
-            label1.Location = new Point(175, 149);
+            label1.Location = new Point(122, 89);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(187, 27);
+            label1.Size = new Size(121, 18);
             label1.TabIndex = 44;
             label1.Text = "Enter password:";
             // 
@@ -281,9 +292,10 @@
             label41.AutoSize = true;
             label41.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label41.ForeColor = Color.FromArgb(76, 75, 78);
-            label41.Location = new Point(175, 41);
+            label41.Location = new Point(122, 25);
+            label41.Margin = new Padding(2, 0, 2, 0);
             label41.Name = "label41";
-            label41.Size = new Size(191, 27);
+            label41.Size = new Size(122, 18);
             label41.TabIndex = 42;
             label41.Text = "Enter username:";
             // 
@@ -300,17 +312,18 @@
             userLbl.ColorPen_2 = Color.FromArgb(174, 174, 172);
             userLbl.CyberTextBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
             userLbl.Enabled = false;
-            userLbl.Font = new Font("Arial", 11F);
+            userLbl.Font = new Font("Arial", 1F);
             userLbl.ForeColor = Color.Black;
             userLbl.Lighting = false;
             userLbl.LinearGradientPen = false;
-            userLbl.Location = new Point(154, 86);
+            userLbl.Location = new Point(26, 7);
+            userLbl.Margin = new Padding(1, 1, 1, 1);
             userLbl.Name = "userLbl";
             userLbl.PenWidth = 15;
             userLbl.RGB = false;
             userLbl.Rounding = true;
             userLbl.RoundingInt = 60;
-            userLbl.Size = new Size(303, 45);
+            userLbl.Size = new Size(51, 4);
             userLbl.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             userLbl.TabIndex = 2;
             userLbl.Tag = "Cyber";
@@ -323,19 +336,21 @@
             panel2.BackColor = Color.FromArgb(30, 30, 30);
             panel2.Controls.Add(categoryHdr);
             panel2.ForeColor = SystemColors.ControlLightLight;
-            panel2.Location = new Point(2, -2);
+            panel2.Location = new Point(1, -1);
+            panel2.Margin = new Padding(2, 2, 2, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(613, 110);
+            panel2.Size = new Size(429, 66);
             panel2.TabIndex = 72;
             // 
             // registrationForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(612, 593);
+            ClientSize = new Size(428, 356);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "registrationForm";
             Text = "Register";
             panel1.ResumeLayout(false);

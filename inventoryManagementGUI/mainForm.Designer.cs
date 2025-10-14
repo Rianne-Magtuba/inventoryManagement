@@ -935,7 +935,7 @@ namespace inventoryManagementGUI
             cyberTextBox44.ForeColor = Color.FromArgb(245, 245, 245);
             cyberTextBox44.Lighting = false;
             cyberTextBox44.LinearGradientPen = false;
-            cyberTextBox44.Location = new Point(560, 155);
+            cyberTextBox44.Location = new Point(557, 155);
             cyberTextBox44.Name = "cyberTextBox44";
             cyberTextBox44.PenWidth = 15;
             cyberTextBox44.RGB = false;
@@ -1175,7 +1175,7 @@ namespace inventoryManagementGUI
             addProductNavBtn.ColorBackground = Color.FromArgb(236, 236, 236);
             addProductNavBtn.ColorBackground_1 = SystemColors.ScrollBar;
             addProductNavBtn.ColorBackground_2 = SystemColors.ActiveBorder;
-            addProductNavBtn.ColorBackground_Pen = Color.DimGray;
+            addProductNavBtn.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             addProductNavBtn.ColorLighting = Color.White;
             addProductNavBtn.ColorPen_1 = SystemColors.WindowFrame;
             addProductNavBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -1406,7 +1406,7 @@ namespace inventoryManagementGUI
             returnToProductView.ColorBackground = Color.FromArgb(236, 236, 236);
             returnToProductView.ColorBackground_1 = SystemColors.ScrollBar;
             returnToProductView.ColorBackground_2 = SystemColors.ActiveBorder;
-            returnToProductView.ColorBackground_Pen = Color.DimGray;
+            returnToProductView.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             returnToProductView.ColorLighting = Color.White;
             returnToProductView.ColorPen_1 = SystemColors.WindowFrame;
             returnToProductView.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -1447,7 +1447,7 @@ namespace inventoryManagementGUI
             editProductBtn.ColorBackground = Color.FromArgb(236, 236, 236);
             editProductBtn.ColorBackground_1 = SystemColors.ScrollBar;
             editProductBtn.ColorBackground_2 = SystemColors.ActiveBorder;
-            editProductBtn.ColorBackground_Pen = Color.DimGray;
+            editProductBtn.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             editProductBtn.ColorLighting = Color.White;
             editProductBtn.ColorPen_1 = SystemColors.WindowFrame;
             editProductBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -1520,7 +1520,7 @@ namespace inventoryManagementGUI
             editProductSaveBtn.ColorBackground = Color.FromArgb(236, 236, 236);
             editProductSaveBtn.ColorBackground_1 = SystemColors.ScrollBar;
             editProductSaveBtn.ColorBackground_2 = SystemColors.ActiveBorder;
-            editProductSaveBtn.ColorBackground_Pen = Color.DimGray;
+            editProductSaveBtn.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             editProductSaveBtn.ColorLighting = Color.White;
             editProductSaveBtn.ColorPen_1 = SystemColors.WindowFrame;
             editProductSaveBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -1583,7 +1583,7 @@ namespace inventoryManagementGUI
             prodQtyMinus.ColorBackground = Color.FromArgb(236, 236, 236);
             prodQtyMinus.ColorBackground_1 = SystemColors.ScrollBar;
             prodQtyMinus.ColorBackground_2 = SystemColors.ActiveBorder;
-            prodQtyMinus.ColorBackground_Pen = Color.DimGray;
+            prodQtyMinus.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             prodQtyMinus.ColorLighting = Color.White;
             prodQtyMinus.ColorPen_1 = SystemColors.WindowFrame;
             prodQtyMinus.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -1624,7 +1624,7 @@ namespace inventoryManagementGUI
             prodQtyAdd.ColorBackground = Color.FromArgb(236, 236, 236);
             prodQtyAdd.ColorBackground_1 = SystemColors.ScrollBar;
             prodQtyAdd.ColorBackground_2 = SystemColors.ActiveBorder;
-            prodQtyAdd.ColorBackground_Pen = Color.DimGray;
+            prodQtyAdd.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             prodQtyAdd.ColorLighting = Color.White;
             prodQtyAdd.ColorPen_1 = SystemColors.WindowFrame;
             prodQtyAdd.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -2080,7 +2080,7 @@ namespace inventoryManagementGUI
             addProductBtn.ColorBackground = Color.FromArgb(236, 236, 236);
             addProductBtn.ColorBackground_1 = SystemColors.ScrollBar;
             addProductBtn.ColorBackground_2 = SystemColors.ActiveBorder;
-            addProductBtn.ColorBackground_Pen = Color.DimGray;
+            addProductBtn.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             addProductBtn.ColorLighting = Color.White;
             addProductBtn.ColorPen_1 = SystemColors.WindowFrame;
             addProductBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -2555,7 +2555,7 @@ namespace inventoryManagementGUI
             orderProdNavBtn.ColorBackground = Color.FromArgb(236, 236, 236);
             orderProdNavBtn.ColorBackground_1 = SystemColors.ScrollBar;
             orderProdNavBtn.ColorBackground_2 = SystemColors.ActiveBorder;
-            orderProdNavBtn.ColorBackground_Pen = Color.DimGray;
+            orderProdNavBtn.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             orderProdNavBtn.ColorLighting = Color.White;
             orderProdNavBtn.ColorPen_1 = SystemColors.WindowFrame;
             orderProdNavBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -2779,7 +2779,7 @@ namespace inventoryManagementGUI
             delOrderBtn.ColorBackground = Color.FromArgb(236, 236, 236);
             delOrderBtn.ColorBackground_1 = SystemColors.ScrollBar;
             delOrderBtn.ColorBackground_2 = SystemColors.ActiveBorder;
-            delOrderBtn.ColorBackground_Pen = Color.DimGray;
+            delOrderBtn.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             delOrderBtn.ColorLighting = Color.White;
             delOrderBtn.ColorPen_1 = SystemColors.WindowFrame;
             delOrderBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -2820,7 +2820,7 @@ namespace inventoryManagementGUI
             recieveOrderBtn.ColorBackground = Color.FromArgb(236, 236, 236);
             recieveOrderBtn.ColorBackground_1 = SystemColors.ScrollBar;
             recieveOrderBtn.ColorBackground_2 = SystemColors.ActiveBorder;
-            recieveOrderBtn.ColorBackground_Pen = Color.DimGray;
+            recieveOrderBtn.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             recieveOrderBtn.ColorLighting = Color.White;
             recieveOrderBtn.ColorPen_1 = SystemColors.WindowFrame;
             recieveOrderBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -3311,7 +3311,7 @@ namespace inventoryManagementGUI
             orderProductBtn.ColorBackground = Color.FromArgb(236, 236, 236);
             orderProductBtn.ColorBackground_1 = SystemColors.ScrollBar;
             orderProductBtn.ColorBackground_2 = SystemColors.ActiveBorder;
-            orderProductBtn.ColorBackground_Pen = Color.DimGray;
+            orderProductBtn.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             orderProductBtn.ColorLighting = Color.White;
             orderProductBtn.ColorPen_1 = SystemColors.WindowFrame;
             orderProductBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -3694,7 +3694,7 @@ namespace inventoryManagementGUI
             cyberButton1.ColorBackground = Color.FromArgb(236, 236, 236);
             cyberButton1.ColorBackground_1 = SystemColors.ScrollBar;
             cyberButton1.ColorBackground_2 = SystemColors.ActiveBorder;
-            cyberButton1.ColorBackground_Pen = Color.DimGray;
+            cyberButton1.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             cyberButton1.ColorLighting = Color.White;
             cyberButton1.ColorPen_1 = SystemColors.WindowFrame;
             cyberButton1.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -3993,7 +3993,7 @@ namespace inventoryManagementGUI
             invoiceOrderProdBtn.ColorBackground = Color.FromArgb(236, 236, 236);
             invoiceOrderProdBtn.ColorBackground_1 = SystemColors.ScrollBar;
             invoiceOrderProdBtn.ColorBackground_2 = SystemColors.ActiveBorder;
-            invoiceOrderProdBtn.ColorBackground_Pen = Color.DimGray;
+            invoiceOrderProdBtn.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             invoiceOrderProdBtn.ColorLighting = Color.White;
             invoiceOrderProdBtn.ColorPen_1 = SystemColors.WindowFrame;
             invoiceOrderProdBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -4111,7 +4111,7 @@ namespace inventoryManagementGUI
             CreateInvoiceBtn.ColorBackground = Color.FromArgb(236, 236, 236);
             CreateInvoiceBtn.ColorBackground_1 = SystemColors.ScrollBar;
             CreateInvoiceBtn.ColorBackground_2 = SystemColors.ActiveBorder;
-            CreateInvoiceBtn.ColorBackground_Pen = Color.DimGray;
+            CreateInvoiceBtn.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             CreateInvoiceBtn.ColorLighting = Color.White;
             CreateInvoiceBtn.ColorPen_1 = SystemColors.WindowFrame;
             CreateInvoiceBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -4490,7 +4490,7 @@ namespace inventoryManagementGUI
             addSupplierNavBtn.ColorBackground = Color.FromArgb(236, 236, 236);
             addSupplierNavBtn.ColorBackground_1 = SystemColors.ScrollBar;
             addSupplierNavBtn.ColorBackground_2 = SystemColors.ActiveBorder;
-            addSupplierNavBtn.ColorBackground_Pen = Color.DimGray;
+            addSupplierNavBtn.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             addSupplierNavBtn.ColorLighting = Color.White;
             addSupplierNavBtn.ColorPen_1 = SystemColors.WindowFrame;
             addSupplierNavBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -4715,7 +4715,7 @@ namespace inventoryManagementGUI
             saveSupChangesBtn.ColorBackground = Color.FromArgb(236, 236, 236);
             saveSupChangesBtn.ColorBackground_1 = SystemColors.ScrollBar;
             saveSupChangesBtn.ColorBackground_2 = SystemColors.ActiveBorder;
-            saveSupChangesBtn.ColorBackground_Pen = Color.DimGray;
+            saveSupChangesBtn.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             saveSupChangesBtn.ColorLighting = Color.White;
             saveSupChangesBtn.ColorPen_1 = SystemColors.WindowFrame;
             saveSupChangesBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -4756,7 +4756,7 @@ namespace inventoryManagementGUI
             stopEditingSupBtn.ColorBackground = Color.FromArgb(236, 236, 236);
             stopEditingSupBtn.ColorBackground_1 = SystemColors.ScrollBar;
             stopEditingSupBtn.ColorBackground_2 = SystemColors.ActiveBorder;
-            stopEditingSupBtn.ColorBackground_Pen = Color.DimGray;
+            stopEditingSupBtn.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             stopEditingSupBtn.ColorLighting = Color.White;
             stopEditingSupBtn.ColorPen_1 = SystemColors.WindowFrame;
             stopEditingSupBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -4797,7 +4797,7 @@ namespace inventoryManagementGUI
             editSupplierBtn.ColorBackground = Color.FromArgb(236, 236, 236);
             editSupplierBtn.ColorBackground_1 = SystemColors.ScrollBar;
             editSupplierBtn.ColorBackground_2 = SystemColors.ActiveBorder;
-            editSupplierBtn.ColorBackground_Pen = Color.DimGray;
+            editSupplierBtn.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             editSupplierBtn.ColorLighting = Color.White;
             editSupplierBtn.ColorPen_1 = SystemColors.WindowFrame;
             editSupplierBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -5230,7 +5230,7 @@ namespace inventoryManagementGUI
             addSupplierBtn.ColorBackground = Color.FromArgb(236, 236, 236);
             addSupplierBtn.ColorBackground_1 = SystemColors.ScrollBar;
             addSupplierBtn.ColorBackground_2 = SystemColors.ActiveBorder;
-            addSupplierBtn.ColorBackground_Pen = Color.DimGray;
+            addSupplierBtn.ColorBackground_Pen = Color.FromArgb(174, 174, 172);
             addSupplierBtn.ColorLighting = Color.White;
             addSupplierBtn.ColorPen_1 = SystemColors.WindowFrame;
             addSupplierBtn.ColorPen_2 = Color.FromArgb(64, 64, 64);
@@ -5667,7 +5667,7 @@ namespace inventoryManagementGUI
             AutoScaleDimensions = new SizeF(14F, 33F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1515, 919);
+            ClientSize = new Size(1559, 907);
             Controls.Add(profileBtn);
             Controls.Add(returnBtn);
             Controls.Add(headerLbl);
