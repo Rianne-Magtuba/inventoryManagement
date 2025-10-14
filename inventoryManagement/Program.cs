@@ -693,6 +693,16 @@ namespace inventoryManagement
                 DateOnly estimatedDate = DateOnly.Parse(Console.ReadLine());
 
                 inventoryProcess.addOrder(orderDate, supplierId, productId, qty, status, estimatedDate);
+                Product product = new Product();
+                product.Id = productId;
+                product.Quantity = qty;
+                product.supplierId = supplierId;
+                product.Price = 0;
+                product.Name = inventoryProcess.getProductNameById(productId);
+
+
+                string supplier = "test";
+                inventoryProcess.emailSupplier(product,supplier );
                 Console.WriteLine("Order added successfully!");
             }
             catch (FormatException)
