@@ -11,7 +11,12 @@ namespace WebApplication1.Controllers
     [Route("[controller]")]
     public class productController : ControllerBase
     {
-        inventoryProcess inventoryProcess = new inventoryProcess();
+        private readonly inventoryProcess inventoryProcess;
+
+        public productController(inventoryProcess _inventoryProcess)
+        {
+            inventoryProcess = _inventoryProcess;
+        }
 
         [HttpGet("getAll")]
         public List<Product> GetAllProducts()
@@ -109,10 +114,6 @@ namespace WebApplication1.Controllers
             return inventoryProcess.getOutOfStockProduct(inventoryProcess.getProducts());
         }
 
-        [HttpPut("Email Supplier")]
-        public void EmailSupplier(Product product, string supplierName)
-        {
-            inventoryProcess.emailSupplier(product, supplierName);
-        }
+    
     }
 }

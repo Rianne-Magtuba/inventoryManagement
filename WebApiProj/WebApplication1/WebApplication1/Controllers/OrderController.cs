@@ -8,7 +8,13 @@ namespace inventoryApi.Controllers
     [Route("[controller]")]
     public class OrderController : ControllerBase
     {
-        inventoryProcess inventoryProcess = new inventoryProcess();
+       private readonly inventoryProcess inventoryProcess;
+
+        public OrderController(inventoryProcess _inventoryProcess)
+        {
+            inventoryProcess = _inventoryProcess;
+        }
+
 
         [HttpGet]
         public List<Orders> GetOrders()
@@ -74,6 +80,12 @@ namespace inventoryApi.Controllers
         public void RemoveOrder(int orderId)
         {
             inventoryProcess.removeOrder(orderId);
+        }
+
+        [HttpPut("Email Supplier")]
+        public void EmailSupplier(Product product, string supplierName)
+        {
+            inventoryProcess.emailSupplier(product, supplierName, "sampleAdd@gmail.com");
         }
     }
 }

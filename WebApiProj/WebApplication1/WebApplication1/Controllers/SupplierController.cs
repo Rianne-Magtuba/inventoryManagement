@@ -8,7 +8,12 @@ namespace inventoryApi.Controllers
     [Route("[controller]")]
     public class SupplierController : ControllerBase
     {
-        inventoryProcess inventoryProcess = new inventoryProcess();
+        private readonly inventoryProcess inventoryProcess;
+
+        public SupplierController(inventoryProcess _inventoryProcess)
+        {
+            inventoryProcess = _inventoryProcess;
+        }
 
         [HttpGet]
         public List<Supplier> GetSuppliers()

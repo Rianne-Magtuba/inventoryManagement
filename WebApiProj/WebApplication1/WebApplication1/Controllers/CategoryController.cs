@@ -8,7 +8,12 @@ namespace inventoryApi.Controllers
     [Route("[controller]")]
     public class CategoryController : ControllerBase
     {
-        inventoryProcess inventoryProcess = new inventoryProcess();
+        private readonly inventoryProcess inventoryProcess;
+
+        public CategoryController(inventoryProcess _inventoryProcess)
+        {
+            inventoryProcess = _inventoryProcess;
+        }
 
         [HttpGet]
         public List<Category> GetCategories()

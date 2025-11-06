@@ -15,10 +15,11 @@ namespace inventoryManagementGUI
     public partial class Category : Form
     {
         private mainForm mainFormRef;
-        inventoryProcess inventoryProcess = new inventoryProcess();
-        public Category(mainForm mainFormRef)
+        inventoryProcess inventoryProcess;
+        public Category(mainForm mainFormRef, inventoryProcess _inventoryProcess)
         {
             InitializeComponent();
+            inventoryProcess = _inventoryProcess;
             this.mainFormRef = mainFormRef;
             this.FormClosed += AddProductForm_FormClosed;
         }

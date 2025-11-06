@@ -1,19 +1,29 @@
 ﻿using BusinessLogic;
 using DataLogic;
 using InventoryCommon;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Runtime.Intrinsics.Arm;
 using System.Runtime.Serialization.Json;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace inventoryManagement
 {
     internal class Program
     {
-        static inventoryProcess inventoryProcess = new inventoryProcess();
+        static inventoryProcess inventoryProcess;
         static void Main(string[] args)
         {
+            var configuration = new ConfigurationBuilder()
+         .SetBasePath(Directory.GetCurrentDirectory())
+         .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+         .Build();
+
+            var emailService = new EmailService(configuration);
+            inventoryProcess = new inventoryProcess(emailService);
             Console.WriteLine("Welcome to Computer Inventory Management");
 
             bool retry = false;
@@ -648,20 +658,11 @@ namespace inventoryManagement
 
         static void addOrder()
         {
-            try
-            {
-                Console.WriteLine("Enter order date (yyyy-mm-dd) or press Enter for today:");
-                string dateInput = Console.ReadLine();
-                DateOnly orderDate;
+          
+                DateOnly orderDate = DateOnly.FromDateTime(DateTime.Now);
 
-                if (string.IsNullOrEmpty(dateInput))
-                {
-                    orderDate = DateOnly.FromDateTime(DateTime.Now);
-                }
-                else
-                {
-                    orderDate = DateOnly.Parse(dateInput);
-                }
+
+
 
                 viewSuppliers();
                 Console.WriteLine("Enter supplier ID:");
@@ -686,11 +687,10 @@ namespace inventoryManagement
                 Console.WriteLine("Enter quantity:");
                 int qty = Convert.ToInt32(Console.ReadLine());
 
-                Console.WriteLine("Enter order status (Pending/Ordered/Delivered/Cancelled):");
-                string status = Console.ReadLine();
+                string status = "Pending";
 
-                Console.WriteLine("Enter estimated delivery date (yyyy-mm-dd):");
-                DateOnly estimatedDate = DateOnly.Parse(Console.ReadLine());
+
+                DateOnly estimatedDate = DateOnly.FromDateTime(DateTime.Today.AddDays(3));
 
                 inventoryProcess.addOrder(orderDate, supplierId, productId, qty, status, estimatedDate);
                 Product product = new Product();
@@ -702,13 +702,9 @@ namespace inventoryManagement
 
 
                 string supplier = "test";
-                inventoryProcess.emailSupplier(product,supplier );
+                inventoryProcess.emailSupplier(product,supplier, "SampleAdd@gmail.com");
                 Console.WriteLine("Order added successfully!");
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("ERROR: Invalid input format.");
-            }
+          
         }
 
         static void updateOrderStatus()

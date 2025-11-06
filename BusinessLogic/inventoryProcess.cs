@@ -8,9 +8,6 @@ using System.Text;
 namespace BusinessLogic;
 using System;
 
-using MailKit.Net.Smtp;
-using MailKit;
-using MimeKit;
 
 
 
@@ -19,10 +16,12 @@ public class inventoryProcess
     {
 
         inventoryDataService InventoryData;
-        public inventoryProcess()
+          EmailService _emailService;
+        public inventoryProcess(EmailService emailService)
         {
            InventoryData = new inventoryDataService();
-        }
+            _emailService = emailService;
+    }
 
     
 
@@ -272,42 +271,13 @@ public class inventoryProcess
             return OutOfStockProduct;
         }
 
-        public void emailSupplier(Product product, string supplierName)
+        public void emailSupplier(Product product, string supplierName, string supplierEmailAdd)
         {
-            var _username = "da712c1f1b7491";
-            var _password = "edee6f409274b0";
-            const string _gmailSmtpServer = "sandbox.smtp.mailtrap.io";
-            const int _port = 2525;
 
-          var email = new MimeMessage();
-            email.From.Add(new MailboxAddress("Inventory  CO", "Sender@gmail.com"));
-            email.To.Add(new MailboxAddress(supplierName, "receiver@gmail.com"));
-
-            email.Subject = "Restock Request for " + product.Name;
-            email.Body = new TextPart(MimeKit.Text.TextFormat.Html)
-            {
-                Text = "<h2>Dear " + supplierName + ",</h2>" +
-                "<p>We hope this message finds you well. We are reaching out to inform you that we are currently low on stock for the following product:</p>" +
-                "<ul>" +
-                "<li><strong>Product Name:</strong> " + product.Name + "</li>" +
-                "<li><strong>Current Stock Level:</strong> " + product.Quantity + "</li>" +
-                "</ul>" +
-                "<p>We would appreciate it if you could expedite the restocking of this item at your earliest convenience. Please let us know the expected delivery date and any other relevant details.</p>" +
-                "<p>Thank you for your prompt attention to this matter. We look forward to continuing our successful partnership.</p>" +
-                "<p>Best regards,</p>" 
-            };
-
-            using (var smtp = new SmtpClient())
-            {
-                smtp.Connect(_gmailSmtpServer, _port, MailKit.Security.SecureSocketOptions.StartTls);
-                smtp.Authenticate(_username, _password);
-            smtp.Send(email);
-            smtp.Disconnect(true);
-
-        }
+        _emailService.sendSupplierEmail( product, supplierName, supplierEmailAdd);
 
 
-        }
+    }
 
 
 

@@ -1,13 +1,25 @@
 ﻿using BusinessLogic;
 using ReaLTaiizor.Controls;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 namespace inventoryManagementGUI
 {
     public partial class LoginForm : Form
     {
-        inventoryProcess inventoryProcess = new inventoryProcess();
+        inventoryProcess inventoryProcess;
         public LoginForm()
         {
             InitializeComponent();
+            var configuration = new ConfigurationBuilder()
+           .SetBasePath(Directory.GetCurrentDirectory())
+           .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+           .Build();
+
+       
+            var emailService = new EmailService(configuration);    
+            inventoryProcess = new inventoryProcess(emailService);
+
+
             passField.UseSystemPasswordChar = true;
         }
 

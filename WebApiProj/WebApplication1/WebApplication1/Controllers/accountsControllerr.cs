@@ -6,7 +6,12 @@ namespace inventoryApi.Controllers
 {
     public class accountsControllerr : Controller
     {
-        inventoryProcess inventoryProcess = new inventoryProcess();
+        private readonly inventoryProcess inventoryProcess;
+
+        public accountsControllerr(inventoryProcess _inventoryProcess)
+        {
+            inventoryProcess = _inventoryProcess;
+        }
 
         // GET /accountsControllerr
         [HttpGet]
